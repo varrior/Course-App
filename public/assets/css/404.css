@@ -1,0 +1,74 @@
+.error-page
+{
+    background-color: #2F3242; 
+    position: fixed; 
+    top:0;
+    left:0;
+    min-height: 100%; 
+    width: 100%;
+    z-index: 100000;
+}
+svg {
+
+    margin-top: 50px;
+}
+.message-box {
+    height: 200px;
+    width: 100%;
+    color: #FFF;
+    font-family: Roboto;
+    font-weight: 300;
+    display: inline-block;
+    margin-top: 120px;
+}
+.message-box h1 {
+    font-size: 60px;
+    line-height: 46px;
+    margin-bottom: 40px;
+}
+.message-box h3 {
+    line-height: 40px;
+}
+.buttons-con .action-link-wrap {
+    margin-top: 30px;
+}
+.buttons-con .action-link-wrap a {
+    padding: 8px 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+    font-family: calibri;
+}
+.buttons-con .action-link-wrap a .glyphicon {
+    font-size: 16px;
+}
+.buttons-con .action-link-wrap a:hover {
+    background: #5A5C6C;
+    color: #fff;
+}
+
+#Polygon-1 , #Polygon-2 , #Polygon-3 , #Polygon-4 , #Polygon-4, #Polygon-5 {
+    animation: float 1s infinite ease-in-out alternate;
+}
+#Polygon-2 {
+    animation-delay: .2s; 
+}
+#Polygon-3 {
+    animation-delay: .4s; 
+}
+#Polygon-4 {
+    animation-delay: .6s; 
+}
+#Polygon-5 {
+    animation-delay: .8s; 
+}
+
+@keyframes float {
+	100% {
+    transform: translateY(20px);
+  }
+}

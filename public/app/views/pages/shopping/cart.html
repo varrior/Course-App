@@ -1,0 +1,69 @@
+<section class="shopping-cart-user">
+    <div class="container" ng-if="!main.showInnerCart">
+        <div class="show-hide-message text-center">
+            <img class="empty-cart" src="../../../../uploads/svg/cart.svg">
+            <h2 class="alert alert-danger">Ooops, Your cart is empty :)</h2>
+            <a ui-sref="parent.courses" class="btn btn-primary btn-bock">See available courses</a>
+        </div>
+    </div>
+    <div ng-if="main.showInnerCart" class="container">
+        <div class="col-lg-8 col-md-8 col-lg-offset-0 col-md-offset-0 hidden-sm hidden-xs">
+            <div class="col-lg-12 col-md-12 shopping-header">
+                <div class="col-lg-6 col-md-6 shopping-header-title">
+                    <p>Selected courses</p>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <p>Price</p>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <p class="text-center">Quantity</p>
+                </div>
+                <div class="col-lg-2 col-md-2"></div>
+            </div>
+            <div class="col-lg-12 col-md-12 shopping-item" ng-repeat="product in main.sessionProduct.items">
+                <div class="col-lg-6 col-md-6 shopping-image-item">
+                    <div class="col-lg-6 col-md-6" style="padding-left: 0">
+                        <img class="img-responsive" src="../../uploads/{{product.item.imagePath}}">
+                    </div>
+                    <div class="col-lg-6 col-md-6" style="padding-left: 0">
+                        <h2 class="product-title">{{product.item.title}}</h2>
+                        <h3 class="product-subTitle">{{product.item.subTitle}}</h3>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <p>{{product.item.newPrice}} zł</p>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <p style="padding-left: 25px">{{product.qty}}</p>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <button ng-click="main.reduceCart(product.item._id)" class="btn btn-danger pull-right">Delete</button>
+                </div>
+            </div> 
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-2 col-xs-10 col-xs-offset-1 order-summary">
+            <h3 class="summary-header">Summary</h3>
+            <div class="summary-item" ng-repeat="product in main.sessionProduct.items track by $index">
+                <div class="col-lg-12 col-md-12 item-orders">
+                    <div class="col-lg-8 col-md-8 no-space">
+                        <p class="order-summary-subtitle">{{ product.item.subTitle }}</p>
+                    </div>
+                   <div class="col-lg-4 col-md-4">
+                        <p class="order-summary-subtitle text-right">{{ product.newPrice }} zł</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 total-orders">
+                <div class="col-lg-8 col-md-8 total-summary-header">
+                    <p class="text-right">SUMMARY TO PAY:</p>
+                </div>
+                <div class="col-lg-4 col-md-4 total-summary-header">
+                    <p class="order-summary-subtitle text-right">{{ main.summaryPrice }} zł</p>
+                </div>
+            </div>     
+            <div class="col-lg-12 col-md-12 checkout">
+                <a ui-sref="parent.checkout" role="button" class="btn-block btn btn-warning">Make a payment</a>
+            </div>         
+        </div>
+    </div>
+</section>

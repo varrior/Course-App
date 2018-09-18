@@ -1,0 +1,100 @@
+<section class="sortSection">
+    <div class="container">
+        <h2 ng-if="!main.products.length" class="text-center" style="margin-bottom: 130px">No courses have been added recently</h2>
+        <nav ng-if="main.products.length" class="sort-courses">
+            <div class="category hidden-xs">
+                <p>Category</p>
+                <div ng-repeat="product in main.products | orderBy: '-title' | unique: 'title'" class="titleSort">
+                    <a ng-class="{sortedCourse: navi.propertyName === product.title}" ng-click="navi.sortByCourse(product.title)">{{product.title}}&nbsp</a>      
+                </div>
+            </div>
+            <div class="pull-right hidden-xs">
+                <div class="level">
+                    <p>Level</p>
+                    <div ng-repeat="product in main.products | unique: 'level'" class="titleSort"> 
+                        <span ng-class="{sortedLevel: navi.propertyLevel === product.level}" ng-click="navi.sortByLevel($event, product.level)"><i class="{{product.level}}"></i></span>      
+                    </div>
+                </div>
+                <div class="customSort hidden-xs">
+                    <p>Sort by</p>
+                    <div class="sort-by">
+                        <select data-toggle="dropdown" ng-model="navi.selectSort" ng-change="navi.applySortBy(navi.selectSort)" aria-expanded= "false">
+                            <option value="Sort" disabled="disabled">Sort by...</option>
+                            <option value="Recent">Recent</option>    
+                            <option value="Price ascending">Price ascending</option> 
+                            <option value="Price descending">Price descending</option> 
+                            <option value="Alphabetically">Alphabetically</option> 
+                        </select>            
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</section>
+<section ng-if="main.products.length" class="allCoursesPage courseRecommended hidden-sm hidden-xs">
+    <div class="container recommended-course">
+        <div ng-repeat="product in navi.sortedProducts">
+            <div class="col-lg-7 col-md-7 text-center">
+                <h2 class="text-left">Recommended course:</h2>
+                <h1>{{product.title}}, {{product.subTitle}}</h1>
+                <a ui-sref="parent.seeMore({id:product._id})" class="recommended-button" ng-click="main.scroll()">Check the details<span class="glyphicon glyphicon-menu-right"></span><span class="glyphicon glyphicon-menu-right second-line"></span></a>
+            </div>
+            <div class="col-lg-5 col-md-5">
+                <div class="button-directions">
+                    <img src="../../uploads/{{ product.imagePath }}" alt="#">
+                    <div class="play-hover">
+                        <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()"><span class="glyphicon glyphicon-check"></span>Check the details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section ng-if="main.products.length" class="allCoursesPage">
+    <div class="container">
+        <div class="headerNewCourse">
+            <h1>Category: {{navi.propertyName || 'All courses'}}</h1>
+            <div class="heading-intro">
+                <h1>Good for you!</h1>
+                <p>The most important step is behind you - you know that you want to learn! Creating modern and dynamic websites is definitely an easier task. Go to work!</p>
+            </div>
+        </div>
+        <div class="container-product">
+            <div ng-repeat="product in navi.productsPag.slice(((navi.currentPage-1)*navi.itemsPerPage), (navi.currentPage*navi.itemsPerPage))" class="con-new-pro col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="product">
+                    <div class="button-directions">
+                        <img src="../../uploads/{{ product.imagePath }}" alt="#">
+                        <div class="play-hover">
+                            <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()"><span class="glyphicon glyphicon-check"></span>Check the details</a>
+                        </div>
+                        <i class="level" ng-class="product.level" product-level-course></i> 
+                    </div>
+                    <h2>{{product.title}}</h2>
+                    <h3>{{product.subTitle}}</h3>
+                    <div class="description-list-group">
+                        <ol>
+                            <ul class="text-center">
+                                <li ng-repeat="item in product.description">{{ item }}</li> 
+                            </ul>
+                        </ol>
+                    </div>
+                    <div class="col-xs-12 text-right no-padding-price"> 
+                        <span class="actualPrice"><span class="glyphicon glyphicon-shopping-cart shopping-icon"></span> {{ product.newPrice }}zł</span>
+                        <span class="oldPrice">{{ product.oldPrice }}zł</span>
+                    </div>
+                    <div class="col-xs-12 read-more">
+                        <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Read more
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagination-center">
+            <pagination total-items="navi.productsPag.length" ng-model="navi.currentPage" class="pagination-sm text-center" items-per-page="navi.itemsPerPage" previous-text="Previous" next-text="Next"></pagination>     
+        </div> 
+    </div>
+</section>
+<div ng-show="navi.loadingPage" class="loading">
+    <span class="glyphicon loading"></span>
+</div>

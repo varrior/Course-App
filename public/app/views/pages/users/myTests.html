@@ -1,0 +1,19 @@
+<section id="testy_spr">
+    <div class="container">
+        <div class="quiz">
+            <div class="content">
+                <section ng-cloak class="intro fade-in" ng-if="!quizProgress.loading && !quizProgress.finished">
+                    <div ng-cloak class="row intro-row">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-x-12 test-container">
+                            <img ng-src="{{ quizMetadata.introImg }}">
+                            <p>{{ ::quizMetadata.title }}</p>
+                            <a href="/test">
+                                <button class="btn btn-success start-test" ng-click="startQuiz()"><i class="fa fa-paper-plane" aria-hidden="true"></i> Start the test</button>
+                            </a>
+                        </div>    
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section> 

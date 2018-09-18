@@ -1,0 +1,141 @@
+<div autoscroll="true" id="dashboard_panel">
+  <section>
+    <header>
+      <nav class="rad-navigation">
+        <p class="pull-right">Missing notification</p>
+      </nav>
+    </header>
+  </section>
+  <aside>
+    <nav class="rad-sidebar">
+        <div class="rad-logo-container">
+            <a ng-click="main.scroll()" class="navbar-brand" ui-sref="parent.home" data-target="#page-top">
+              <span class="icon-brand">
+                  <img src="../../../../uploads/svg/code-white.svg">
+              </span>
+              <span class="mat-now rad-sidebar-item">WebSite</span>
+              <span class="dot-change rad-sidebar-item">.</span> 
+          </a>
+          <a data-target="#" class="rad-toggle-btn"><i class="fa fa-bars"></i></a>
+        </div>
+      <ul>
+        <li ng-class="{ active: isActive('/dashboard/admin/panel')}">
+          <a ui-sref="dashboard.panel" class="inbox">
+            <i class="fa fa-dashboard"><span class="icon-bg rad-bg-success"></span></i>
+            <span class="rad-sidebar-item">Home page</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/dashboard/admin/users')}">
+          <a ui-sref="dashboard.adminUsers" class="nav_href_users">
+            <i class="fa fa-users">
+              <span class="icon-bg rad-bg-danger"></span>
+            </i>
+            <span class="rad-sidebar-item">Users</span>
+          </a>
+        </li>
+        <li ng-class="{'angle-down': dashboard.toggle}">
+          <a ng-click="dashboard.toggle = !dashboard.toggle" href="#" data-toggle="collapse" data-target="#kursyDropdown" class="collapsed toggle-collapsed">
+            <i class="fa fa-pencil-square-o" aria-hidden="true">
+              <span class="icon-bg rad-bg-primary"></span>
+            </i>
+            <span class="rad-sidebar-item">Courses</span><b><i class="fa fa-angle-down pull-right caret-toggle" aria-hidden="true"></i></b>
+          </a>
+          <div class="courseManage collapse" ng-class="{ in: dashboard.ActiveNav('/dashboard/admin/manage/courses') || dashboard.ActiveNav('/dashboard/admin/new-course') || dashboard.ActiveNav('/dashboard/admin/edit-course/' + main.currentId)}" id="kursyDropdown">
+            <ul>
+              <li>
+                <a ng-class="{ collapseActive: isActive('/dashboard/admin/new-course')}" ui-sref="dashboard.newCourse">Add new course</a>
+              </li> 
+              <li>
+                <a ng-class="{ collapseActive: isActive('/dashboard/admin/manage/courses') || isActive('/dashboard/admin/edit-course/' + main.currentId)}" ui-sref="dashboard.manageCourses">Edit course</a>
+              </li> 
+            </ul>
+          </div>
+        </li>
+        <li ng-class="{'angle-down': dashboard.blogToggle}">
+          <a ng-click="dashboard.blogToggle = !dashboard.blogToggle" href="#" data-toggle="collapse" data-target="#blogDropdown" class="collapsed toggle-collapsed">
+            <i class="glyphicon glyphicon-globe" aria-hidden="true">
+              <span class="icon-bg rad-bg-primary"></span>
+            </i> 
+            <span class="rad-sidebar-item">Blog</span><b><i class="fa fa-angle-down pull-right caret-toggle" aria-hidden="true"></i></b>
+          </a>
+          <div class="blogManage collapse" ng-class="{ in: dashboard.ActiveNav('/dashboard/admin/blog/new-article') || dashboard.ActiveNav('/dashboard/admin/blog/articles') || dashboard.ActiveNav('/dashboard/admin/edit-article/' + main.currentId)}" id="blogDropdown">
+            <ul>
+              <li>
+                <a ng-class="{ collapseActive: isActive('/dashboard/admin/blog/new-article')}" ui-sref="dashboard.newBlog">Add new article</a>
+              </li> 
+              <li>
+                <a ng-class="{ collapseActive: isActive('/dashboard/admin/blog/articles') || isActive('/dashboard/admin/edit-article/' + main.currentId)}" ui-sref="dashboard.allArticles">Edit article</a>
+              </li> 
+            </ul>
+          </div>
+        </li>
+        <li ng-class="{ active: isActive('/dashboard/admin/description/')}">
+          <a ui-sref="dashboard.aboutAdmin" class="nav_href_users">
+            <i class="fa fa-cogs">
+              <span class="icon-bg rad-bg-violet"></span>
+            </i>
+            <span class="rad-sidebar-item">About us</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/dashboard/admin/settings/')}">
+          <a ui-sref="dashboard.editAdmin" class="nav_href_users">
+            <i class="fa fa-wrench">
+              <span class="icon-bg rad-bg-violet"></span>
+            </i>
+            <span class="rad-sidebar-item">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav_href_users" role="button" ng-click="dashboard.adminLogout()">
+            <i class="fa fa-power-off">
+              <span class="icon-bg rad-bg-danger"></span>
+            </i>
+            <span class="rad-sidebar-item">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </nav> 
+  </aside>
+  <main> 
+    <div class="al-main" ng-cloak>
+      <div class="al-content">
+          <div ui-view="dashboard"></div>
+      </div>  
+    </div>  
+  </main>
+</div>
+<div class="modal fade" id="adminLoggingOut" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- Modal Header -->
+          <h4 class="modal-title">{{ dashboard.modalHeader }}</h4>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <p>{{ dashboard.modalBody }}</p>
+          <div ng-show="dashboard.hideButton" class="dizzy-gillespie"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal fade" id="adminLogoutModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button ng-hide="main.hideButton" type="button" ng-click="main.endSession();" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{ dashboard.modalHeader }}</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{ dashboard.modalBody }}</p>
+          <div ng-show="main.hideButton" class="dizzy-gillespie"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" ng-hide="main.hideButton" ng-click="dashboard.renewAdminSession();" class="btn btn-danger" data-dismiss="modal">Yes</button>
+          <button type="button" ng-hide="main.hideButton" ng-click="dashboard.endAdminSession();" class="btn btn-danger" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div> 
+  </div>

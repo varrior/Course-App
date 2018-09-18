@@ -1,0 +1,67 @@
+.navbarScroll nav#mainNav.aboutMe {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+}
+
+.navbarScroll nav#mainNav.aboutMe .collapse.in, .navbarScroll nav#mainNav.aboutMe .collapsing {
+    background-color: rgba(0, 0, 0, 0.8);
+
+}
+section#opis_my
+{
+    background-color: #f5f5f5;
+    padding-top: 100px;
+    padding-bottom: 120px;
+}
+section#opis_my .about-me
+{
+    background-color: #666;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+section#opis_my .about-me h1
+{
+    color: #fff;
+    font-size: 30px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 7px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: Roboto slab;
+}
+section#opis_my .about-me p
+{
+    color: #ddd;
+    font-size: 15px;
+    font-family: Roboto slab;
+    line-height: 26px;
+}
+section#opis_my .about-blog
+{
+    background-color: #fff;
+    font-size: 30px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+section#opis_my .about-blog h1
+{
+    color: #000;
+    font-size: 30px;
+    border-bottom: 1px solid #000;
+    text-transform: uppercase;
+    padding-bottom: 7px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: Roboto slab;
+}
+section#opis_my .about-blog p, section#opis_my .about-blog li
+{
+    color: #000;
+    font-size: 15px;
+    font-family: Roboto slab;
+    line-height: 26px;
+}
+section#opis_my .about-blog li .font-weight-bold
+{
+    font-weight: 700;
+}

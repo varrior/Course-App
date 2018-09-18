@@ -1,0 +1,409 @@
+<div class="users-management">
+    <div class="widgets">
+        <div class="container-users">
+            <div class="row-users">
+                <form name="sendProductForm" ng-submit="newCourse.sendProduct(newCourse.productData, sendProductForm.$valid)" novalidate>
+                    <div class="col-xs-12"> 
+                        <h1 class="users-table">Add new course</h1>
+                        <div class="panel panel-blur with scroll animated zoomIn">
+                            <div class="panel-heading clearfix">
+                                <h3 class="hidden-xs panel-title pull-left">Course details</h3>
+                            </div> 
+                            <div class="panel-body">
+                                <div class="horizontal-scroll">
+                                    <div class="management-user">
+                                        <div class="management-user">
+                                            <section id="new-course-admin">
+                                                <div ng-show="!newCourse.productData.title && !newCourse.productData.subTitle && !newCourse.productData.newPrice && !newCourse.productData.oldPrice && !newCourse.thumbnail.dataUrl" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
+                                                    <div class="course-container text-center">
+                                                        <img class="start-new-course text-center" src="../../../../../uploads/svg/presentation.svg">
+                                                        <p class="text-center start-course-description">Start creating a new course</p>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="newCourse.productData.title || newCourse.productData.subTitle || newCourse.productData.newPrice || newCourse.productData.oldPrice || newCourse.thumbnail.dataUrl" class="hidden-xs col-sm-4 col-md-4 col-lg-4">
+                                                    <div class="course-container">
+                                                        <div ng-if="newCourse.imagePreview" class="thumbnail image_course">
+                                                            <img ng-src="{{ newCourse.thumbnail.dataUrl }}"/>
+                                                            <i class="{{ newCourse.productData.level }}"></i>                 
+                                                        </div>
+                                                        <div class="caption">
+                                                            <section class="title-course">
+                                                                <p class="text-center">{{ newCourse.productData.title }}</p>
+                                                                <span class="text-center">{{ newCourse.productData.subTitle }}</span>
+                                                            </section>        
+                                                            <div class="benefits_course">
+                                                                <p class="text-center">Look what you can <b>gain</b> with us!></p>
+                                                                <ol>
+                                                                    <ul class="list-group list-group-flush text-left">
+                                                                        <li ng-repeat="item in newCourse.productData.description track by $index" class="list-group-item description-item">{{ newCourse.productData.description[$index] }}</li>
+                                                                    </ul>        
+                                                                </ol>
+                                                            </div>      
+                                                            <div class="course-footer">
+                                                                <div class="social_opinions" ng-repeat="rating in ratings">
+                                                                    <div class="rating-input" star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+                                                                </div>
+                                                                <div class="prices_course pull-right">
+                                                                    <span class="actualPrice"><span class="glyphicon glyphicon-shopping-cart shopping-icon"></span> {{ newCourse.productData.newPrice }}zł</span>
+                                                                    <span class="oldPrice pull-right">{{ newCourse.productData.oldPrice }}zł</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                                    <div class="edit-container">                
+                                                        <div ng-class="{'has-success':(sendProductForm.imagePath.$valid && !sendProductForm.imagePath.$pristine), 'has-error':(!sendProductForm.imagePath.$valid && !sendProductForm.imagePath.$pristine) || (!sendProductForm.imagePath.$valid && sendProductForm.$submitted) || sendProductForm.imagePath.$error.pattern}">
+                                                        <label class="add-title-label" for="imagePath"><h3>Course photo</h3></label>
+                                                            <div class="form-group">
+                                                                <div class="input-group"> 
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-picture-o"></i> 
+                                                                    </div> 
+                                                                    <input type="text" ng-pattern="/\.(png|jpeg|jpg)$/" name="imagePath" class="form-control" ng-model="newCourse.productData.imagePath" readonly required>
+                                                                    <span class="input-group-btn">        
+                                                                        <span class="btn btn-default btn-file add-img-upload"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Select 
+                                                                            <input id="selectImage" type="file" name="myfile" ng-disabled="newCourse.uploading" file-model="file.newCourse" onchange="angular.element(this).scope().newCourse.photoChanged(this.files)">
+                                                                        </span>
+                                                                        <span ng-click="newCourse.clearImage(file.newCourse)" ng-if="newCourse.imagePreview" class="btn btn-default btn-file add-img-upload clean-image"><span class="glyphicon glyphicon-trash"></span></span> 
+                                                                    </span>
+                                                                </div> 
+                                                            </div>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.imagePath.$pristine && sendProductForm.imagePath.$error.required) || (sendProductForm.$submitted && sendProductForm.imagePath.$error.required)">Course photo is required</p>
+                                                        </div>  
+                                                        <div ng-class="{'has-success':(sendProductForm.title.$valid && !sendProductForm.title.$pristine), 'has-error':(!sendProductForm.title.$valid && !sendProductForm.title.$pristine) || (!sendProductForm.title.$valid && sendProductForm.$submitted)}">
+                                                            <label class="add-title-label" for="title"><h3>Course title</h3></label>
+                                                            <div class="form-group">
+                                                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-paint-brush"></i>
+                                                                    </div>
+                                                                    <input ng-disabled="newCourse.disabled" type="text" name="title" class="form-control" ng-model="newCourse.productData.title" placeholder="Please enter course title" required>
+                                                                </div>
+                                                            </div>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.title.$pristine && sendProductForm.title.$error.required) || (sendProductForm.$submitted && sendProductForm.title.$error.required)">Course title is required</p>
+                                                        </div>
+                                                        <div ng-class="{'has-success':(sendProductForm.subTitle.$valid && !sendProductForm.subTitle.$pristine), 'has-error':(!sendProductForm.subTitle.$valid && !sendProductForm.subTitle.$pristine) || (!sendProductForm.subTitle.$valid && sendProductForm.$submitted)}">
+                                                            <label class="add-title-label" for="subTitle"><h3>Course subtitle</h3></label>
+                                                            <div class="form-group">
+                                                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-code"></i>
+                                                                    </div>
+                                                                    <input ng-disabled="newCourse.disabled" type="text" ng-model="newCourse.productData.subTitle" name="subTitle" class="form-control" placeholder="Please enter course subtitle" required>
+                                                                </div>
+                                                            </div>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.subTitle.$pristine && sendProductForm.subTitle.$error.required) || (sendProductForm.$submitted && sendProductForm.subTitle.$error.required)">Course subtitle is required</p>
+                                                        </div>
+                                                        <div ng-class="{'has-success':(sendProductForm.description.$valid && !sendProductForm.description.$pristine), 'has-error':(!sendProductForm.description.$valid && !sendProductForm.description.$pristine) || (!sendProductForm.description.$valid && sendProductForm.$submitted)}">
+                                                            <label class="add-title-label" for="description"><h3>Course description</h3></label>
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                    </div>
+                                                                    <input ng-disabled="newCourse.disabled" type="text" ng-model="newCourse.productData.description[0]" name="description" class="form-control" placeholder="Please enter course description" required>
+                                                                    <div class="input-group-addon add-field">
+                                                                        <a ng-click="newCourse.addfield()" title="Dodaj następny opis">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </a>                           
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-repeat="item in newCourse.inputs track by $index">
+                                                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0 repeat-input">
+                                                                        <div class="input-group-addon">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </div>
+                                                                        <input ng-disabled="newCourse.disabled" type="text" name="description" ng-model="newCourse.productData.description[$index+1]" class="form-control" placeholder="Please enter course description">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.description.$pristine && sendProductForm.description.$error.required) || (sendProductForm.$submitted && sendProductForm.description.$error.required)">Course description is required</p>
+                                                        </div>
+                                                        <div ng-class="{'has-success':(sendProductForm.oldPrice.$valid && !sendProductForm.oldPrice.$pristine), 'has-error':(!sendProductForm.oldPrice.$valid && !sendProductForm.oldPrice.$pristine) || (!sendProductForm.oldPrice.$valid && sendProductForm.$submitted)}">
+                                                            <label class="add-title-label" for="oldPrice"><h3>Old price</h3></label>
+                                                            <div class="form-group">
+                                                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-usd"></i>
+                                                                    </div>
+                                                                    <input ng-disabled="newCourse.disabled" type="text" ng-model="newCourse.productData.oldPrice" name="oldPrice" class="form-control" placeholder="Please enter old price" ng-pattern="/^[0-9]*$/" required>
+                                                                </div>
+                                                            </div>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.oldPrice.$pristine && sendProductForm.oldPrice.$error.required) || (sendProductForm.$submitted && sendProductForm.oldPrice.$error.required)">Old price is required</p>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.oldPrice.$pristine && sendProductForm.oldPrice.$error.pattern)">Price must be a number</p>
+                                                        </div>
+                                                        <div ng-class="{'has-success':(sendProductForm.newPrice.$valid && !sendProductForm.newPrice.$pristine), 'has-error':(!sendProductForm.newPrice.$valid && !sendProductForm.newPrice.$pristine) || (!sendProductForm.newPrice.$valid && sendProductForm.$submitted)}">
+                                                            <label class="add-title-label" for="newPrice"><h3>New price</h3></label>
+                                                            <div class="form-group">
+                                                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-eur"></i>
+                                                                    </div>
+                                                                    <input ng-disabled="newCourse.disabled" type="text" ng-model="newCourse.productData.newPrice" name="newPrice" class="form-control" placeholder="Please enter new price" ng-pattern="/^[0-9]*$/" required>
+                                                                </div>
+                                                            </div>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.newPrice.$pristine && sendProductForm.newPrice.$error.required) || (sendProductForm.$submitted && sendProductForm.newPrice.$error.required)">New price is required</p>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.newPrice.$pristine && sendProductForm.newPrice.$error.pattern)">Price must be a number</p>
+                                                        </div>
+                                                        <div ng-class="{'has-success':(sendProductForm.level.$valid && !sendProductForm.level.$pristine), 'has-error':(!sendProductForm.level.$valid && !sendProductForm.level.$pristine) || (!sendProductForm.level.$valid && sendProductForm.$submitted)}">
+                                                            <label class="add-title-label" for="level"><h3>Course level</h3></label>
+                                                            <div class="form-group">
+                                                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-bar-chart"></i>
+                                                                    </div>
+                                                                    <input ng-disabled="product.disabled" type="text" name="level" class="form-control" placeholder="Please select the course level" ng-model="newCourse.productData.level" required>
+                                                                    <div class="input-group-addon level-add-easy">
+                                                                        <a ng-click="newCourse.easyLevel()" class="add-field-easy">
+                                                                            <i class="fa fa-battery-quarter"></i>
+                                                                        </a>                           
+                                                                    </div>
+                                                                    <div class="input-group-addon level-add-medium">
+                                                                        <a ng-click="newCourse.mediumLevel()" class="add-field-medium">
+                                                                            <i class="fa fa-battery-half"></i>
+                                                                        </a>                           
+                                                                    </div>
+                                                                    <div class="input-group-addon level-add-hard">
+                                                                        <a ng-click="newCourse.hardLevel()" class="add-field-hard">
+                                                                            <i class="fa fa-battery-full"></i>
+                                                                        </a>                           
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <p class="help-block error-des" ng-if="(!sendProductForm.level.$pristine && sendProductForm.level.$error.required) || (sendProductForm.$submitted && sendProductForm.level.$error.required)">Course level is required</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="panel panel-blur with scroll animated zoomIn">
+                            <div class="panel-heading clearfix">
+                                <h3 class="hidden-xs panel-title pull-left">Introduction description</h3>  
+                            </div> 
+                            <div class="panel-body">
+                                <div class="horizontal-scroll">
+                                    <div class="management-user">
+                                        <div class="management-user">
+                                            <section id="editIntroText">
+                                                <div text-angular ta-toolbar="[['h1','h2','h3','p','quote','fontSize','fontColor'],['bold','italics','underline'],['undo','redo','clear','html'], ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],['wordcount', 'charcount']]" data-ng-model="newCourse.productData.introText" class="cms-text" placeholder="Please enter introduction content..."></div>
+                                            </section>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="panel panel-blur with scroll animated zoomIn">
+                            <div class="panel-heading clearfix">
+                                <h3 class="hidden-xs panel-title pull-left">About author</h3>  
+                            </div> 
+                            <div class="panel-body">
+                                <div class="horizontal-scroll">
+                                    <div class="management-user">
+                                        <div class="management-user">
+                                            <section id="editAuthor">
+                                                <div ng-class="{ 'has-success':(sendProductForm.authorName.$valid && !sendProductForm.authorName.$pristine), 'has-error':(!sendProductForm.authorName.$valid && !sendProductForm.authorName.$pristine) || (!sendProductForm.authorName.$valid && sendProductForm.$submitted) }">
+                                                    <label class="add-title-label"><h3>Author name:</h3></label>
+                                                    <input ng-disabled="newCourse.disabled" class="form-control" type="text" name="authorName" placeholder="Please enter author name"  ng-model="newCourse.productData.authorName" required>
+                                                    <p class="help-block error-des" ng-show="(!sendProductForm.authorName.$pristine && sendProductForm.authorName.$error.required) || (sendProductForm.$submitted && sendProductForm.authorName.$error.required)">Author name is required</p>
+                                                </div>
+                                                <div ng-class="{ 'has-success':(sendProductForm.authorEdu.$valid && !sendProductForm.authorEdu.$pristine), 'has-error':(!sendProductForm.authorEdu.$valid && !sendProductForm.authorEdu.$pristine) || (!sendProductForm.authorEdu.$valid && sendProductForm.$submitted) }">
+                                                    <label class="add-title-label"><h3>Education:</h3></label>
+                                                    <input ng-disabled="editProduct.disabled" class="form-control" type="text" name="authorEdu" placeholder="Please enter author education"  ng-model="newCourse.productData.authorEdu" required>
+                                                    <p class="help-block error-des" ng-show="(!sendProductForm.authorEdu.$pristine && sendProductForm.authorEdu.$error.required) || (sendProductForm.$submitted && sendProductForm.authorEdu.$error.required)">Author education is required</p>
+                                                </div>
+                                                <label class="add-title-label"><h3>Brief description about author:</h3></label>
+                                                <div text-angular ta-toolbar="[['h1','h2','h3','p','quote','fontSize','fontColor'],['bold','italics','underline'],['undo','redo','clear','html'], ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],['wordcount', 'charcount']]" data-ng-model="newCourse.productData.authorDescription " name="authorDescription" class="cms-text" placeholder="Please enter author description..."></div>
+                                                <br>
+                                                <div class="course-message-cms">
+                                                    <div class="row show-hide-message error-fluid" ng-show="editProduct.editIntroMsg">
+                                                        <div class="alert alert-success">{{ editProduct.editIntroMsg }}</div>
+                                                    </div>
+                                                    <div class="row show-hide-message error-fluid" ng-show="editProduct.editIntroMsgErr">
+                                                        <div class="alert alert-danger">{{ editProduct.editIntroMsgErr }}</div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12"> 
+                        <div class="panel panel-blur with scroll animated zoomIn">
+                            <div class="panel-heading clearfix">
+                                <h3 class="hidden-xs panel-title pull-left">Course content</h3>
+                            </div> 
+                            <div class="panel-body">
+                                <div class="horizontal-scroll">
+                                    <div class="management-user">
+                                        <section id="new-course-details">
+                                            <div class="col-xs-12" >
+                                                <div class="edit-container">                
+                                                    <div text-angular data-ng-model="newCourse.productData.detailCourse" class="cms-text" placeholder="Please enter course content..."></div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="col-xs-12 add-button-confirm text-left">
+                            <button type="submit" class="btn btn-success add-new-button-course"><i class="fa fa-check-square-o"></i> Add new course</button>
+                            <div class="row show-hide-message error-fluid" ng-show="newCourse.errorMsg">
+                                <div class="alert alert-danger">{{ newCourse.errorMsg }}</div>
+                            </div>
+                            <div class="row show-hide-message error-fluid" ng-show="newCourse.successMsg">
+                                <div class="alert alert-success">{{ newCourse.successMsg }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="switchContentView" data-keyboard="false" data-backdrop="static" role="dialog">
+    <div class="col-xs-12 modal-content-change-view">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-center">
+                <span class="glyphicon glyphicon-fire"></span><span class="modal-title">&nbsp;&nbsp;Preview of the new course&nbsp;&nbsp;</span><span class="glyphicon glyphicon-fire"></span>
+                <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+            <section id="detail_item">
+                <div class="container">
+                    <div class="row-fluid show-hide-message" ng-show="main.logInCourse">
+                        <div class="alert alert-danger">{{ main.logInCourse }}</div> 
+                    </div>  
+                    <div class="row">
+                        <div class="hidden-lg hidden-md col-sm-12 col-xs-12 hidden-button-price">
+                            <a data-target="#" ng-click="main.addCart(price)" class="btn btn-success btn-block"><span class="hidden_new_price">{{ newCourse.productData.newPrice }}zł &nbsp</span><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Add to cart</a>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title-heading text-center">
+                            <p class="detail_title">Honestly - whether you will become a valued programmer depends only on you, on how much you care that your name raises respect in the industry and how much time you can devote to a solid (no excuses and facebook)learning. Know that you will never regain a lost day. I only promise blood, sweat and tears ... and seriously only what I can offer you is hard work - the only way to the top.<p>  
+                            <h1 class="detail_title">Course {{newCourse.productData.title}}, {{newCourse.productData.subTitle}} - from theory to practice</h1>        
+                        </div>
+                        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs yourCourse"> 
+                            <div class="card list-group-item">
+                                <div class="all_course_view">
+                                    <div class="thumbnail image_course">
+                                        <img src="{{ newCourse.thumbnail.dataUrl }}"/>
+                                    </div>
+                                    <div class="caption">
+                                        <h2>{{ newCourse.productData.title }}</h2>
+                                        <h3>{{ newCourse.productData.subTitle }}</h3>
+                                        <div class="text-right">
+                                            <span class="detail_price_new">{{ newCourse.productData.newPrice }}<span class="small_price">zł</span></span>
+                                            <span class="detail_price_old">{{ newCourse.productData.oldPrice }}zł</span>
+                                        </div>
+                                        <div class="container-fluid button-price"> 
+                                            <a data-target="#" ng-click="main.addCart(price)" class="btn btn-success btn-block"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-author">
+                                <h3 class="header_author">Course author</h3>
+                                <div class="dummy-logo">
+                                    <div class="icon pull-left brand">
+                                        <img class="footer_about" src="../../../../uploads/svg/team.svg">
+                                    </div>
+                                    <h2>XYZ</h2>
+                                    <p>Master of Civil Engineering</p>
+                                </div>
+                                <p class="author-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            </div>
+                            <div class="recommended-course hidden-sm hidden-xs">
+                                <div ng-repeat="product in main.sortedProducts">
+                                    <h2 class="recommended-title text-left">Recommended course:</h2>
+                                    <div class="product">
+                                        <div class="button-directions">
+                                            <img src="../../uploads/{{ product.imagePath }}" alt="#">
+                                            <i class="level" ng-class="product.level" product-level-course></i> 
+                                        </div>
+                                        <h2>{{product.title}}</h2>
+                                        <h3>{{product.subTitle}}</h3>
+                                        <div class="description-list-group">
+                                            <ol>
+                                                <ul class="text-center">
+                                                    <li ng-repeat="item in product.description">{{ item }}</li> 
+                                                </ul>
+                                            </ol>
+                                        </div>
+                                        <div class="col-xs-12 text-right no-padding-price"> 
+                                            <span class="actualPrice"><span class="glyphicon glyphicon-shopping-cart shopping-icon"></span> {{ product.newPrice }}zł</span>
+                                            <span class="oldPrice">{{ product.oldPrice }}zł</span>
+                                        </div>
+                                        <div class="col-xs-12 read-more">
+                                            <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Check the details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>            
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-page-content">
+                            <div class="row">
+                                <div class="detail_video_header">
+                                    <img class="video_short" src="{{ newCourse.thumbnail.dataUrl }}"/>
+                                </div>
+                            </div>
+                            <section id="opis_kursu_szczegoly">
+                                <div class="row content_inner">
+                                    <div class="col-xs-12 direction_icons">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 sekwencja_zdarzen text-center">
+                                            <img src="../../uploads/svg/code-work.svg"/>
+                                            <p>Watch video courses and learn about new issues</p>
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs sekwencja_zdarzen arrow text-center">
+                                            <img src="../../uploads/svg/redo-arrow-grey.svg"/> 
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs repeat-knowledge sekwencja_zdarzen text-center">
+                                            <img src="../../uploads/svg/thought.svg"/> 
+                                            <p> Read articles, broaden your knowledge, day by day get better</p>
+                                        </div>   
+                                        <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs sekwencja_zdarzen arrow text-center">
+                                            <img src="../../uploads/svg/redo-arrow-grey.svg"/> 
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sekwencja_zdarzen text-center">
+                                            <img src="../../uploads/svg/first-prize-trophy-blue.svg"/>
+                                            <p>Do what you like and give you satisfaction, overcome new challenges and pursue your own dreams</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section id="opis_kursu_szczegoly">
+                                <div class="row no_padding_description">
+                                    <div class="col-xs-12" ng-bind-html="newCourse.productData.detailCourse"></div>
+                                </div>
+                            </section>
+                            <div class="container-fluid"> 
+                                <a data-taeget="#" ng-click="main.addCart(price)" class="btn btn-success btn-block buy-now-down"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Buy now</a>
+                            </div>
+                            <section id="spis-tresci"> 
+                                <h3>Table of contents</h3>
+                                <ul class="lista-spis-tresci">
+                                    <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()" ng-repeat="product in main.products | filter: {title: title}"> 
+                                        <li>{{ product.title }} - {{ product.subTitle }}</li> 
+                                    </a> 
+                                </ul>
+                            </section> 
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<section id="contact-section-form">
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right message-container-div">
+            <p>You have any question, you have noticed an error or you want to praise me?</p>
+            <h3>Write to me!</h3>
+            <form name="contact.messageForm" ng-submit="contact.contactUser(contact.messageData, contact.messageForm.$valid)" novalidate>  
+                <div ng-class="{'has-success':(contact.messageForm.username.$valid && !contact.messageForm.username.$pristine), 'has-error':(!contact.messageForm.username.$valid && !contact.messageForm.username.$pristine) || (!contact.messageForm.username.$valid && contact.messageForm.$submitted)}">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input ng-if="!main.isLoggedIn" type="text" id="inputUsername" class="form-control username-form" name="username" placeholder="Please enter the username" ng-model="contact.messageData.username" required/> 
+                            <input ng-if="main.isLoggedIn" ng-disabled="true" type="text" id="inputUsername" class="form-control username-form" name="username" placeholder="Nazwa użytkownika" ng-init="contact.messageData.username = main.username" ng-model="contact.messageData.username" required/>
+                        </div>   
+                        <p class="help-block" ng-show="(!contact.messageForm.username.$pristine && contact.messageForm.username.$error.required) || (contact.messageForm.$submitted && contact.messageForm.username.$error.required)">Username is required</p> 
+                    </div>
+                </div>
+                <div ng-class="{'has-success':(contact.messageForm.email.$valid && !contact.messageForm.email.$pristine), 'has-error':(!contact.messageForm.email.$valid && !contact.messageForm.email.$pristine) || (!contact.messageForm.email.$valid && contact.messageForm.$submitted)}">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
+                            <input ng-if="!main.isLoggedIn" type="text" name="email" id="inputEmail" class="form-control" placeholder="Please enter the eamil address" ng-model="contact.messageData.email" ng-pattern='/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/' required/> 
+                            <input ng-disabled="true" ng-if="main.isLoggedIn" ng-disabled="main.disabled" type="email" name="email" id="inputEmail" class="form-control" placeholder="Please enter the email address" ng-init="contact.messageData.email = main.useremail" ng-model="contact.messageData.email" ng-pattern='/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/' required/> 
+                        </div>
+                        <p class="help-block" ng-show="(!contact.messageForm.email.$pristine && contact.messageForm.email.$error.required) || (contact.messageForm.$submitted && contact.messageForm.email.$error.required)">Email address is required</p>
+                        <p class="help-block" ng-show="(!contact.messageFrom.email.$pristine && contact.messageForm.email.$error.pattern)">Invalid email address</p>
+                    </div>    
+                </div>
+                <div ng-class="{'has-success':(contact.messageForm.contentMessage.$valid && !contact.messageForm.contentMessage.$pristine), 'has-error':(!contact.messageForm.contentMessage.$valid && !contact.messageForm.contentMessage.$pristine) || (!contact.messageForm.contentMessage.$valid && contact.messageForm.$submitted)}">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon message-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                            <textarea class="form-control message-content" name="contentMessage" placeholder="Please enter the content" ng-model="contact.messageData.contentMessage" required></textarea>
+                        </div>
+                        <p class="help-block" ng-show="(!contact.messageForm.username.$pristine && contact.messageForm.username.$error.required) || (contact.messageForm.$submitted && contact.messageForm.username.$error.required)">Content message is required</p> 
+                    </div>
+                </div>
+                <button class="btn btn-success pull-right" type="submit"><span class="glyphicon glyphicon-send"></span> &nbsp;Send message</button> 
+            </form>
+            <div class="row-fluid show-hide-message" ng-show="contact.successMsg">
+                <div class="alert alert-success">{{ contact.successMsg }}</div>
+            </div>
+            <div class="row-fluid show-hide-message" ng-show="contact.errorMsg">
+                <div class="alert alert-danger">{{ contact.errorMsg }}</div>   
+            </div>
+        </div>
+    </div>
+</section>
+<div ng-show="contact.loadingPage" class="loading">
+    <span class="glyphicon loading"></span>
+</div>
+ 

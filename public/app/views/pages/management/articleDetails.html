@@ -1,0 +1,324 @@
+<div class="users-management">
+    <div class="widgets">
+        <div class="container-users">
+            <div class="row-users">
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                    <h1 class="users-table">Article edition</h1>
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Article number {{editArticle.id}} </h3> 
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <section id="detailArticleBlog">
+                                        <form name="editArticleBlog" ng-submit="editArticle.saveEditedArticle(editArticle, editArticleBlog.$valid)" novalidate>
+                                            <div ng-class="{'has-success':(editArticleBlog.title.$valid && !editArticleBlog.title.$pristine), 'has-error':(!editArticleBlog.title.$valid && !editArticleBlog.title.$pristine) || (!editArticleBlog.title.$valid && editArticleBlog.$submitted)}">
+                                                <label class="add-title-label" for="title"><h3>Article title</h3></label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-paint-brush"></i>
+                                                        </div>
+                                                        <input ng-disabled="editArticle.disabled" type="text" name="title" class="inputs form-control" ng-model="editArticle.title" placeholder="Enter the article title" required>
+                                                    </div>
+                                                </div>
+                                                <p class="help-block error-des" ng-show="(!editArticleBlog.title.$pristine && editArticleBlog.title.$error.required) || (editArticleBlog.$submitted && editArticleBlog.title.$error.required)">Article title is required</p>
+                                            </div>          
+                                            <div ng-class="{'has-success':(editArticleBlog.articleImg.$valid && !editArticleBlog.articleImg.$pristine), 'has-error':(!editArticleBlog.articleImg.$valid && !editArticleBlog.articleImg.$pristine) || (!editArticleBlog.articleImg.$valid && editArticleBlog.$submitted) || editArticleBlog.articleImg.$error.pattern}">
+                                                <label class="add-title-label" for="articleImg"><h3>Article photo</h3></label>
+                                                <div class="form-group">
+                                                    <div class="input-group"> 
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-picture-o"></i> 
+                                                        </div> 
+                                                        <input type="text" ng-pattern="/\.(png|jpeg|jpg)$/" name="articleImg" class="inputs form-control" ng-model="editArticle.imagePath" readonly required>
+                                                        <span class="input-group-btn">        
+                                                            <span class="btn btn-default btn-file add-img-upload"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Select 
+                                                                <input id="editImageArticle" type="file" name="myfile" ng-disabled="editArticle.disabled" file-model="file.editBlogArticle" onchange="angular.element(this).scope().articleEditImg(this.files)">
+                                                            </span>
+                                                            <span ng-click="editArticle.clearImg()" ng-if="editArticle.imagePreview" class="btn btn-default btn-file add-img-upload clean-image"><span class="glyphicon glyphicon-trash"></span></span> 
+                                                        </span>
+                                                    </div> 
+                                                </div>
+                                                <p class="help-block error-des" ng-if="(!editArticleBlog.articleImg.$pristine && editArticleBlog.articleImg.$error.required) || (editArticleBlog.$submitted && editArticleBlog.articleImg.$error.required)">Article photo is required</p>
+                                            </div>  
+                                            <div ng-class="{'has-success':(editArticleBlog.contentEditDiv.$valid && !editArticleBlog.contentEditDiv.$pristine), 'has-error':(!editArticleBlog.contentEditDiv.$valid && !editArticleBlog.contentEditDiv.$pristine) || (!editArticleBlog.contentEditDiv.$valid && editArticleBlog.$submitted)}">
+                                                <label class="add-title-label" for="articleContent"><h3>Enter article content</h3></label>
+                                                <div class="form-group">
+                                                    <div class="edit-container">                
+                                                        <div ng-disabled="editArticle.disabled" text-angular data-ng-model="editArticle.body" class="cms-text" placeholder="Enter the content" name="articleContent" required></div>
+                                                    </div>  
+                                                </div>
+                                                <p class="help-block error-des-article" ng-show="(!editArticleBlog.articleContent.$pristine && editArticleBlog.articleContent.$error.required) || (editArticleBlog.$submitted && editArticleBlog.articleContent.$error.required)">Article content is required</p>
+                                            </div>        
+                                            <br> 
+                                            <br> 
+                                            <div ng-class="{'has-success':(editArticle.articleTags.length), 'has-error':(!editArticle.articleTags.length) || (editArticleBlog.$submitted && !editArticle.articleTags.length)}">
+                                                <label class="add-title-label" for="tags"><h3>Add tags to the article</h3></label>
+                                                <div class="form-group">
+                                                    <div id="tagsEdit">
+                                                        <input id="tagsEdit-typer" ng-disabled="editArticle.disabled" type="text" name="tags" class="inputs form-control" placeholder="Enter the tags...">
+                                                    </div> 
+                                                </div>
+                                                <p class="help-block error-des-article" ng-show="(editArticleBlog.$submitted && !editArticle.articleTags.length)">Tags are required</p>
+                                            </div>    
+                                            <div ng-class="{'has-success':(editArticleBlog.author.$valid && !editArticleBlog.author.$pristine), 'has-error':(!editArticleBlog.author.$valid && !editArticleBlog.author.$pristine) || (!editArticleBlog.author.$valid && editArticleBlog.$submitted)}">
+                                                <label class="add-title-label" for="tags"><h3>Article author</h3></label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user-plus"></i>
+                                                        </div>
+                                                        <input ng-model="editArticle.author" ng-disabled="editArticle.disabled" type="text" name="author" class="inputs form-control" placeholder="Enter the article author..." required>
+                                                    </div>
+                                                </div>
+                                                <p class="help-block error-des" ng-show="(!editArticleBlog.author.$pristine && editArticleBlog.author.$error.required) || (editArticleBlog.$submitted && editArticleBlog.author.$error.required)">Article author is required/p>
+                                            </div>
+                                            <button class="btn btn-info addArticleBlogButton" type="submit"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp Save changes</button>       
+                                        </form>
+                                        <br>
+                                        <div class="course-message-cms">
+                                            <div class="row show-hide-message error-fluid" ng-show="editArticle.message">
+                                                <div class="alert alert-success">{{ editArticle.message }}</div>
+                                            </div>
+                                            <div class="row show-hide-message error-fluid" ng-show="editArticle.errMessage">
+                                                <div class="alert alert-danger">{{ editArticle.errMessage }}</div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Article comments ({{editArticle.articleComments.length}})</h3>  
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <section id="usersArticleComments" class="adminArticleComments">
+                                        <div class="customSort">
+                                            <label>View</label>
+                                            <div class="sort-by">
+                                                <select data-toggle="dropdown" ng-model="editArticle.selectNumber" ng-change="editArticle.setItemsPerPage(editArticle.selectNumber)" aria-expanded= "false">
+                                                    <option value="15" disabled="disabled">15</option>
+                                                    <option value="5">5</option>    
+                                                    <option value="15">15</option> 
+                                                    <option value="25">25</option> 
+                                                    <option value="50">50</option> 
+                                                    <option value="100">100</option> 
+                                                </select>            
+                                            </div>
+                                        </div>
+                                        <div class="sort_comment_date pull-right">
+                                            <p class="sortTable" ng-class="{reverse: editArticle.propertyName === 'dateComment' && editArticle.reverse}" ng-click="editArticle.sortComment('dateComment')">Date&nbsp</p>  
+                                        </div>
+                                        <div class="articleCommentEdit col-xs-12">
+                                            <div class="row-fluid show-hide-message" ng-show="editArticle.removedCommentMsg">
+                                                <div class="alert alert-success">{{ editArticle.removedCommentMsg}}</div>
+                                            </div>
+                                            <div class="row-fluid show-hide-message" ng-show="editArticle.removedCommentErrMsg">
+                                                <div class="alert alert-danger">{{ editArticle.removedCommentErrMsg }}</div>
+                                            </div>   
+                                            <h3 ng-if="!editArticle.articleComments.length" class="text-center">No comments added</h3>         
+                                            <div ng-repeat="comment in (editArticle.articleComments | orderBy: editArticle.propertyName:editArticle.reverse | orderBy:'id':true).slice(((editArticle.currentPage-1)*editArticle.itemsPerPage), ((editArticle.currentPage*editArticle.itemsPerPage))) track by $index" class="all-users-comment-course"> 
+                                                <div class="voteModalErr row-fluid show-hide-message" ng-show="(editArticle.errVote &&editArticle.clickedComment == comment._id)">
+                                                    <div class="voteContent">{{ editArticle.errVote}}</div>
+                                                </div>
+                                                <div class="voteModalErr row-fluid show-hide-message" ng-show="(editArticle.errVoteDislike && editArticle.clickedComment == comment._id)">
+                                                    <div class="voteContentDislike">{{ editArticle.errVoteDislike}}</div>
+                                                </div>
+                                                <article class="one-comment-edit">
+                                                    <div class="col-xs-12 content-body-comment">
+                                                        <div class="user-property"> 
+                                                            <p class="user-name pull-left">{{ comment.author }}</p>
+                                                            <a ng-if="main.isLoggedIn && main.authorized" href="#" type="button" title="Remove comment" class="remove-comment-user pull-right" ng-click="editArticle.showRemoveCommentModal(comment)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                        </div>  
+                                                        <div class="user-content-comment"> 
+                                                            <div class="comment-body-dash"> 
+                                                                <p>{{comment.body}}</p> 
+                                                            </div>                                                
+                                                            <div class="comment-added-date">
+                                                                <p class="comment-date date-time">{{ comment.date | amDateFormat: 'DD.MM.YYYY H:mm' }}</p>
+                                                                <p class="comment-date"><time title="{{ comment.date | amDateFormat: 'DD.MM.YYYY H:mm' }}" am-time-ago="comment.date"></time></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="user-reply ">
+                                                            <div class="social_opinions hidden-xs pull-left">
+                                                                <a ng-class="editArticle.dislikeVote(comment.ratings.users)" class="dislike" ng-click="editArticle.voteComment(comment, 'dislike', $event)">
+                                                                    <i class="fa fa-thumbs-down"></i>
+                                                                    <i class="outer fa fa-circle-thin"></i>
+                                                                </a>
+                                                                <p class="dislikeCount">{{ comment.ratings.dislike }}</p>
+                                                                <p>{{ comment.ratings.like }}</p>
+                                                                <a ng-class="editArticle.likeVote(comment.ratings.users)" class="like" ng-click="editArticle.voteComment(comment, 'like', $event)">
+                                                                    <i class="fa fa-thumbs-up"></i>
+                                                                    <i class="outer fa fa-circle-thin"></i>
+                                                                </a>
+                                                            </div>
+                                                            <button ng-click="editArticle.showDetails[$index] = !editArticle.showDetails[$index]" class="pull-right"><span class="glyphicon glyphicon-share-alt reply-comment"></span> &nbspReply <span class="reply-users-numbers" ng-show="comment.reply.length"></span><span ng-show="comment.reply.length">{{comment.reply.length}}</span></button>
+                                                        </div>
+                                                    </div>
+                                                </article>     
+                                                <div class="all-reply-users-comment" ng-if="editArticle.showDetails[$index]">
+                                                    <div class="users-reply-comment" ng-repeat="reply in comment.reply | orderBy: 'id': true track by $index">
+                                                        <div class="voteModalErr row-fluid show-hide-message reply" ng-show="(editArticle.errReplyVote && editArticle.clickedReply == reply._id)">
+                                                            <div class="voteContent">{{ editArticle.errReplyVote}}</div>
+                                                        </div>
+                                                        <div class="voteModalErr row-fluid show-hide-message reply" ng-show="(editArticle.errReplyVoteDislike && editArticle.clickedReply == reply._id)">
+                                                            <div class="voteContentDislike">{{ editArticle.errReplyVoteDislike}}</div>
+                                                        </div>
+                                                        <article class="reply-commit">
+                                                            <div class="col-xs-12 all-reply pull-right">
+                                                                <div class="user-property"> 
+                                                                    <p class="user-name pull-left">{{ reply.author }}</p>
+                                                                    <div class="social_opinions_reply pull-right">
+                                                                        <a ng-class="editArticle.dislikeVote(reply.ratings.users)" class="dislike" ng-click="editArticle.voteReply(comment, reply,'dislike', $event, $index)">
+                                                                            <i class="fa fa-thumbs-down"></i>
+                                                                            <i class="outer fa fa-circle-thin"></i>
+                                                                        </a>
+                                                                        <p class="dislikeCount">{{ reply.ratings.dislike }}</p>
+                                                                        <p class="likeCount">{{ reply.ratings.like }}</p>
+                                                                        <a ng-class="editArticle.likeVote(reply.ratings.users)" class="like" ng-click="editArticle.voteReply(comment, reply, 'like', $event, $index)">
+                                                                            <i class="fa fa-thumbs-up"></i>
+                                                                            <i class="outer fa fa-circle-thin"></i>
+                                                                        </a>
+                                                                        <a ng-if="main.isLoggedIn && main.authorized" href="#" type="button" title="Remove comment" class="remove-comment-user" ng-click="editArticle.showRemoveReplyModal(reply, comment)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                                    </div>
+                                                                    
+                                                                </div>  
+                                                                <div class="user-content-comment"> 
+                                                                    <div class="comment-body-dash"> 
+                                                                        <p>{{reply.body}}</p> 
+                                                                    </div>                                                
+                                                                    <div class="comment-added-date">
+                                                                        <p class="comment-date date-time">{{ reply.date | amDateFormat: 'DD.MM.YYYY H:mm' }}</p>
+                                                                        <p class="comment-date"><time title="{{ reply.date | amDateFormat: 'DD.MM.YYYY H:mm' }}" am-time-ago="reply.date"></time></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                                                            
+                                                        </article>
+                                                    </div>         
+                                                    <div class="col-xs-12 reply-control-area">
+                                                        <form name="adminArticleReplyForm" ng-submit="editArticle.adminReply(comment, editArticle.commentReply[comment.number], adminArticleReplyForm)" novalidate>
+                                                            <div ng-class="{'has-success':(adminArticleReplyForm['commentReply' + comment.number].$valid && !adminArticleReplyForm['commentReply' + comment.number].$pristine), 'has-error':(!adminArticleReplyForm['commentReply' + comment.number].$valid && !adminArticleReplyForm['commentReply' + comment.number].$pristine) || (!adminArticleReplyForm['commentReply' + comment.number].$valid &&  adminArticleReplyForm.$submitted)}" class="text-right"> 
+                                                                <textarea name="commentReply{{comment.number}}" ng-model="editArticle.commentReply[comment.number]" placeholder="Add reply" class="form-control" ng-minLength="10" required></textarea>
+                                                                <ul ng-show="(!adminArticleReplyForm['commentReply' + comment.number].$pristine && adminArticleReplyForm.$error.minlength[0].$viewValue.length)" class="help-block comment-conditions">
+                                                                    <li>{{10 - adminArticleReplyForm.$error.minlength[0].$viewValue.length}} more to go...</li>   
+                                                                </ul>  
+                                                                <button ng-disabled="editArticle.disableReply" class="pull-right">Add</button>
+                                                            </div>
+                                                        </form> 
+                                                        <br>
+                                                        <br>
+                                                        <div class="row-fluid show-hide-message" ng-show="editArticle.replyMsg && editArticle.addedReply == comment._id">
+                                                            <div class="alert alert-success">{{ editArticle.replyMsg}}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editArticle.errReply && editArticle.addedReply == comment._id">
+                                                            <div class="alert alert-danger">{{ editArticle.errReply }}</div> 
+                                                        </div>  
+                                                        <div class="jumbotron text-center" ng-show="editArticle.loadingReply">
+                                                            <span class="glyphicon glyphicon-repeat spinner"></span>
+                                                            <p>Adding....</p>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div> 
+                                            <div class="pagination-center">
+                                                <pagination ng-if="editArticle.totalItems > editArticle.itemsPerPage" total-items="editArticle.totalItems" max-size="editArticle.maxSize" ng-model="editArticle.currentPage" class="pagination-sm text-center" items-per-page="editArticle.itemsPerPage" previous-text="Previous" next-text="Next"></pagination>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Add  comment</h3>  
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <section id="articleAdminComment">
+                                        <div class="new-comment-dash col-xs-12">  
+                                            <form name="editArticle.adminArticleComment" ng-submit="editArticle.adminComment(editArticle.comment, editArticle.adminArticleComment.$valid, editArticle.id)" novalidate>  
+                                                <div class="cont-article-com">  
+                                                    <textarea ng-class="{'has-success':(editArticle.adminArticleComment.comment.$valid && !editArticle.adminArticleComment.comment.$pristine), 'has-error':(!editArticle.adminArticleComment.comment.$valid && !editArticle.adminArticleComment.comment.$pristine) || (!editArticle.adminArticleComment.comment.$valid && editArticle.adminArticleComment.$submitted)}" class="form-control" id="admin-dash-textarea" name="comment" ng-model="editArticle.comment" ng-minLength="10" placeholder="Add comment" required></textarea>   
+                                                    <ul ng-show="(!editArticle.adminArticleComment.comment.$pristine && editArticle.adminArticleComment.$error.minlength[0].$viewValue.length || !editArticle.adminArticleComment.comment.$valid && editArticle.adminArticleComment.$submitted)" class="help-block comment-conditions">
+                                                        <li>{{10 - editArticle.adminArticleComment.$error.minlength[0].$viewValue.length}} more to go...</li>   
+                                                    </ul>  
+                                                    <button type="submit" ng-disabled="editArticle.disableComment" class="btn btn-warning button-comment-user pull-right">Add comment</button>  
+                                                </div>
+                                            </form>
+                                            <br>
+                                            <div class="row-fluid show-hide-message" ng-show="editArticle.commentMsg">
+                                                <div class="alert alert-success">{{ editArticle.commentMsg}}</div>
+                                            </div>
+                                            <div class="row-fluid show-hide-message" ng-show="editArticle.errCommentMsg">
+                                                <div class="alert alert-danger">{{ editArticle.errCommentMsg }}</div> 
+                                            </div>  
+                                            <div class="jumbotron text-center" ng-show="editArticle.loadingComment">
+                                                <span class="glyphicon glyphicon-repeat spinner"></span>
+                                                <p>Adding....</p>
+                                            </div>
+                                        </div>
+                                    </section>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delArticleComment" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <span class="glyphicon glyphicon-trash"></span><span class="modal-title">&nbspDelete the comment?</span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Username: <strong>{{ editArticle.deletedComment.author }}</strong></p>  
+                    <p>Comment content: <strong>{{ editArticle.deletedComment.body  }}</strong></p>
+                    <p>Addition date: <strong>{{ editArticle.deletedComment.date | amDateFormat: 'DD.MM.YYYY H:mm'}}</strong></p>
+                </div>
+                <div class="modal-footer"> 
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No </button>
+                        <button class="btn btn-success" data-dismiss="modal" ng-click="editArticle.delArticleComment(editArticle.deletedComment)"><span class="glyphicon glyphicon-check"></span> Yes </button>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delArticleReply" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <span class="glyphicon glyphicon-trash"></span><span class="modal-title">&nbspDelete the reply?</span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Username: <strong>{{ editArticle.deletedReply.author }}</strong></p>  
+                    <p>Reply content: <strong>{{ editArticle.deletedReply.body  }}</strong></p>
+                    <p>Addition date: <strong>{{ editArticle.deletedReply.date | amDateFormat: 'DD.MM.YYYY H:mm'}}</strong></p>
+                </div>
+                <div class="modal-footer"> 
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No </button>
+                        <button class="btn btn-success" data-dismiss="modal" ng-click="editArticle.delCommentReply(editArticle.deletedReply, editArticle.parentComment, editArticle.commentNumber)"><span class="glyphicon glyphicon-check"></span> Yes </button>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

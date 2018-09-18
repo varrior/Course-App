@@ -1,0 +1,335 @@
+
+#new-course-admin .edit-container
+{
+    font-family: Roboto,sans-serif !important;
+    padding: 0 5px 10px 5px;
+    border-radius: 5px;
+    overflow: auto;
+}
+#new-course-admin .edit-container .form-control
+{
+    color: #666 !important;
+    padding: 3px 10px 3px 10px;
+    border-radius: 0;
+}
+#new-course-admin .edit-container .input-group-addon
+{
+    background: rgba(52,73,94,.94);
+    border: 1px solid rgba(52,73,94,.94);
+    color: #eee;
+    border-radius: 2px 0 0 2px;
+}
+#new-course-admin .edit-container .input-group-addon.add-field
+{
+    border-radius: 0 2px 2px 0;
+}
+#new-course-admin .edit-container .input-group-addon.level-add-easy
+{
+    background: rgba(52,73,94,.94);
+    border: 1px solid rgba(52,73,94,.94);
+    border-right: none;
+    padding: 6px 18px;
+    border-radius: 0;
+}
+#new-course-admin .edit-container .input-group-addon.level-add-hard
+{
+    background: rgba(52,73,94,.94);
+    border: 1px solid rgba(52,73,94,.94);
+    padding: 6px 18px;
+    border-radius: 0 2px 2px 0;
+}
+#new-course-admin .edit-container .input-group-addon.level-add-easy a.add-field-easy:hover
+{
+    color: lawngreen;
+    cursor: pointer;
+}
+#new-course-admin .edit-container .input-group-addon.level-add-medium a.add-field-medium:hover
+{
+    color: orange;
+    cursor: pointer;
+}
+#new-course-admin .edit-container .input-group-addon.level-add-hard a.add-field-hard:hover
+{
+    color: red;
+    cursor: pointer;
+}
+
+#new-course-admin .edit-container .input-group-addon.level-add-easy:hover,#new-course-admin .edit-container .input-group-addon.level-add-medium:hover,#new-course-admin .edit-container .input-group-addon.level-add-hard:hover
+{
+    background: rgba(52,73,94,1);
+}
+#new-course-admin .edit-container .input-group-addon.level-add-medium
+{
+    background: rgba(52,73,94,.94);
+    border: 1px solid rgba(52,73,94,.94);
+    border-right: none;
+    padding: 6px 18px;
+    border-radius: 0;
+}
+#new-course-admin .edit-container .add-field a
+{
+    color: #fff;
+}
+#new-course-admin .edit-container .add-field:hover
+{
+    cursor: pointer;
+    background: rgba(52,73,94,1);
+}
+#new-course-admin .edit-container .btn-file
+{
+    background: rgba(52,73,94,.94);
+    border: 1px solid rgba(52,73,94,.94);
+    color: #fff;
+    border-radius: 0 2px 2px 0;
+}
+#new-course-admin .edit-container .btn-file:hover
+{
+    background: rgba(52,73,94, 1);
+}
+#new-course-admin .edit-container label.add-title-label
+{
+
+    text-transform: uppercase;
+}
+#new-course-admin .edit-container label.add-title-label h3
+{
+    font: 14px/16px Roboto,sans-serif !important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+button.add-new-button-course
+{
+    background: rgba(52,73,94,.94);
+    border: 1px solid rgba(52,73,94,.94);
+    font-size: 16px;
+    font-family: Roboto,sans-serif !important;
+    padding: 10px 15px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    color: #fff;
+}
+button.add-new-button-course:hover, button.add-new-button-course:focus, button.add-new-button-course:active:focus
+{
+    background: rgba(52,73,94,1);
+    border: 1px solid rgba(52,73,94,1);
+    color: #fff;
+}
+@media screen and (max-width: 600px) { 
+    button.add-new-button-course 
+    {
+         width: 40%;
+    }
+}
+@media screen and (max-width: 470px) { 
+    button.add-new-button-course 
+    {
+         width: 60%;
+    }
+}
+@media screen and (max-width: 320px) { 
+    button.add-new-button-course 
+    {
+         width: 100%;
+    }
+}
+
+#new-course-admin .edit-container .error-des
+{
+    margin-left: 0;
+    margin-top:-10px;
+    margin-bottom: 10px;
+    color: #a94442;
+}
+#toolbarCC
+{
+    line-height: 30px;
+    height: 44px;
+    text-align: center;
+}
+#toolbarWC
+{
+    line-height: 30px;
+    height: 44px;
+    text-align: center;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption section.title-course p {
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 3px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption section.title-course span {
+    color: #666;
+    display: block;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .benefits_course p {
+    color: #666;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .benefits_course ol ul li.description-item::before {
+    content: "\f06b";
+    font-family: FontAwesome;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .benefits_course ol ul li.description-item {
+    background-color: transparent;
+    color: #666;
+    font-size: 13px;
+    position: relative;
+    text-indent: -40px;
+    display: block;
+    margin-left: 5px;
+    border: none;
+    word-wrap: break-word;
+    padding: 5px 15px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .benefits_course ol {
+    padding-left: 35px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .course-footer .prices_course {
+    display: inline-block;
+    padding-top: 5px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .course-footer .prices_course span.actualPrice {
+    display: block;
+    font-size: 15px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .course-footer .prices_course span.oldPrice {
+    font-size: 13px;
+    color: #bbb;
+    padding-top: 3px;
+    text-decoration: line-through;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .course-footer {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding: 5px 15px 5px 15px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .course-footer .rating li {
+    font-size: 14px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .course-footer .social_opinions {
+    display: inline-block;
+    padding-top: 6px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .edit_content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .caption .edit_content a {
+    background: #209e91;
+    border-color: #209e91;
+    font-size: 14px;
+    font-family: Roboto,sans-serif !important;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 2px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container {
+    border: 1px solid #E6E9ED;
+    font-family: Roboto,sans-serif !important;
+    color: #666;
+    background: #F7F7F7;
+    margin-top: 5px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .thumbnail i {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    top: auto;
+    font-size: 32px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .course-container .thumbnail {
+    margin-bottom: 7px;
+    position: relative;
+    border: none;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin span.clean-image {
+    border-left: none;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin img.start-new-course {
+    max-width: 200px;
+    margin-top: 30px;
+}
+.users-management .widgets .container-users .row-users .panel-body .management-user section#new-course-admin .start-course-description {
+    text-transform: uppercase;
+    margin-top: 25px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: Roboto,sans-serif !important;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/*****************************************************TOGGLE SWITCH VIEW**************************************************************/
+#switchContentView
+{
+    z-index: 100000 !important;
+    padding-left: 0 !important;
+    font-family: Roboto,sans-serif;
+    letter-spacing: normal;
+    word-break: normal;
+    overflow: auto;
+}
+#switchContentView .detail_title
+{
+    font-family: Ubuntu;
+}
+#switchContentView .modal-content-change-view
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+#switchContentView .modal-content
+{
+    box-shadow: none;
+    border: none;
+    padding-bottom: 80px;
+}
+#switchContentView .modal-content-change-view .modal-header.bg-danger
+{
+    background: rgba(52,73,94,.94);
+    border: 1px solid rgba(52,73,94,.94);
+    margin-bottom: 20px;
+}
+#switchContentView .modal-content-change-view .modal-header.bg-danger a
+{
+    color:#fff;
+    cursor: pointer;
+}
+#switchContentView .modal-content-change-view .modal-header.bg-danger span
+{
+    color: #fff;
+}
+#switchContentView .left-side-content-switch
+{
+    color:#000 !important;
+}
+#switchContentView .aktywnosc_kursu
+{
+    color:#333
+}
+#switchContentView #opis_kursu_szczegoly
+{
+    color:#333
+}
+#switchContentView #content-of-html-switch
+{
+    color: #333;
+    padding: 0px 15px 0 15px;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+#switchContentView #content-of-html-switch li
+{
+    font-size: 17px;
+}

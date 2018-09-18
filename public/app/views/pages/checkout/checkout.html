@@ -1,0 +1,412 @@
+<section id="checkout">
+    <div class="container">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-lg-offset-1">
+            <div class="wizard">
+                <div class="wizard-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="{{checkout.stepOne}}">
+                            <a data-target="#" aria-controls="step1" role="tab" title="Step 1">
+                                <span class="round-tab">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li role="presentation" class="{{checkout.stepTwo}}">
+                            <a data-target="#" aria-controls="step2" role="tab" title="Step 2">
+                                <span class="round-tab">
+                                    <i class="glyphicon glyphicon-list-alt"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li role="presentation" class="{{checkout.stepThree}}">
+                            <a data-target="#" aria-controls="complete" role="tab" title="Complete">
+                                <span class="round-tab">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 hidden-sm hidden-xs all-container-preview" ng-if="checkout.summaryTable">
+                    <div class="col-lg-12 col-md-12 col-sm-12 checkout-preview-color">
+                        <div class="head-preview-list">
+                            <h3 class="text-left">YOUR ORDER
+                                <a ui-sref="parent.cart" role="button" class="pull-right">BACK TO THE CART</a>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 podglad-koszyka">
+                        <div class="summary-item" ng-repeat="product in main.sessionProduct.items track by $index">
+                            <div class="col-lg-12 col-md-12 col-sm-12 no-space">
+                                <p class="order-summary-title">{{ product.item.title }}: {{ product.item.subTitle }}</p>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 no-space">
+                                <p class="qty-price text-left">Quantity: {{ product.qty}}
+                                    <span class="order-summary-subtitle pull-right">Price: {{ product.newPrice }} zł</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 total-orders">
+                            <p class="text-right">SUMMARY: {{ main.summaryPrice }} zł</p>
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-10 col-md-offset-0 col-lg-offset-0 col-sm-offset-1 col-xs-12">
+                    <!---STEP 1-->
+                    <div class="tab-content">
+                        <div class="tab-pane active" role="tabpanel" id="step1" ng-show="checkout.showReceiptForm">
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-lg-offset-1 col-sm-offset-1 checkout-blue-header">
+                                <div class="head-checkout-list">
+                                    <h3>Fill the form</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-lg-offset-1 col-sm-offset-1 checkout-container">  
+                                <h2 class="hidden-xs checkout-desc">Account details</h2>
+                                <p class="hidden-xs checkout-reason-pay">In connection with the implementation of changes in the VAT settlement effective from 01/01/2015, the document confirming the purchase on 'YOUR WEBSITE' platform is the invoice (instead of a receipt).</p>
+                                <div class="col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="checkbox checkbox-info checkbox-circle text-center">
+                                            <input id="private-person" name="bill-form" type="radio" ng-click="showPerson()" ng-checked="checkout.showPerson">
+                                            <label for="private-person" ng-click="showPerson()">Private person</label>
+                                        </div> 
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="checkbox checkbox-info checkbox-circle text-center">
+                                            <input id="company" type="radio" name="bill-form" ng-click="showCompany()" ng-checked="!checkout.showPerson">
+                                            <label for="company" ng-click="showCompany()">Company</label>
+                                        </div> 
+                                    </div>                                     
+                                </div> 
+                                
+                                <div class="col-xs-12 chceckout-box-form">
+                                        <form name="privatePerson" ng-submit="checkout.makeOrder(order, privatePerson.$valid)" novalidate>
+                                        <div ng-if="checkout.showPerson && checkout.showReceiptForm" class="row">
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success': (privatePerson.receiptName.$valid && !privatePerson.receiptName.$pristine),'has-error': (!privatePerson.receiptName.$valid && !privatePerson.receiptName.$pristine) || (!privatePerson.receiptName.$valid && privatePerson.$submitted)}">
+                                                        <label for="name">Name</label>
+                                                        <input ng-model="checkout.order.receiptName" ng-minLength="3" ng-maxLength="30" ng-pattern="/^(([a-zA-Z]{3,30})+[ ]+([a-zA-Z]{3,30})+)+$/" name="receiptName" ng-disabled="checkout.disabled" type="text" id="name" class="form-control" placeholder="Please enter the name" required>
+                                                        <p class="help-block" ng-show="(!privatePerson.receiptName.$pristine && privatePerson.receiptName.$error.required) || (privatePerson.$submitted && privatePerson.receiptName.$error.required)">Name is required</p>
+                                                        <ul class="help-block" ng-show="(!privatePerson.receiptName.$pristine && privatePerson.receiptName.$error.pattern) || (!privatePerson.receiptName.$pristine && privatePerson.receiptName.$error.minlength) || (!privatePerson.receiptName.$pristine && privatePerson.receiptName.$error.maxlength)">
+                                                            <strong>
+                                                                <li>Must have a space between name and surname</li>
+                                                                <li>Must not contain any special characters</li>
+                                                                <li>Must not contain any numbers</li>
+                                                                <li>Must be at least 3 but no more than 30 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(privatePerson.receiptStreet.$valid && !privatePerson.receiptStreet.$pristine), 'has-error': (!privatePerson.receiptStreet.$valid && !privatePerson.receiptStreet.$pristine) || (!privatePerson.receiptStreet.$valid && privatePerson.$submitted)}">
+                                                        <label for="street">Street name</label>
+                                                        <input ng-model="checkout.order.receiptStreet" name="receiptStreet" ng-maxLength="50" ng-disabled="checkout.disabled" type="text" id="street" class="form-control" placeholder="Please enter the street" required>
+                                                        <p ng-show="(!privatePerson.receiptStreet.$pristine && privatePerson.receiptStreet.$error.required) || (privatePerson.$submitted && privatePerson.receiptStreet.$error.required)" class="help-block">Street name is required</p>
+                                                        <ul class="help-block" ng-show="(!privatePerson.receiptStreet.$pristine && privatePerson.receiptStreet.$error.maxlength)">
+                                                            <strong>
+                                                                <li>Street name must not contain more than 50 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>                           
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(privatePerson.receiptHomeNumber.$valid && !privatePerson.receiptHomeNumber.$pristine), 'has-error': (!privatePerson.receiptHomeNumber.$valid && !privatePerson.receiptHomeNumber.$pristine) || (!privatePerson.receiptHomeNumber.$valid && privatePerson.$submitted)}">
+                                                        <label for="home-number">Street number</label>
+                                                        <input ng-disabled="checkout.disabled" ng-model="checkout.order.receiptHomeNumber" ng-maxLength="8" name="receiptHomeNumber" type="text" id="home-number" placeholder="Please enter the street number" class="form-control" required>
+                                                        <p ng-show="(!privatePerson.receiptHomeNumber.$pristine && privatePerson.receiptHomeNumber.$error.required) || (privatePerson.$submitted && privatePerson.receiptHomeNumber.$error.required)" class="help-block">Street number is required</p>
+                                                        <ul class="help-block" ng-show="(!privatePerson.receiptHomeNumber.$pristine && privatePerson.receiptHomeNumber.$error.maxlength)">
+                                                            <strong>
+                                                                <li>Your street number is too long, max 8 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success': (privatePerson.receiptPostCode.$valid && !privatePerson.receiptPostCode.$pristine),'has-error': (!privatePerson.receiptPostCode.$valid && !privatePerson.receiptPostCode.$pristine) || (!privatePerson.receiptPostCode.$valid && privatePerson.$submitted)}">
+                                                        <label for="postcode">Area code</label>
+                                                        <input ng-model="checkout.order.receiptPostCode" name="receiptPostCode" ng-disabled="checkout.disabled" ng-pattern="/^([0-9]{2}\-[0-9]{3})+$/" type="text" id="postcode" placeholder="Please enter your area code" class="form-control" required>
+                                                        <p class="help-block" ng-show="(!privatePerson.receiptPostCode.$pristine && privatePerson.receiptPostCode.$error.required) || (privatePerson.$submitted && privatePerson.receiptPostCode.$error.required)">Area code is required</p>
+                                                        <ul class="help-block" ng-show="(!privatePerson.receiptPostCode.$pristine && privatePerson.receiptPostCode.$error.pattern)">
+                                                            <strong>
+                                                                <li>Valid area code is: "12-345"</li>
+                                                                <li>Area code has 5 numbers and one dash</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>                                       
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(privatePerson.receiptCity.$valid && !privatePerson.receiptCity.$pristine), 'has-error': (!privatePerson.receiptCity.$valid && !privatePerson.receiptCity.$pristine) || (!privatePerson.receiptCity.$valid && privatePerson.$submitted)}">
+                                                        <label for="city">City</label>
+                                                        <input ng-maxLength="50" ng-model="checkout.order.receiptCity" ng-disabled="checkout.disabled" name="receiptCity" type="text" id="city" placeholder="Please enter your city" class="form-control" required>
+                                                        <p class="help-block" ng-show="(!privatePerson.receiptCity.$pristine && privatePerson.receiptCity.$error.required) || (privatePerson.$submitted && privatePerson.receiptCity.$error.required)">City is required</p>
+                                                        <ul class="help-block" ng-show="(!privatePerson.receiptCity.$pristine && privatePerson.receiptCity.$error.maxlength)">
+                                                            <strong>
+                                                                <li>City must contain no more than 50 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="country">Country</label>
+                                                    <select id="country" class="form-control" ng-init="checkout.order.receiptCountry = 'Poland'" ng-model="checkout.order.receiptCountry" required>
+                                                        <option value="Poland">Poland</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 module-checkout-button">
+                                                    <div class="text-right">
+                                                        <button type="submit" ng-if="!checkout.changePrivateButton" ng-click="checkout.next()" class="btn btn-success go-forward-checkout next-step">Go to the invoice</button>
+                                                        <button type="submit" ng-if="checkout.changePrivateButton" class="btn btn-danger go-forward-checkout next-step">Save changes</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </form>
+                                    <form name="companyForm" ng-submit="checkout.makeCompanyOrder(companyOrder, companyForm.$valid)" novalidate>
+                                        <div ng-if="checkout.showCompany && checkout.showReceiptForm" class="row"> 
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(companyForm.companyName.$valid && !companyForm.companyName.$pristine), 'has-error': (!companyForm.companyName.$valid && !companyForm.companyName.$pristine) || (!companyForm.companyName.$valid && companyForm.$submitted)}">
+                                                        <label for="company-name">Company name</label>
+                                                        <input ng-model="checkout.companyOrder.companyName" name="companyName" ng-disabled="checkout.disabled" ng-maxLength="50" type="text" id="company-name" class="form-control" placeholder="Please enter the company name" required>
+                                                        <p class="help-block" ng-show="(!companyForm.companyName.$pristine && companyForm.companyName.$error.required) || (companyForm.$submitted && companyForm.companyName.$error.required)">Company name is required</p>
+                                                        <ul class="help-block" ng-show="(!companyForm.companyName.$pristine && companyForm.companyName.$error.maxlength)">
+                                                            <strong>
+                                                                <li>Company name must contain no more than 50 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>                                      
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(companyForm.NIPNumber.$valid && !companyForm.NIPNumber.$pristine), 'has-error': (!companyForm.NIPNumber.$valid && !companyForm.NIPNumber.$pristine) || (!companyForm.NIPNumber.$valid && companyForm.$submitted)}">
+                                                        <label for="nip-number">Tax number</label>
+                                                        <input name="NIPNumber" ng-minLength="10" ng-pattern="/^(0|[1-9][0-9]*)+$/" ng-maxLength="10" ng-disabled="checkout.disabled" ng-model="checkout.companyOrder.NIPNumber" type="text" id="nip-number" class="form-control" placeholder="Please enter the tax number" required>
+                                                        <p class="help-block" ng-show="(!companyForm.NIPNumber.$pristine && companyForm.NIPNumber.$error.required) || (companyForm.$submitted && companyForm.NIPNumber.$error.required)">Tax number is required</p>
+                                                        <ul class="help-block" ng-show="(!companyForm.NIPNumber.$pristine && companyForm.NIPNumber.$error.maxlength) || (!companyForm.NIPNumber.$pristine && companyForm.NIPNumber.$error.minlength) || (!companyForm.NIPNumber.$pristine && companyForm.NIPNumber.$error.pattern)">
+                                                            <strong>
+                                                                <li>Tax number is a ten-digit code</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(companyForm.companyStreet.$valid && !companyForm.companyStreet.$pristine), 'has-error': (!companyForm.companyStreet.$valid && !companyForm.companyStreet.$pristine) || (!companyForm.companyStreet.$valid && companyForm.$submitted)}">
+                                                        <label for="company-street">Street name</label>
+                                                        <input ng-maxLength="50" ng-disabled="checkout.disabled" ng-model="checkout.companyOrder.companyStreet" name="companyStreet" type="text" id="company-street" placeholder="Please enter the street name" class="form-control" required>
+                                                        <p class="help-block" ng-show="(!companyForm.companyStreet.$pristine && companyForm.companyStreet.$error.required) || (companyForm.$submitted && companyForm.companyStreet.$error.required)">Street name is required</p>
+                                                        <ul class="help-block" ng-show="(!companyForm.companyStreet.$pristine && companyForm.companyStreet.$error.maxlength)">
+                                                            <strong>
+                                                                <li>Street name must contain no more than 50 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(companyForm.companyHomeNumber.$valid && !companyForm.companyHomeNumber.$pristine), 'has-error': (!companyForm.companyHomeNumber.$valid && !companyForm.companyHomeNumber.$pristine) || (!companyForm.companyHomeNumber.$valid && companyForm.$submitted)}">
+                                                        <label for="company-number-home">Street number</label>
+                                                        <input ng-disabled="checkout.disabled" ng-model="checkout.companyOrder.companyHomeNumber" ng-maxLength="8" name="companyHomeNumber" type="text" id="company-number-home" placeholder="Please enter the street number" class="form-control" required>
+                                                        <p ng-show="(!companyForm.companyHomeNumber.$pristine && companyForm.companyHomeNumber.$error.required) || (companyForm.$submitted && companyForm.companyHomeNumber.$error.required)" class="help-block">Street number is required</p>
+                                                        <ul class="help-block" ng-show="(!companyForm.companyHomeNumber.$pristine && companyForm.companyHomeNumber.$error.maxlength)">
+                                                            <strong>
+                                                                <li>Your street number is too long, max 8 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success': (companyForm.companyPostcode.$valid && !companyForm.companyPostcode.$pristine),'has-error': (!companyForm.companyPostcode.$valid && !companyForm.companyPostcode.$pristine) || (!companyForm.companyPostcode.$valid && companyForm.$submitted)}">
+                                                        <label for="postcode-company">Area code</label>
+                                                        <input ng-model="checkout.companyOrder.companyPostcode" name="companyPostcode" ng-disabled="checkout.disabled" ng-pattern="/^([0-9]{2}\-[0-9]{3})+$/" type="text" id="postcode-company" placeholder="Please enter your area code" class="form-control" required>
+                                                        <p class="help-block" ng-show="(!companyForm.companyPostcode.$pristine && companyForm.companyPostcode.$error.required) || (companyForm.$submitted && companyForm.companyPostcode.$error.required)">Area code is required</p>
+                                                        <ul class="help-block" ng-show="(!companyForm.companyPostcode.$pristine && companyForm.companyPostcode.$error.pattern)">
+                                                            <strong>
+                                                                <li>Valid area code is: "12-345"</li>
+                                                                <li>Area code has 5 numbers and one dash</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(companyForm.companyCity.$valid && !companyForm.companyCity.$pristine), 'has-error': (!companyForm.companyCity.$valid && !companyForm.companyCity.$pristine) || (!companyForm.companyCity.$valid && companyForm.$submitted)}">
+                                                        <label for="company-city">City</label>
+                                                        <input ng-maxLength="50" ng-disabled="checkout.disabled" ng-model="checkout.companyOrder.companyCity" name="companyCity" type="text" id="company-city" placeholder="Please enter the city" class="form-control" required>
+                                                        <p class="help-block" ng-show="(!companyForm.companyCity.$pristine && companyForm.companyCity.$error.required) || (companyForm.$submitted && companyForm.companyCity.$error.required)">City is required</p>
+                                                        <ul class="help-block" ng-show="(!companyForm.companyCity.$pristine && companyForm.companyCity.$error.maxlength)">
+                                                            <strong>
+                                                                <li>City must contain no more than 50 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="company-country">Country</label>
+                                                    <select id="country" class="form-control" ng-init="checkout.companyOrder.companyCountry = 'Poland'" ng-model="checkout.companyOrder.companyCountry" required>
+                                                        <option value="Poland">Poland</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 module-checkout-button">
+                                                    <div class="text-right">
+                                                        <button type="submit" ng-if="!checkout.changeCompanyButton" class="btn btn-success go-forward-checkout next-step">Go to the invoice</button>
+                                                        <button type="submit" ng-if="checkout.changeCompanyButton" class="btn btn-danger go-forward-checkout next-step">Save changes</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </form>
+                                    <div class="row-fluid show-hide-message" ng-show="(checkout.errorMsg && checkout.showPerson) || (checkout.errorMsg && checkout.showCompany)">
+                                        <div class="alert alert-danger">{{ checkout.errorMsg }}</div>
+                                    </div>
+                                    <!-- Custom Messages -->
+                                    <div class="row-fluid show-hide-message" ng-show="checkout.orderMsg">
+                                        <div class="alert alert-success">{{ checkout.orderMsg }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--STEP 2 -->
+                        <div class="tab-content" role="tabpanel" id="step2" ng-if="checkout.showPaymentForm">
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-lg-offset-1 col-sm-offset-1 checkout-blue-header">
+                                    <div class="head-checkout-list ">
+                                        <h3>Enter the details for the transfer</h3>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-lg-offset-1 col-sm-offset-1 checkout-container">  
+                                    <div class="col-xs-12 hidden-xs text-center">
+                                        <img class="payment-car-svg" src="../../../../uploads/PAYU LOGO_GRADIENT_RGB.png">
+                                        <img class="payment-car-svg" src="../../../../uploads/svg/visa.svg">
+                                        <img class="payment-car-svg" src="../../../../uploads/svg/mastercard.svg">
+                                    </div>  
+                                    <form name="checkoutPayment" ng-submit="checkout.payment(order, checkoutPayment.$valid)" novalidate>    
+                                        <div class="row-pay">
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success': (checkoutPayment.PayNamePerson.$valid && !checkoutPayment.PayNamePerson.$pristine),'has-error': (!checkoutPayment.PayNamePerson.$valid && !checkoutPayment.PayNamePerson.$pristine) || (!checkoutPayment.PayNamePerson.$valid && checkoutPayment.$submitted)}">
+                                                        <label for="name">Name</label>
+                                                        <input ng-model="checkout.order.PayNamePerson" name="PayNamePerson" ng-minLength="3" ng-maxLength="30" ng-pattern="/^(([a-zA-Z,ą,ę,ó,ć,ż,ź,ł,ń,Ą,Ę,Ó,Ć,Ż,Ź,Ł,Ń]{3,30})+)+$/" ng-disabled="checkout.disabled" type="text" id="name" class="form-control" placeholder="Please enter the name" required>
+                                                        <p class="help-block" ng-show="(!checkoutPayment.PayNamePerson.$pristine && checkoutPayment.PayNamePerson.$error.required) || (checkoutPayment.$submitted && checkoutPayment.PayNamePerson.$error.required)">Name is required</p>
+                                                        <ul class="help-block" ng-show="(!checkoutPayment.PayNamePerson.$pristine && checkoutPayment.PayNamePerson.$error.pattern) || (!checkoutPayment.PayNamePerson.$pristine && checkoutPayment.PayNamePerson.$error.minlength) || (!checkoutPayment.PayNamePerson.$pristine && checkoutPayment.PayNamePerson.$error.maxlength)">
+                                                            <strong>
+                                                                <li>Name must not contain any special characters</li>
+                                                                <li>Name must not contain any numbers</li>
+                                                                <li>Name must contain at least 3 but no more than 30 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success': (checkoutPayment.PayLastName.$valid && !checkoutPayment.PayLastName.$pristine),'has-error': (!checkoutPayment.PayLastName.$valid && !checkoutPayment.PayLastName.$pristine) || (!checkoutPayment.PayLastName.$valid && checkoutPayment.$submitted)}">
+                                                        <label for="PayLastName">Surname</label>
+                                                        <input ng-model="checkout.order.PayLastName" name="PayLastName" ng-minLength="3" ng-maxLength="30" ng-pattern="/^(([a-zA-Z,ą,ę,ó,ć,ż,ź,ł,ń,-]{3,30})+)+$/" ng-disabled="checkout.disabled" type="text" id="name" class="form-control" placeholder="Please enter the surname" required>
+                                                        <p class="help-block" ng-show="(!checkoutPayment.PayLastName.$pristine && checkoutPayment.PayLastName.$error.required) || (checkoutPayment.$submitted && checkoutPayment.PayLastName.$error.required)">Surname is required</p>
+                                                        <ul class="help-block" ng-show="(!checkoutPayment.PayLastName.$pristine && checkoutPayment.PayLastName.$error.pattern) || (!checkoutPayment.PayLastName.$pristine && checkoutPayment.PayLastName.$error.minlength) || (!checkoutPayment.PayLastName.$pristine && checkoutPayment.PayLastName.$error.maxlength)">
+                                                            <strong>
+                                                                <li>Surname must not contain any special characters</li>
+                                                                <li>Surname must not contain any numbers</li>
+                                                                <li>Surname must contain at least 3 but no more than 30 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <div ng-class="{'has-success':(checkoutPayment.PayAdressEmail.$valid && !checkoutPayment.PayAdressEmail.$pristine), 'has-error': (!checkoutPayment.PayAdressEmail.$valid && !checkoutPayment.PayAdressEmail.$pristine) || (!checkoutPayment.PayAdressEmail.$valid && checkoutPayment.$submitted)}">
+                                                        <label class="adress">Email address</label>
+                                                        <input  ng-maxLength="60" ng-disabled="checkout.disabled" ng-model="checkout.order.PayAdressEmail" ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" name="PayAdressEmail" type="text" id="adress" class="form-control" placeholder="Please enter the email address" required>
+                                                        <p class="help-block" ng-show="(!checkoutPayment.PayAdressEmail.$pristine && checkoutPayment.PayAdressEmail.$error.required) || (checkoutPayment.$submitted && checkoutPayment.PayAdressEmail.$error.required)">Email address is required</p>
+                                                        <ul class="help-block" ng-show="(!checkoutPayment.PayAdressEmail.$pristine && checkoutPayment.PayAdressEmail.$error.pattern) || (!checkoutPayment.PayAdressEmail.$pristine && checkoutPayment.PayAdressEmail.$error.minlength) || (!checkoutPayment.PayAdressEmail.$pristine && checkoutPayment.PayAdressEmail$error.maxlength)">
+                                                            <strong>
+                                                                <li>Must contain "@"</li>
+                                                                <li>Email address must not contain any special charactersh</li>
+                                                                <li>Email address must contain at least 3 but no more than 30 characters</li>
+                                                            </strong>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 summary-price-pay">
+                                                <p>Summary to pay: {{ main.summaryPrice }}zł</p>
+                                            </div>
+                                            <div class="col-xs-12 module-checkout-button pay-last-step">
+                                                <div class="text-right">
+                                                    <a data-target="#" type="button" ng-click="checkout.previous()" class="pull-left back-to-bill">Back and change the data</a>
+                                                    <button type="submit" class="paypal_button btn btn-primary">Pay Now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="col-xs-12 paypal_form_con">  
+                                        <div class="row-fluid show-hide-message" ng-show="checkout.PayMsg">
+                                            <div class="alert alert-success">{{ checkout.PayMsg }}</div>
+                                        </div>
+                                        <div class="row-fluid show-hide-message" ng-show="checkout.errorPayMsg">
+                                            <div class="alert alert-danger">{{ checkout.errorPayMsg }}</div>
+                                        </div>
+                                        <div class="alert alert-success text-center paypal_redirecting_load" ng-show="checkout.loading">
+                                            <span class="glyphicon glyphicon-repeat spinner"></span>
+                                            <p>Loading....</p>
+                                        </div>                                   
+                                    </div> 
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 tab-content" role="tabpanel" id="complete_payment" ng-if="checkout.showCompleteInfo">
+                    <div class="row-fluid show-hide-message" ng-show="checkout.confirmMsg">
+                        <div class="alert alert-success text-center"><h3 class="bac_success_info">{{ checkout.confirmMsg }}</h3></div>
+                        <span class="glyphicon glyphicon-thumbs-up text-center success_thumb_confirmed"></span>
+                        <h2 class="text-center">Thank you for purchasing our course</h2>
+                        <div class="col-lg-8 col-lg-offset-2 nav-button-success text-center">
+                            <a ui-sref="parent.home" class="in_home_page">
+                                <button class="btn btn-warning">Home page</button>
+                            </a>
+                            <a ui-sref="parent.courses" class="in_new_course">
+                                <button class="btn btn-primary">Go to the coures</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row-fluid show-hide-message" ng-show="checkout.confirmErrMsg ">
+                        <div class="alert alert-danger text-center">{{ checkout.confirmErrMsg  }}</div>
+                        <span class="glyphicon glyphicon-thumbs-down text-center fail_thumb_confirmed"></span>
+                        <h2 class="text-center">Sorry, something went wrong. Please try again later</h2>
+                        <div class="col-lg-8 col-lg-offset-2 nav-button-success text-center">
+                            <a ui-sref="parent.home" class="in_home_page">
+                                <button class="btn btn-danger">Home page</button>
+                            </a>
+                            <a ui-sref="parent.cart" class="in_new_course">
+                                <button class="btn btn-warning">Back to the cart</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

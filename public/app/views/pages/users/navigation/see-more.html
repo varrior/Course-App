@@ -1,0 +1,209 @@
+<section id="detail_item">
+    <div class="container">
+        <div class="row-fluid show-hide-message" ng-show="main.logInCourse">
+            <div class="alert alert-danger">{{ main.logInCourse }}</div> 
+        </div>  
+        <div class="row">
+            <div class="hidden-lg hidden-md col-sm-12 col-xs-12 hidden-button-price">
+                <a data-target="#" ng-click="main.addCart(price)" class="btn btn-success btn-block"><span class="hidden_new_price">{{ seeMore.newPrice }}zł &nbsp</span><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Add to cart</a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title-heading text-center">
+                <p class="detail_title" ng-bind-html="seeMore.introText"><p>  
+                <h1 class="detail_title">Course {{seeMore.title}}, {{seeMore.subTitle}} - from theory to practice</h1>        
+            </div>
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs yourCourse"> 
+                <div class="card list-group-item">
+                    <div class="all_course_view">
+                        <div class="thumbnail image_course">
+                            <img src="../../uploads/{{ seeMore.image }}"/>
+                        </div>
+                        <div class="caption">
+                            <h2>{{ seeMore.title }}</h2>
+                            <h3>{{ seeMore.subTitle }}</h3>
+                            <div class="text-right">
+                                <span class="detail_price_new">{{ seeMore.newPrice }}<span class="small_price">zł</span></span>
+                                <span class="detail_price_old">{{ seeMore.oldPrice }}zł</span>
+                            </div>
+                            <div class="container-fluid button-price"> 
+                                <a data-target="#" ng-click="main.addCart(price)" class="btn btn-success btn-block"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-author">
+                    <h3 class="header_author">Course author</h3>
+                    <div class="dummy-logo">
+                        <div class="icon pull-left brand">
+                            <img class="footer_about" src="../../../../uploads/svg/team.svg">
+                        </div>
+                        <h2>{{ seeMore.authorName }}</h2>
+                        <p>{{ seeMore.authorEdu }}</p>
+                    </div>
+                    <p class="author-description" ng-bind-html="seeMore.authorDescription"></p>
+                </div>
+                <div ng-if="main.sortedProducts.length" class="recommended-course hidden-sm hidden-xs">
+                    <div ng-repeat="product in main.sortedProducts">
+                        <h2 class="recommended-title text-left">Recommended course:</h2>
+                        <div class="product">
+                            <div class="button-directions">
+                                <img src="../../uploads/{{ product.imagePath }}" alt="#">
+                                <i class="level" ng-class="product.level" product-level-course></i> 
+                            </div>
+                            <h2>{{product.title}}</h2>
+                            <h3>{{product.subTitle}}</h3>
+                            <div class="description-list-group">
+                                <ol>
+                                    <ul class="text-center">
+                                        <li ng-repeat="item in product.description">{{ item }}</li> 
+                                    </ul>
+                                </ol>
+                            </div>
+                            <div class="col-xs-12 text-right no-padding-price"> 
+                                <span class="actualPrice"><span class="glyphicon glyphicon-shopping-cart shopping-icon"></span> {{ product.newPrice }}zł</span>
+                                <span class="oldPrice">{{ product.oldPrice }}zł</span>
+                            </div>
+                            <div class="col-xs-12 read-more">
+                                <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Check the details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-page-content">
+                <div class="row">
+                    <div class="detail_video_header">
+                        <img class="video_short" src="../../uploads/{{ seeMore.image }}"/>
+                    </div>
+                </div>
+                <section id="opis_kursu_szczegoly">
+                    <div class="row content_inner">
+                        <div class="col-xs-12 direction_icons">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 sekwencja_zdarzen text-center">
+                                <img src="../../uploads/svg/code-work.svg"/>
+                                <p>Watch video courses and learn about new issues</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs sekwencja_zdarzen arrow text-center">
+                                <img src="../../uploads/svg/redo-arrow-grey.svg"/> 
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs repeat-knowledge sekwencja_zdarzen text-center">
+                                <img src="../../uploads/svg/thought.svg"/> 
+                                <p>Read articles, broaden your knowledge, day by day get better</p>
+                            </div>   
+                            <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs sekwencja_zdarzen arrow text-center">
+                                <img src="../../uploads/svg/redo-arrow-grey.svg"/> 
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sekwencja_zdarzen text-center">
+                                <img src="../../uploads/svg/first-prize-trophy-blue.svg"/>
+                                <p>Do what you like and give you satisfaction, overcome new challenges and pursue your own dreams</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="opis_kursu_szczegoly">
+                    <div class="row no_padding_description">
+                        <div class="col-xs-12" ng-bind-html="seeMore.body">
+                            
+                        </div>
+                    </div>
+                </section>
+                <div class="container-fluid"> 
+                    <a data-taeget="#" ng-click="main.addCart(price)" class="btn btn-success btn-block buy-now-down"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Buy now</a>
+                </div>
+                <section id="spis-tresci"> 
+                    <h3>Table of contents</h3>
+                    <ul class="lista-spis-tresci">
+                        <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()" ng-repeat="product in main.products | filter: {title: title}"> 
+                            <li>{{ product.title }} - {{ product.subTitle }}</li> 
+                        </a> 
+                    </ul>
+                </section>
+                <section id="comment-users-type"> 
+                    <h2>Comments({{seeMore.comments.length}})</h2> 
+                    <div ng-repeat="comment in seeMore.comments | orderBy:'id':true" class="all-users-comment-course"> 
+                        <article class="one-comment"> 
+                            <img class="user_edit pull-left" src="../../../../uploads/svg/user.svg">
+                            <div class="col-xs-12 content-body-comment pull-right">
+                                <div class="user-property">  
+                                    <p class="user-name text-left">{{ comment.author }} | <time title="{{ comment.date | amDateFormat: 'DD.MM.YYYY H:mm' }}" am-time-ago="comment.date"></time></p>
+                                </div>  
+                                <div class="user-content-comment"> 
+                                    <div class="comment-body-dash"> 
+                                        <p>{{comment.body}}</p> 
+                                    </div>                                                
+                                </div>
+                                <div ng-if="main.isLoggedIn || comment.reply.length" class="user-reply pull-right">
+                                    <button ng-click="seeMore.showDetails[$index] = !seeMore.showDetails[$index]"><span class="glyphicon glyphicon-share-alt reply-comment"></span>&nbspReply <span class="reply-users-numbers" ng-show="comment.reply.length"></span><span ng-show="comment.reply.length">{{comment.reply.length}}</span></button>
+                                </div>
+                            </div>
+                        </article>
+                        <div class="all-reply-users-comment" ng-if="seeMore.showDetails[$index]">                               
+                            <div class="users-reply-comment" ng-repeat="reply in comment.reply | orderBy: 'id': true track by $index">
+                                <article class="reply-commit">
+                                    <img class="user_edit pull-left" src="../../../../uploads/svg/user.svg">
+                                    <div class="col-xs-12 content-body-comment pull-right">
+                                        <div class="user-property"> 
+                                            <p class="user-name text-left">{{ reply.author }} | <time title="{{ reply.date | amDateFormat: 'DD.MM.YYYY H:mm' }}" am-time-ago="reply.date"></time></p>
+                                        </div>  
+                                        <div class="user-content-comment"> 
+                                            <div class="comment-body-dash"> 
+                                                <p>{{reply.body}}</p> 
+                                            </div>                                                
+                                        </div>
+                                    </div>
+                                </article>
+                            </div> 
+                            <div ng-if="main.isLoggedIn" class="col-xs-12 reply-control-area">
+                                <form name="UserLoggedInReply" ng-submit="seeMore.userReply(comment, seeMore.commentReply[comment.number], UserLoggedInReply)" novalidate>
+                                    <div ng-class="{'has-success':(UserLoggedInReply['commentReply' + comment.number].$valid && !UserLoggedInReply['commentReply' + comment.number].$pristine), 'has-error':(!UserLoggedInReply['commentReply' + comment.number].$valid && !UserLoggedInReply['commentReply' + comment.number].$pristine) || (!UserLoggedInReply['commentReply' + comment.number].$valid &&  UserLoggedInReply.$submitted)}" class="text-right">  
+                                        <textarea name="commentReply{{comment.number}}" ng-model="seeMore.commentReply[comment.number]" placeholder="Please enter the reply" class="form-control" id="reply-user-comment-to" ng-minLength="10" required></textarea>
+                                        <ul ng-show="(!UserLoggedInReply['commentReply' + comment.number].$pristine && UserLoggedInReply.$error.minlength[0].$viewValue.length)" class="help-block comment-conditions">
+                                            <li>{{10 - UserLoggedInReply.$error.minlength[0].$viewValue.length}} more to go...</li>   
+                                            </ul>  
+                                        <button ng-disabled="seeMore.disableReply" class="pull-right">Dodaj</button>
+                                    </div>
+                                </form> 
+                                <div class="row-fluid show-hide-message" ng-show="seeMore.replyMsg && seeMore.addedReply === comment._id">
+                                    <div class="alert alert-success">{{ seeMore.replyMsg}}</div>
+                                </div>
+                                <div class="row-fluid show-hide-message" ng-show="seeMore.errReply && seeMore.addedReply === comment._id">
+                                    <div class="alert alert-danger">{{ seeMore.errReply }}</div> 
+                                </div>  
+                                <div class="jumbotron text-center" ng-show="seeMore.loadingReply">
+                                    <span class="glyphicon glyphicon-repeat spinner"></span>
+                                    <p>Adding....</p>
+                                </div>
+                            </div>
+                        </div> 
+                    </div> 
+                </section>
+                <section ng-if="main.isLoggedIn" id="comments-course"> 
+                    <div class="col-xs-12 add-comment-users">  
+                        <form name="seeMore.AddCommentForm" ng-submit="seeMore.AddComment(seeMore.comment, seeMore.AddCommentForm.$valid)" novalidate>  
+                            <div ng-class="{'has-success':(seeMore.AddCommentForm.comment.$valid && !seeMore.AddCommentForm.comment.$pristine), 'has-error':(!seeMore.AddCommentForm.comment.$valid && !seeMore.AddCommentForm.comment.$pristine) || (!seeMore.AddCommentForm.comment.$valid &&  seeMore.AddCommentForm.$submitted)}">  
+                                <textarea class="form-control" id="text-area-comment" name="comment" ng-model="seeMore.comment" ng-minLength="10" placeholder="Please enter the comment" required></textarea>   
+                                <ul ng-show="(!seeMore.AddCommentForm.comment.$pristine && seeMore.AddCommentForm.$error.minlength[0].$viewValue.length)" class="help-block comment-conditions">
+                                    <li>{{10 - seeMore.AddCommentForm.$error.minlength[0].$viewValue.length}} more to go...</li>
+                                </ul>  
+                                <div class="rating-star ratings-comment">
+                                    <button class="btn btn-warning button-comment-user pull-right">Add comment</button>  
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row-fluid show-hide-message" ng-show="seeMore.commentMsg">
+                            <div class="alert alert-success">{{ seeMore.commentMsg }}</div>
+                        </div>
+                        <div class="row-fluid show-hide-message" ng-show="seeMore.errCommentMsg">
+                            <div class="alert alert-danger">{{ seeMore.errCommentMsg }}</div> 
+                        </div>  
+                        <div class="jumbotron text-center" ng-show="seeMore.loadingComment">
+                            <span class="glyphicon glyphicon-repeat spinner"></span>
+                            <p>Adding....</p>
+                        </div>
+                    </div>
+                </section> 
+            </div>
+        </div>
+    </div>
+</section>

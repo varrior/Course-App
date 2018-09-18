@@ -1,0 +1,128 @@
+<div class="users-management">
+    <div class="widgets">
+        <div class="container-users">
+            <div class="row-users">
+                <div class="col-xs-12">
+                    <div class="editPanel headerNewCourse">
+                        <h1>Articles</h1>
+                    </div>
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">All articles</h3> 
+                            <p class="users-numbers text-right">Found {{allArticles.articles.length}} articles</p>
+                        </div> 
+                        <div class="panel-heading managing-header-course sort-courses-edit">
+                            <div class="category-blog col-xs-12 col-sm-6">
+                                <div class="form-group ">
+                                    <div class="input-group pull-left">
+                                        <div class="input-group-addon">
+                                            <span class="input-group-text"><i class="glyphicon glyphicon-search"></i></span>
+                                        </div>    
+                                        <input type="text" name="input" ng-change="allArticles.searchByTitle(allArticles.filterTitle)" ng-model="allArticles.filterTitle" class="input" placeholder="Enter the article you are interested in">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right hidden-sm hidden-xs">
+                                <div class="customSort blogArticles">
+                                    <div class="sort-by">
+                                        <select data-toggle="dropdown" ng-model="allArticles.selectSort" ng-change="allArticles.applySortBy(allArticles.selectSort)" aria-expanded= "false">
+                                            <option value="Sort" disabled="disabled">Sort by tags</option>
+                                            <option value="allArticles">...All articles...</option>
+                                            <option value ="{{tag}}" ng-repeat="tag in allArticles._tags">{{tag}}</option>    
+                                        </select>            
+                                    </div>
+                                </div>
+                                <div class="customSort blogArticles">
+                                    <div class="sort-by">
+                                        <select data-toggle="dropdown" ng-model="allArticles.itemsPerPage" ng-change="allArticles.setItem(allArticles.itemsPerPage)" aria-expanded= "false">
+                                            <option value="15" disabled="disabled">15</option>
+                                            <option value="6">6</option>    
+                                            <option value="15">15</option> 
+                                            <option value="30">30</option> 
+                                            <option value="60">60</option> 
+                                            <option value="90">90</option> 
+                                            <option value="120">120</option> 
+                                        </select>            
+                                    </div>
+                                </div>
+                                <div class="customSort blogArticles sort_blog_news">
+                                    <div class="sort-by">
+                                        <a class="nav-link" ng-click="allArticles.sortByDate($event)" active-class>Date<span class="glyphicon glyphicon-arrow-up up"></span></a>          
+                                    </div>
+                                </div>
+                            </div>            
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <section id="allArticlesBlog"> 
+                                        <h2 ng-if="!allArticles.articles.length" class="text-center">You have not added any article</h2>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 single_article" ng-repeat="article in allArticles.articles.slice(((allArticles.currentPage-1)*allArticles.itemsPerPage), (allArticles.currentPage*allArticles.itemsPerPage)) track by $index">
+                                            <div class="blogContainerMini">
+                                                <img ng-src="../../../../../uploads/{{article.imagePath}}" alt="Third Image">
+                                                <a class="deleteArticle" href="#"  type="button" ng-click="allArticles.showDeletedArticle(article)" title="Usuń artykuł">
+                                                    <span><i class="fa fa-trash-o"></i></span>
+                                                </a>
+                                                <div class="repeatedTags">
+                                                    <a ui-sref="dashboard.editArticle({id:article._id})">
+                                                        <div ng-class-odd="'odd'" ng-class-even="'even'">
+                                                            <span ng-repeat="tags in article.tags track by $index" class="categoryTags">{{tags}}</span>
+                                                        </div>
+                                                        <p class="contentTitleArticle">
+                                                            <br>{{article.title}}
+                                                        </p>
+                                                        <p>
+                                                            <span ng-if="article.author"class="author">by {{article.author}}</span>
+                                                            <span ng-if="article.date"class="date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{article.date | amDateFormat: 'DD.MM.YYYY H:mm' }}</span>
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                                <div class="overlay"></div>
+                                            </div>
+                                        </div>                                           
+                                    </section>                                       
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-message-cms">
+                            <div class="row show-hide-message error-fluid" ng-show="allArticles.artMsg" >
+                                <div class="alert alert-success">{{allArticles.artMsg}}</div>
+                            </div>
+                            <div class="row show-hide-message error-fluid" ng-show="allArticles.artErrMsg">
+                                <div class="alert alert-danger">{{ allArticles.artErrMsg }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="allArticles.articles.length > allArticles.itemsPerPage" class="pagination-center">
+            <pagination total-items="allArticles.articles.length" ng-model="allArticles.currentPage" class="pagination-sm text-center" items-per-page="allArticles.itemsPerPage" previous-text="Previous" next-text="Next"></pagination>     
+        </div>
+    </div>
+    <div ng-show="allArticles.loadingPage" class="loading">
+        <span class="glyphicon loading"></span>
+    </div>
+    <div class="modal fade" id="removeArticle" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <span class="glyphicon glyphicon-trash"></span><span class="modal-title">&nbspDelete this article?</span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Article title: <strong>{{ allArticles.deleteArticle.title }}</strong></p>  
+                    <p ng-if="allArticles.deleteArticle.author">Article author: <strong>{{ allArticles.deleteArticle.author }}</strong></p>
+                    <p>Addition date: <strong>{{ allArticles.deleteArticle.date | amDateFormat: 'DD.MM.YYYY H:mm'}}</strong></p>
+                </div>
+                <div class="modal-footer"> 
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No </button>
+                        <button class="btn btn-success" data-dismiss="modal" ng-click="allArticles.deleteArticles(allArticles.deleteArticle)"><span class="glyphicon glyphicon-check"></span> Yes </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

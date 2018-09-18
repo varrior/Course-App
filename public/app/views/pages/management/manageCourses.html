@@ -1,0 +1,130 @@
+<div class="users-management">
+    <div class="widgets">
+        <div class="container-users">
+            <div class="row-users">
+                <div class="col-xs-12">
+                    <div class="editPanel headerNewCourse">
+                        <h1>Category: {{manageProduct.propertyName || 'All courses'}}</h1>
+                    </div>
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="panel-title pull-left">Course edition</h3>
+                            <p class="users-numbers text-right">Found {{manageProduct.productsPag.length}} courses</p>
+                        </div>
+                        <div class="panel-heading managing-header-course sort-courses-edit">
+                            <div class="category">
+                                <select ng-show="manageProduct.articlesCount" data-toggle="dropdown" ng-model="manageProduct.titleSort" ng-change="manageProduct.sortByCourse(undefined, manageProduct.titleSort)" aria-expanded= "false">
+                                    <option value="titleSort" disabled="disabled">Sort by title</option>
+                                    <option value="allArticles">All courses</option>
+                                    <option value ="{{title}}" ng-repeat="title in manageProduct._titles">{{title}}</option>    
+                                </select>
+                                <div ng-repeat="product in main.products | orderBy: '-title' | unique: 'title'" ng-if="!manageProduct.articlesCount" class="titleSort">
+                                    <a ng-class="{sortedCourse: manageProduct.propertyName === product.title}" ng-click="manageProduct.sortByCourse($event, product.title)">{{product.title}}&nbsp</a>      
+                                </div>
+                            </div>
+                            <div class="pull-right hidden-sm hidden-xs">
+                                <div class="level">
+                                    <div ng-repeat="product in main.products | unique: 'level'" class="titleSort"> 
+                                        <span ng-class="{sortedLevel: manageProduct.propertyLevel === product.level}" ng-click="manageProduct.sortByLevel($event, product.level)"><i class="{{product.level}}"></i></span>
+                                    </div>
+                                </div>
+                                <div class="customSort">
+                                    <div class="sort-by">
+                                        <select data-toggle="dropdown" ng-model="manageProduct.selectSort" ng-change="manageProduct.applySortBy(manageProduct.selectSort)" aria-expanded= "false">
+                                            <option value="Sort" disabled="disabled">Sortuj wg...</option>
+                                            <option value="Recent">Recent</option>    
+                                            <option value="Price ascending">Price ascending</option> 
+                                            <option value="Price descending">Price descending</option> 
+                                            <option value="Alphabetically">Alphabetically</option> 
+                                        </select>            
+                                    </div>
+                                </div>
+                                <div class="customSort">
+                                    <div class="sort-by">
+                                        <select data-toggle="dropdown" ng-model="manageProduct.itemsPerPage" ng-change="manageProduct.setItem(manageProduct.itemsPerPage)" aria-expanded= "false">
+                                            <option value="16" disabled="disabled">16</option>
+                                            <option value="5">5</option>    
+                                            <option value="10">10</option> 
+                                            <option value="15">15</option> 
+                                            <option value="25">25</option> 
+                                            <option value="50">50</option> 
+                                            <option value="100">100</option> 
+                                        </select>            
+                                    </div>
+                                </div>
+                            </div>            
+                        </div> 
+                        <div class="panel-body list-course">
+                            <div class="horizontal-scroll">
+                                <section class="dashboard-manager allCoursesPage">
+                                    <div class="row show-hide-message error-fluid" ng-show="manageProduct.errDelMsg">
+                                        <div class="alert alert-danger">{{manageProduct.errDelMsg }}</div>
+                                    </div>
+                                    <div class="row show-hide-message error-fluid" ng-show="manageProduct.successDelMsg">
+                                        <div class="alert alert-success">{{ manageProduct.successDelMsg }}</div>
+                                    </div>
+                                    <div class="container-product">
+                                        <div ng-repeat="product in manageProduct.productsPag.slice(((manageProduct.currentPage-1)*manageProduct.itemsPerPage), (manageProduct.currentPage*manageProduct.itemsPerPage))" class="con-new-pro col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="product">
+                                                <div class="button-directions">
+                                                    <img src="../../uploads/{{ product.imagePath }}" alt="#">
+                                                    <div class="play-hover">
+                                                        <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()"><span class="glyphicon glyphicon-check"></span>Check the details</a>
+                                                        <div class="manage_buttons text-center">
+                                                            <a ui-sref="dashboard.editProduct({ id: product._id })" title="Edit course">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+                                                            <a data-target="#" type="button" title="Delete course" ng-click="manageProduct.showDeletedVideo(product)">
+                                                                <i class="fa fa-times"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption">
+                                                    <h2>{{product.title}}</h2>
+                                                    <h3>{{product.subTitle}}</h3>
+                                                    <div class="col-xs-12 text-center no-padding-price"> 
+                                                        <span class="actualPrice"><span class="glyphicon glyphicon-shopping-cart shopping-icon"></span> {{ product.newPrice }}zł</span>
+                                                        <span class="oldPrice">{{ product.oldPrice }}zł</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="manageProduct.productsPag.length > manageProduct.itemsPerPage" class="pagination-center">
+                                        <pagination total-items="manageProduct.productsPag.length" ng-model="manageProduct.currentPage" class="pagination-sm text-center" items-per-page="manageProduct.itemsPerPage" previous-text="Previous" next-text="Next"></pagination>     
+                                    </div> 
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="manageProduct.loadingPage" class="loading">
+        <span class="glyphicon loading"></span>
+    </div>
+    <div class="modal fade" id="removeVideo" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                        <span class="glyphicon glyphicon-trash"></span><span class="modal-title">&nbspDelete the course?</span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Course title: <strong>{{ manageProduct.deleteVideo.title }}</strong></p>  
+                    <p>Course subtitle: <strong>{{ manageProduct.deleteVideo.subTitle  }}</strong></p>
+                    <p>Course level: <strong>{{ manageProduct.deleteVideo.level }}</strong></p>
+                    <p>Course price: <strong>{{ manageProduct.deleteVideo.newPrice}}zł</strong></p>
+                </div>
+                <div class="modal-footer"> 
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No </button>
+                        <button class="btn btn-success" data-dismiss="modal" ng-click="manageProduct.deleteVideoCourse(manageProduct.deleteVideo._id)"><span class="glyphicon glyphicon-check"></span> Yes </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

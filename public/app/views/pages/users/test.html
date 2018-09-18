@@ -1,0 +1,54 @@
+<section id="testy_spr">
+    <div class="container">
+        <div class="quiz inner-test">
+            <image-preload></image-preload>
+            <div class="progress" ng-if="quizProgress.inProgress && quizProgress.currentQuestion <= quizProgress.lastQuestion">
+                <span ng-cloak class="counter">Question {{ quizProgress.currentQuestionFriendly }} z {{ quizProgress.lastQuestion }}</span>
+                <div class="progress-bar" progress-bar></div> 
+            </div>
+            <div class="content">
+                <section ng-cloak class="question" ng-if="quizProgress.inProgress && quizProgress.currentQuestion <= quizProgress.lastQuestion">
+                    <div animate-progression>
+                        <div class="text-center">
+                            <img class="img-responsive" ng-src="{{ quizQuestions[quizProgress.currentQuestion].questionImg }}">
+                        </div>
+                        <p class="question-content">{{ quizQuestions[quizProgress.currentQuestion].question }}</p>
+                        <div class="question-options">
+                            <div ng-repeat="option in quizQuestions[quizProgress.currentQuestion].options | orderBy: '-'">
+                                <div class="option" ng-class="{'wrong': quizQuestions[quizProgress.currentQuestion].answerChecked && option.selected && !option.correct, 'correct': option.correct && quizQuestions[quizProgress.currentQuestion].answerChecked, 'dim': quizQuestions[quizProgress.currentQuestion].answerChecked}">
+                                    <input type="radio" name="option" id="{{$index}}" ng-click="answerQuestion({selected: option.name})" ng-disabled="quizQuestions[quizProgress.currentQuestion].answerChecked">
+                                    <label for="{{$index}}">{{ option.name }}</label>
+                                </div>
+                                <div class="row feedback" ng-if="quizQuestions[quizProgress.currentQuestion].answerChecked && option.correct">
+                                    <span ng-bind-html="quizQuestions[quizProgress.currentQuestion].feedback"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row button-row">
+                            <button ng-if="quizProgress.currentQuestion === -1" class="btn btn-primary" ng-click="startQuiz()">Start the test</button>
+                            <button ng-if="quizQuestions[quizProgress.currentQuestion].answerChecked && quizProgress.currentQuestionFriendly !== quizProgress.lastQuestion" class="btn btn-primary pull-right" ng-click="nextQuestion()">Next question &nbsp<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                            <button ng-if="!quizQuestions[quizProgress.currentQuestion].answerChecked" ng-disabled="!quizQuestions[quizProgress.currentQuestion].answered" class="btn btn-success pull-right" ng-click="checkAnswer()">Check the answer</button>
+                        </div>
+                    </div>
+                    <div class="get-my-results text-center" ng-if="quizProgress.currentQuestionFriendly === quizProgress.lastQuestion && quizQuestions[quizProgress.currentQuestion].answerChecked">
+                        <button class="pulse btn btn-danger" ng-click="getScore()">See the result</button>
+                    </div>
+                </section>
+                <section class="loading" ng-if="quizProgress.loading || quizProgress.calculatingScore">
+                    <div class="loader"></div>
+                </section>
+                <section class="fade-in" ng-if="!quizProgress.calculatingScore && !quizProgress.inProgress && quizProgress.currentQuestionFriendly === quizProgress.lastQuestion">
+                    <div class="result">
+                        <div class="text-center">
+                            <h1>Your result: </h1>
+                            <h2>{{ score }}</h2>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="start-over btn btn-success" ng-click="startOver()"><i class="fa fa-repeat" aria-hidden="true"></i>&nbsp Try again</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>

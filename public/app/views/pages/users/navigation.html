@@ -1,0 +1,89 @@
+<div class="navbarScroll">
+    <nav id="mainNav" class="navbar" data-spy="affix" data-offset-top="100">   
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a ng-click="main.scroll()" class="navbar-brand" ui-sref="parent.home" data-target="#page-top">
+                        <span class="icon-brand">
+                            <img src="../../../../uploads/svg/code-white.svg">
+                        </span>
+                        <span class="mat-now">WebSite</span>
+                        <span class="dot-change">.</span> 
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-class="{ active: isActive('/blog') || isActive('/blog/' + main.currentId)}">
+                            <a ng-click="main.scroll()" class="navbar-navigation" ui-sref="parent.blog"><span class="glyphicon glyphicon-globe"></span>&nbsp Blog</a>
+                        </li> 
+                        <li ng-class="{ active: isActive('/courses') || isActive('/course/details/' + main.currentId)}">
+                            <a ng-click="main.scroll()" ui-sref="parent.courses" class="navbar-navigation"><span class="glyphicon glyphicon-list-alt"></span>&nbsp Courses</a>
+                        </li>
+                        <li ng-class="{ active: isActive('/about-us')}">
+                            <a ng-click="main.scroll()" class="navbar-navigation" ui-sref="parent.aboutMe"><span class="glyphicon glyphicon-user"></span>&nbsp About us</a>
+                        </li>
+                        <li ng-class="{ active: isActive('/contact')}">
+                            <a ng-click="main.scroll()" class="navbar-navigation" ui-sref="parent.contact"><span class="glyphicon glyphicon-envelope"></span>&nbsp Contact</a>
+                        </li>
+                        <li ng-if="!main.isLoggedIn">
+                            <a ng-click="main.scroll()" ui-sref="parent.register" class="registerMenu">
+                                <span class="reg-but-spa">
+                                    <span class="glyphicon glyphicon-user"></span> &nbsp Sign up
+                                </span>
+                            </a>
+                        </li>
+                        <li ng-if="!main.isLoggedIn">
+                            <a href="#" data-toggle="modal" class="loginCollapseMenu" type="button" data-target="#LoginModal">
+                                <span class="login-but-spa">
+                                    <span class="glyphicon glyphicon-log-in"></span> &nbsp Sign in 
+                                </span>
+                            </a> 
+                        </li>
+                        <li ng-click="main.showCartMessage()" ng-if="main.isLoggedIn">
+                            <a ui-sref="parent.cart" role="button" class="navbar-navigation shopping-cart" ng-class="linkEnabled ? '' : 'inactive'" >
+                                <span class="glyphicon glyphicon-shopping-cart shopping-icon"></span>&nbsp;Cart<span ng-show="main.showBadge" class="badge total-cart">{{totalQty}}</span>
+                            </a>
+                            <div ng-class="!linkEnabled ? '' : 'invisible'" class="empty-cart-info text-center show-hide-message" ng-show="main.emptyCart">
+                                <div class="message my-message">{{ main.emptyCart }}</div>
+                            </div>                     
+                        </li>  
+                        <li ng-if="main.isLoggedIn" ng-class="{ profile: isActive('/profile')}">
+                            <div class="dropdown show">
+                                <a class="navbar-navigation my_account dropdown-toggle" href="#" role="button" id="menuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span><img src="../../../../uploads/svg/user.svg">Hello, {{main.username}}</span>
+                                </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="menuLink">
+                                    <a class="dropdown-item" ui-sref="parent.video" ng-click="main.scroll()">
+                                        <i class="fa fa-television"></i>My courses
+                                    </a>
+                                    <a class="dropdown-item" ui-sref="parent.tests" ng-click="main.scroll()">
+                                        <i class="fa fa-area-chart"></i>Tests
+                                    </a>
+                                    <a class="dropdown-item" ui-sref="parent.history" ng-click="main.scroll()">
+                                        <i class="fa fa-calendar"></i>History of orders
+                                    </a>
+                                    <a class="dropdown-item" ui-sref="parent.profile" ng-click="main.scroll()">
+                                        <i class="fa fa-gears"></i>Settings
+                                    </a>
+                                    <a ng-if="main.isLoggedIn" class="dropdown-item" ng-click="main.logout()" ng-click="main.scroll()">
+                                        <i class="fa fa-power-off"></i>Log out
+                                    </a>
+                                    <a ng-if="main.isLoggedIn && main.authorized" ui-sref="adminLogin">
+                                        <span class="glyphicon glyphicon-log-in"></span>Admin dashboard
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

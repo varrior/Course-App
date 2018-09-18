@@ -1,0 +1,112 @@
+<div class="users-management">
+    <div class="widgets">
+        <div class="container-users">
+            <div class="row-users">
+                <div class="col-xs-12">
+                    <h1 class="users-table">Users</h1>
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">List of users</h3>
+                            <p class="users-numbers text-right">{{manageUser.users.length}} users</p>
+                        </div>
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="form-group select-page-size-wrap">
+                                    <label>View</label>
+                                    <div class="btn-group bootstrap-select form-control show-tick">
+                                        <select class="btn dropdown-toggle btn-default select-dropdown" ng-model="manageUser.selectNumber" data-toggle="dropdown" ng-change="manageUser.setItemsPerPage(manageUser.selectNumber)" aria-expanded= "false">
+                                            <option value="2">2</option>    
+                                            <option value="5">5</option> 
+                                            <option value="10">10</option> 
+                                            <option value="15">15</option> 
+                                            <option value="20">20</option> 
+                                            <option value="50">50</option> 
+                                            <option value="100">100</option> 
+                                        </select>            
+                                    </div>
+                                </div>
+                                <table class="table table-bordered table-hover table-condensed">
+                                    <thead>
+                                        <tr class="rows-description">
+                                            <th>#&nbsp</th>
+                                            <th class="sortTable" ng-class="{reverse: manageUser.propertyName === 'name' && !manageUser.reverse}" ng-click="manageUser.sortBy('name')">Name&nbsp</th>
+                                            <th class="sortTable" ng-class="{reverse: manageUser.propertyName === 'username' && !manageUser.reverse}" ng-click="manageUser.sortBy('username')">Username&nbsp</th>
+                                            <th class="sortTable" ng-class="{reverse: manageUser.propertyName === 'email' && !manageUser.reverse}" ng-click="manageUser.sortBy('email')">Email Address&nbsp</th>
+                                            <th class="sortTable hidden-sm hidden-xs" ng-class="{reverse: manageUser.propertyName === 'permission' && !manageUser.reverse}" ng-click="manageUser.sortBy('permission')">Permission&nbsp</th>
+                                            <th class="sortTable hidden-sm hidden-xs" ng-class="{reverse: manageUser.propertyName === 'active' && !manageUser.reverse}" ng-click="manageUser.sortBy('active')">Active&nbsp</th>
+                                            <th>Manage</th>
+                                        </tr>        
+                                        <tr class="filter-table">
+                                            <th></th>
+                                            <th><input ng-model="person.name" ng-change="manageUser.sortByInput('name',person.name)" placeholder="Search by name" class="input-sm form-control search-input" type="search"></th>
+                                            <th><input ng-model="person.username" ng-change="manageUser.sortByInput('username',person.username)" placeholder="Search by username" class="input-sm form-control search-input" type="search"></th>
+                                            <th><input ng-model="person.email" ng-change="manageUser.sortByInput('email',person.email)" placeholder="Search email address" class="input-sm form-control search-input" type="search"></th>
+                                            <th class="hidden-sm hidden-xs"><input ng-change="manageUser.sortByInput('permission',person.permission)" ng-model="person.permission" placeholder="Search by permission" class="input-sm form-control search-input" type="search"></th>
+                                            <th class="hidden-sm hidden-xs"><input ng-model="person.active" ng-change="manageUser.sortByInput('active',person.active)" placeholder="Search by activation" class="input-sm form-control search-input" type="search"></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>        
+                                        <tr ng-repeat="person in manageUser.users.slice(((manageUser.currentPage-1)*manageUser.itemsPerPage), (manageUser.currentPage*manageUser.itemsPerPage))" class="editable-row">
+                                            <td class="text-center">{{ $index + 1 }}</td>
+                                            <td>{{ person.name }}</td>
+                                            <td>{{ person.username }}</td>
+                                            <td>{{ person.email }}</td>
+                                            <td class="hidden-sm hidden-xs">{{ person.permission }}</td>
+                                            <td class="hidden-sm hidden-xs">{{ person.active }}</td>
+                                            <td>
+                                                <a href="/dashboard/admin/users/edit/{{ person._id }}">
+                                                    <button type="button" class="edit-btn btn btn-primary">Edit</button>
+                                                </a>
+                                                <a type="button" ng-click="manageUser.showDeletedUser(person)" class="delete-btn btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>    
+                                </table>
+                                <div ng-if="manageUser.itemsPerPage < manageUser.users.length" class="pagination-center">
+                                    <pagination total-items="manageUser.users.length" ng-model="manageUser.currentPage" class="pagination-sm text-center" items-per-page="manageUser.itemsPerPage" previous-text="Previous" next-text="Next"></pagination>   
+                                </div>     
+                                <br>
+                                <div class="row show-hide-message" ng-show="manageUser.errorMsg">
+                                    <div class="alert alert-danger">{{ manageUser.errorMsg }}</div> 
+                                </div>
+                                <div class="row show-hide-message" ng-show="manageUser.deleteMsg">
+                                    <div class="alert alert-success">{{ manageUser.deleteMsg }}</div>
+                                </div>
+                                <div class="row show-hide-message" ng-show="manageUser.deleteErrMsg">
+                                    <div class="alert alert-danger">{{ manageUser.deleteErrMsg }}</div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="removeUser" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                        <span class="glyphicon glyphicon-trash"></span><span class="modal-title">&nbspDelete the user?</span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Name: <strong>{{ manageUser.deleteUser.name  }}</strong></p>  
+                    <p>Username: <strong>{{ manageUser.deleteUser.username  }}</strong></p>
+                    <p>Email address: <strong>{{ manageUser.deleteUser.email }}</strong></p>
+                    <p>Permission: <strong>{{ manageUser.deleteUser.permission}}</strong></p>
+                    <p>Activation: <strong>{{ manageUser.deleteUser.active}}</strong></p>
+                </div>
+                <div class="modal-footer"> 
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No </button>
+                        <button class="btn btn-success" data-dismiss="modal" ng-click="manageUser.removeUserAccount(manageUser.deleteUser.username)"><span class="glyphicon glyphicon-check"></span> Yes </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<div ng-show="manageUser.loadingPage" class="loading">
+    <span class="glyphicon loading"></span>
+</div>

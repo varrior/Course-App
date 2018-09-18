@@ -1,0 +1,2969 @@
+#new-course-details
+{
+	overflow: hidden;
+	padding-bottom: 15px !important;
+}
+.ta-hidden-input {
+	width: 1px;
+	height: 1px;
+	border: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: -10000px;
+	left: -10000px;
+	opacity: 0;
+	overflow: hidden;
+}
+span.select-ui-language
+{
+	padding: 0;
+}
+span.select-ui-language button
+{
+	padding: 10px 5px;
+	z-index: 10000000000000;
+}
+span.select-ui-language ul.dropdown-menu.font-size-style
+{
+    height: auto;
+    overflow: auto;
+    position: absolute;
+    padding: 0;
+    z-index: 9999999999;
+	right: 0;
+	left: auto;
+	min-width: auto;
+	padding: 5px 10px;
+}
+span.select-ui-language ul.dropdown-menu.font-size-style li button i
+{
+   padding-right: 7px;
+}
+ul.dropdown-menu.font-size-style
+{
+    /* display: table; */
+    height: 300px;
+    overflow: auto;
+    position: absolute;
+    padding: 0;
+    z-index: 9999999999;
+    left: 0;
+}
+ul.dropdown-menu.font-size-style li
+{
+	overflow: auto;
+}
+ul.dropdown-menu.font-size-style button
+{
+	color:#000;
+	border-bottom: 1px solid #ddd;
+	padding: 5px
+}
+ul.dropdown-menu.font-size-style button:hover
+{
+	color:#666
+}
+.cms-text .btn-default
+{
+	background: #fff;
+	border: 1px solid #cbcbcb;
+	color: #333;
+}
+.cms-text .btn-default:hover
+{
+	background: #e2e2e2;
+	border: 1px solid #cbcbcb;
+	color: #333;
+	cursor: pointer;
+}
+
+/* add generic styling for the editor */
+.ta-root.focussed > .ta-scroll-window.form-control {
+	border: 1px solid #cbcbcb;
+	outline: 0;
+	box-shadow: none;
+}
+
+.ta-editor.ta-html, .ta-scroll-window.form-control {
+	min-height: 300px;
+	height: auto;
+	overflow: auto;
+	font-family: inherit;
+    font-size: 100%;
+    color:#777;
+}
+
+.ta-scroll-window.form-control {
+	position: relative;
+	padding: 0;
+}
+
+.ta-scroll-window > .ta-bind {
+	height: auto;
+	min-height: 300px;
+    padding: 6px 12px;
+    color:#000;
+	background-color: #fff;
+    border-radius: 2px;
+}
+.form-control:focus, .form-control:active
+{
+	outline: 0px solid transparent;
+	box-shadow: none;
+}
+[contenteditable]:focus, [contenteditable]:active {
+	outline: 0px solid transparent;
+	box-shadow: none;
+}
+.ta-editor:focus {
+	user-select: text;
+}
+
+/* add the styling for the awesomness of the resizer */
+.ta-resizer-handle-overlay {
+	z-index: 100;
+	position: absolute;
+	display: none;
+}
+
+.ta-resizer-handle-overlay > .ta-resizer-handle-info {
+	position: absolute;
+	bottom: 16px;
+	right: 16px;
+	border: 1px solid black;
+	background-color: #FFF;
+	padding: 0 4px;
+	opacity: 0.7;
+}
+
+.ta-resizer-handle-overlay > .ta-resizer-handle-background {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	left: 5px;
+	top: 5px;
+	border: 1px solid black;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.ta-resizer-handle-overlay > .ta-resizer-handle-corner {
+	width: 10px;
+	height: 10px;
+	position: absolute;
+}
+
+.ta-resizer-handle-overlay > .ta-resizer-handle-corner-tl{
+	top: 0;
+	left: 0;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+}
+
+.ta-resizer-handle-overlay > .ta-resizer-handle-corner-tr{
+	top: 0;
+	right: 0;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+}
+
+.ta-resizer-handle-overlay > .ta-resizer-handle-corner-bl{
+	bottom: 0;
+	left: 0;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.ta-resizer-handle-overlay > .ta-resizer-handle-corner-br{
+	bottom: 0;
+	right: 0;
+	border: 1px solid black;
+	cursor: se-resize;
+	background-color: white;
+}
+
+/* copy the popover code from bootstrap so this will work even without it */
+.popover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1060;
+	display: none;
+	max-width: 276px;
+	padding: 1px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.42857143;
+	text-align: left;
+	white-space: normal;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+			background-clip: padding-box;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 6px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+			box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+.popover.top {
+	margin-top: -10px;
+}
+.popover.bottom {
+	margin-top: 10px;
+}
+.popover-title {
+	padding: 8px 14px;
+	margin: 0;
+	font-size: 14px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 5px 5px 0 0;
+}
+.popover-content {
+	padding: 9px 14px;
+}
+.popover > .arrow,
+.popover > .arrow:after {
+	position: absolute;
+	display: block;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+}
+.popover > .arrow {
+	border-width: 11px;
+}
+.popover > .arrow:after {
+	content: "";
+	border-width: 10px;
+}
+.popover.top > .arrow {
+	bottom: -11px;
+	left: 50%;
+	margin-left: -11px;
+	border-top-color: #999;
+	border-top-color: rgba(0, 0, 0, .25);
+	border-bottom-width: 0;
+}
+.popover.top > .arrow:after {
+	bottom: 1px;
+	margin-left: -10px;
+	content: " ";
+	border-top-color: #fff;
+	border-bottom-width: 0;
+}
+.popover.bottom > .arrow {
+	top: -11px;
+	left: 50%;
+	margin-left: -11px;
+	border-top-width: 0;
+	border-bottom-color: #999;
+	border-bottom-color: rgba(0, 0, 0, .25);
+}
+.popover.bottom > .arrow:after {
+	top: 1px;
+	margin-left: -10px;
+	content: " ";
+	border-top-width: 0;
+	border-bottom-color: #fff;
+}
+
+
+.btn-blue {
+    background: transparent !important;
+    border:none;
+
+	border-radius: 0px;
+	padding: 0;
+}
+.btn-blue:active {
+	background: transparent;
+	box-shadow: none;
+
+}
+
+
+.btn-blue:active,
+.btn-blue.active,
+.open > .dropdown-toggle.btn-blue {
+	background-image: none;
+}
+
+.btn-blue.disabled,
+.btn-blue[disabled],
+fieldset[disabled] .btn-blue,
+.btn-blue.disabled:hover,
+.btn-blue[disabled]:hover,
+fieldset[disabled] .btn-blue:hover,
+.btn-blue.disabled:focus,
+.btn-blue[disabled]:focus,
+fieldset[disabled] .btn-blue:focus,
+.btn-blue.disabled.focus,
+.btn-blue[disabled].focus,
+fieldset[disabled] .btn-blue.focus,
+.btn-blue.disabled:active,
+.btn-blue[disabled]:active,
+fieldset[disabled] .btn-blue:active,
+.btn-blue.disabled.active,
+.btn-blue[disabled].active,
+fieldset[disabled] .btn-blue.active {
+	border-color: #4c7889;
+}
+
+
+[ta-button] {
+	height: 44px;
+	margin-bottom: 5px;
+}
+
+.red{ color: red; }
+.btn[disabled]
+{
+    z-index: -100000;
+}
+.sp-picker-container
+{
+    z-index:1000;
+    padding-bottom: 0;
+    margin:0;
+    overflow: auto;
+}
+.cms-text .btn.btn-default:active, .cms-text .btn.btn-default:focus
+{
+	background: #e2e2e2;
+	border: 1px solid #cbcbcb;
+	color: #333;
+}
+.cms-text .btn-default.active, .cms-text .btn-default.active:hover
+{
+	background: #e2e2e2;
+	border: 1px solid #cbcbcb;
+	color: #333;
+	box-shadow: none;
+}
+.sp-replacer, .sp-replacer:hover
+{
+	background: transparent;
+	border-color: #999;
+}
+.select-list.dropdown-menu
+{
+	padding: 2px;
+	margin-left: 0;
+	margin-right: 0;
+	width:290px;
+}
+span.custom-span-ul .select-list button:hover
+{
+	background-color: #666 !important;
+}
+span.custom-span-ul
+{
+	padding: 0;
+}
+button.custom-list-addon
+{
+	padding-top: 10px !important;
+}
+span.custom-span-ul .dropdown-toggle
+{
+	padding: 6px 12px;
+}
+.span-switch
+{
+	padding: 0;
+}
+
+button.switch-but
+{
+	background: #fff;
+	border: none;
+	color: #333;
+	padding: 11px 10px 11px 10px;
+}
+button.switch-but:hover
+{
+	background: #e2e2e2;
+	cursor: pointer;
+}
+.open>.select-list.dropdown-menu
+{
+	/*display: table;*/
+	height: 300px;
+	overflow: auto;
+	position: absolute;
+	padding: 0;
+	z-index: 9999999999;
+	right:0px !important;
+	left: auto;
+}
+.select-list.dropdown-menu .list-style-cms
+{
+	float: left;
+}
+.select-list.dropdown-menu button
+{
+	border: none;
+	padding: 6px;
+	border-radius: 3px;
+	margin: 2px;
+	pointer-events: all;
+}
+.select-list.dropdown-menu button:hover
+{
+	background: #1a6860;
+}
+blockquote
+{
+	border: none;
+	background-color: transparent;
+}
+blockquote p.quote-cms
+{
+	border-left: 5px solid #aaa;
+	background-color: rgba(209, 209, 209, 0.2);
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding: 10px 20px;
+}
+.row-fluid.course-message-cms
+{
+	padding-left: 25px;
+	padding-right: 25px;
+}
+ ul.inline
+{
+	display: inline-block;
+}
+section#opis_kursu_szczegoly ul li
+{
+	text-indent: -15px;
+}
+section#content-of-html-switch ul li
+{
+	text-indent: -15px;
+}
+.cms-text .contentEditDiv ul li 
+{
+	padding-bottom: 5px;
+	text-indent: -15px;
+}
+ul li.e065
+{
+	margin: 5px 5px 10px 13px;
+	list-style: none;
+}
+ul li.e065::before 
+{
+	content: "\e065";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+	color: #205081;
+}
+ul li.ee065::before 
+{
+	content: "\e065";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e066
+{
+	margin: 5px 5px 10px 13px;
+	list-style: none;
+}
+ul li.e066::before 
+{
+	content: "\e066";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+	color: #205081;
+}
+ul li.ee066::before 
+{
+	content: "\e066";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e013
+{
+	margin: 5px 5px 10px 13px;
+	list-style: none;
+}
+ul li.e013::before 
+{
+	content: "\e013";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+	color: #eb3812;
+}
+ul li.ee013::before 
+{
+	content: "\e013";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e233
+{
+	margin: 5px 5px 10px 13px;
+	list-style: none;
+}
+ul li.e233::before 
+{
+	content: "\e233";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+	color: #eb3812;
+}
+ul li.ee233::before 
+{
+	content: "\e233";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.f085
+{
+	margin: 5px 5px 10px 13px;
+	list-style: none;
+}
+ul li.f085::before 
+{
+	content: "\f085";
+    font-family: 'FontAwesome';
+    font-size: 15px;
+	position: relative;
+	left: -11px;
+	color: #666;
+}
+ul li.ff085::before 
+{
+	content: "\f085";
+    font-family: 'FontAwesome';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g002a, ul li.ee065, ul li.ee066, ul li.ee013, ul li.ee233, ul li.ff085, ul li.g002b, ul li.g20ac, ul li.g2212, ul li.g2601, ul li.g2709, ul li.g270f, ul li.e001, ul li.e002, ul li.e003, ul li.e005, ul li.e006, ul li.e007, ul li.e008, ul li.e009, ul li.e010, ul li.e011, ul li.e012, ul li.e014, ul li.e015, ul li.e016, ul li.e017, ul li.e018, ul li.e019, ul li.e020, ul li.e021, ul li.e022, ul li.e023, ul li.e024, ul li.e025, ul li.e026, ul li.e027, ul li.e028, ul li.e029, ul li.e030, ul li.e031, ul li.e032, ul li.e033, ul li.e034, ul li.e035, ul li.e036, ul li.e037, ul li.e038, ul li.e039, ul li.e040, ul li.e041, ul li.e042, ul li.e043, ul li.e044, ul li.e045, ul li.e046, ul li.e047, ul li.e048, ul li.e049, ul li.e050, ul li.e051, ul li.e052, ul li.e053, ul li.e054, ul li.e055, ul li.e056, ul li.e057, ul li.e058, ul li.e059, ul li.e060, ul li.e062, ul li.e063, ul li.e064, ul li.e067, ul li.e068, ul li.e069, ul li.e070, ul li.e071, ul li.e072, ul li.e073, ul li.e074, ul li.e075, ul li.e076, ul li.e077, ul li.e078, ul li.e079, ul li.e080, ul li.e081, ul li.e082, ul li.e083, ul li.e084, ul li.e085, ul li.e086, ul li.e087, ul li.e088, ul li.e089, ul li.e090, ul li.e091, ul li.e092, ul li.e093, ul li.e094, ul li.e095, ul li.e096, ul li.e097, ul li.e101, ul li.e102, ul li.e103, ul li.e104, ul li.e105, ul li.e106, ul li.e107, ul li.e108, ul li.e109, ul li.e110, ul li.e111, ul li.e112, ul li.e113, ul li.e114, ul li.e115, ul li.e116, ul li.e117, ul li.e118, ul li.e119, ul li.e120, ul li.e121, ul li.e122, ul li.e123, ul li.e124, ul li.e125, ul li.e126, ul li.e127, ul li.e128, ul li.e129, ul li.e130, ul li.e131, ul li.e132, ul li.e133, ul li.e134, ul li.e135, ul li.e136, ul li.e137, ul li.e138, ul li.e139, ul li.e140, ul li.e141, ul li.e142, ul li.e143, ul li.e144, ul li.e145, ul li.e146, ul li.e148, ul li.e149, ul li.e150, ul li.e151, ul li.e152, ul li.e153, ul li.e154, ul li.e155, ul li.e156, ul li.e157, ul li.e158, ul li.e159, ul li.e160, ul li.e161, ul li.e162, ul li.e163, ul li.e164, ul li.e165, ul li.e166, ul li.e168, ul li.e169, ul li.e170, ul li.e171, ul li.e172, ul li.e173, ul li.e174, ul li.e175, ul li.e176, ul li.e177, ul li.e178, ul li.e179, ul li.e180, ul li.e181, ul li.e182, ul li.e183, ul li.e184, ul li.e185, ul li.e186, ul li.e187, ul li.e188, ul li.e189, ul li.e190, ul li.e191, ul li.e192, ul li.e193, ul li.e194, ul li.e195, ul li.e197, ul li.e198, ul li.e199, ul li.e200, ul li.e201, ul li.e202, ul li.e203, ul li.e204, ul li.e205, ul li.e206, ul li.e209, ul li.e210, ul li.e211, ul li.e212, ul li.e213, ul li.e214, ul li.e215, ul li.e216, ul li.g26fa, ul li.e218, ul li.e219, ul li.f8ff, ul li.e221, ul li.g231b, ul li.e223, ul li.e224, ul li.e225, ul li.e226, ul li.e227, ul li.g00a5, ul li.g20bd, ul li.e230, ul li.e231, ul li.e232, ul li.e234, ul li.e235, ul li.e236, ul li.e237, ul li.e238, ul li.e239, ul li.e240, ul li.e241, ul li.e242, ul li.e243, ul li.e244, ul li.e245, ul li.e246, ul li.e247, ul li.e248, ul li.e249, ul li.e250, ul li.e251, ul li.e252, ul li.e253, ul li.e254, ul li.e255, ul li.e256, ul li.e257, ul li.e258, ul li.e259, ul li.e260
+{
+	margin: 5px 5px 10px 13px;
+	list-style: none;
+}
+ul li.g002a::before 
+{
+	content: "\002a";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g002b::before 
+{
+	content: "\002b";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g20ac::before 
+{
+	content: "\20ac";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g2212::before 
+{
+	content: "\2212";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g2601::before 
+{
+	content: "\2601";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g2709::before 
+{
+	content: "\2709";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g270f::before 
+{
+	content: "\270f";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e001::before 
+{
+	content: "\e001";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e002::before 
+{
+	content: "\e002";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e003::before 
+{
+	content: "\e003";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e005::before 
+{
+	content: "\e005";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e006::before 
+{
+	content: "\e006";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e007::before 
+{
+	content: "\e007";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e008::before 
+{
+	content: "\e008";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e009::before 
+{
+	content: "\e009";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e010::before 
+{
+	content: "\e010";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e011::before 
+{
+	content: "\e011";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e012::before 
+{
+	content: "\e012";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e014::before 
+{
+	content: "\e014";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e015::before 
+{
+	content: "\e015";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e016::before 
+{
+	content: "\e016";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e017::before 
+{
+	content: "\e017";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e018::before 
+{
+	content: "\e018";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e019::before 
+{
+	content: "\e019";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e020::before 
+{
+	content: "\e020";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e021::before 
+{
+	content: "\e021";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e022::before 
+{
+	content: "\e022";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e023::before 
+{
+	content: "\e023";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e024::before 
+{
+	content: "\e024";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e025::before 
+{
+	content: "\e025";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e026::before 
+{
+	content: "\e026";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e027::before 
+{
+	content: "\e027";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e028::before 
+{
+	content: "\e028";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e029::before 
+{
+	content: "\e029";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e030::before 
+{
+	content: "\e030";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e031::before 
+{
+	content: "\e031";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e032::before 
+{
+	content: "\e032";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e033::before 
+{
+	content: "\e033";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e034::before 
+{
+	content: "\e034";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e035::before 
+{
+	content: "\e035";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e036::before 
+{
+	content: "\e036";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e037::before 
+{
+	content: "\e037";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e038::before 
+{
+	content: "\e038";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e039::before 
+{
+	content: "\e039";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e040::before 
+{
+	content: "\e040";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e041::before 
+{
+	content: "\e041";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e042::before 
+{
+	content: "\e042";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e043::before 
+{
+	content: "\e043";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e044::before 
+{
+	content: "\e044";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e045::before 
+{
+	content: "\e045";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e046::before 
+{
+	content: "\e046";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e047::before 
+{
+	content: "\e047";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e048::before 
+{
+	content: "\e048";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e049::before 
+{
+	content: "\e049";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e050::before 
+{
+	content: "\e050";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e051::before 
+{
+	content: "\e051";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e052::before 
+{
+	content: "\e052";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e053::before 
+{
+	content: "\e053";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e054::before 
+{
+	content: "\e054";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e055::before 
+{
+	content: "\e055";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e056::before 
+{
+	content: "\e056";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e057::before 
+{
+	content: "\e057";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e058::before 
+{
+	content: "\e058";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e059::before 
+{
+	content: "\e059";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e060::before 
+{
+	content: "\e060";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e062::before 
+{
+	content: "\e062";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e063::before 
+{
+	content: "\e063";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e064::before 
+{
+	content: "\e064";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e067::before 
+{
+	content: "\e067";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e068::before 
+{
+	content: "\e068";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e069::before 
+{
+	content: "\e069";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e070::before 
+{
+	content: "\e070";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e071::before 
+{
+	content: "\e071";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e072::before 
+{
+	content: "\e072";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e073::before 
+{
+	content: "\e073";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e074::before 
+{
+	content: "\e074";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e075::before 
+{
+	content: "\e075";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e076::before 
+{
+	content: "\e076";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e077::before 
+{
+	content: "\e077";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e078::before 
+{
+	content: "\e078";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e079::before 
+{
+	content: "\e079";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e080::before 
+{
+	content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e081::before 
+{
+	content: "\e081";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e082::before 
+{
+	content: "\e082";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e083::before 
+{
+	content: "\e083";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e084::before 
+{
+	content: "\e084";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e085::before 
+{
+	content: "\e085";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e086::before 
+{
+	content: "\e086";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e087::before 
+{
+	content: "\e087";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e088::before 
+{
+	content: "\e088";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e089::before 
+{
+	content: "\e089";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e090::before 
+{
+	content: "\e090";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e091::before 
+{
+	content: "\e091";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e092::before 
+{
+	content: "\e092";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e093::before 
+{
+	content: "\e093";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e094::before 
+{
+	content: "\e094";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e095::before 
+{
+	content: "\e095";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e096::before 
+{
+	content: "\e096";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e097::before 
+{
+	content: "\e097";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e101::before 
+{
+	content: "\e101";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e102::before 
+{
+	content: "\e102";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e103::before 
+{
+	content: "\e103";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e104::before 
+{
+	content: "\e104";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e105::before 
+{
+	content: "\e105";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e106::before 
+{
+	content: "\e106";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e107::before 
+{
+	content: "\e107";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e108::before 
+{
+	content: "\e108";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e109::before 
+{
+	content: "\e109";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e110::before 
+{
+	content: "\e110";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e111::before 
+{
+	content: "\e111";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e112::before 
+{
+	content: "\e112";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e113::before 
+{
+	content: "\e113";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e114::before 
+{
+	content: "\e114";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e115::before 
+{
+	content: "\e115";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e116::before 
+{
+	content: "\e116";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e117::before 
+{
+	content: "\e117";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e118::before 
+{
+	content: "\e118";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e119::before 
+{
+	content: "\e119";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e120::before 
+{
+	content: "\e120";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e121::before 
+{
+	content: "\e121";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e122::before 
+{
+	content: "\e122";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e123::before 
+{
+	content: "\e123";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e124::before 
+{
+	content: "\e124";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e125::before 
+{
+	content: "\e125";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e126::before 
+{
+	content: "\e126";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e127::before 
+{
+	content: "\e127";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e128::before 
+{
+	content: "\e128";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e129::before 
+{
+	content: "\e129";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e130::before 
+{
+	content: "\e130";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e131::before 
+{
+	content: "\e131";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e132::before 
+{
+	content: "\e132";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e133::before 
+{
+	content: "\e133";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e134::before 
+{
+	content: "\e134";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e135::before 
+{
+	content: "\e135";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e136::before 
+{
+	content: "\e136";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e137::before 
+{
+	content: "\e137";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e138::before 
+{
+	content: "\e138";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e139::before 
+{
+	content: "\e139";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e140::before 
+{
+	content: "\e140";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e141::before 
+{
+	content: "\e141";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e142::before 
+{
+	content: "\e142";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e143::before 
+{
+	content: "\e143";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e144::before 
+{
+	content: "\e144";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e145::before 
+{
+	content: "\e145";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e146::before 
+{
+	content: "\e146";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e148::before 
+{
+	content: "\e148";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e149::before 
+{
+	content: "\e149";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e150::before 
+{
+	content: "\e150";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e151::before 
+{
+	content: "\e151";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e152::before 
+{
+	content: "\e152";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e153::before 
+{
+	content: "\e153";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e154::before 
+{
+	content: "\e154";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e155::before 
+{
+	content: "\e155";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e156::before 
+{
+	content: "\e156";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e157::before 
+{
+	content: "\e157";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e158::before 
+{
+	content: "\e158";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e159::before 
+{
+	content: "\e159";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e160::before 
+{
+	content: "\e160";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e161::before 
+{
+	content: "\e161";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e162::before 
+{
+	content: "\e162";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e163::before 
+{
+	content: "\e163";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e164::before 
+{
+	content: "\e164";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e165::before 
+{
+	content: "\e165";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e166::before 
+{
+	content: "\e166";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e168::before 
+{
+	content: "\e168";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e169::before 
+{
+	content: "\e169";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e170::before 
+{
+	content: "\e170";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e171::before 
+{
+	content: "\e171";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e172::before 
+{
+	content: "\e172";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e173::before 
+{
+	content: "\e173";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e174::before 
+{
+	content: "\e174";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e175::before 
+{
+	content: "\e175";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e176::before 
+{
+	content: "\e176";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e177::before 
+{
+	content: "\e177";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e178::before 
+{
+	content: "\e178";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e179::before 
+{
+	content: "\e179";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e180::before 
+{
+	content: "\e180";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e181::before 
+{
+	content: "\e181";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e182::before 
+{
+	content: "\e182";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e183::before 
+{
+	content: "\e183";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e184::before 
+{
+	content: "\e184";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e185::before 
+{
+	content: "\e185";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e186::before 
+{
+	content: "\e186";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e187::before 
+{
+	content: "\e187";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e188::before 
+{
+	content: "\e188";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e189::before 
+{
+	content: "\e189";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e190::before 
+{
+	content: "\e190";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e191::before 
+{
+	content: "\e191";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e192::before 
+{
+	content: "\e192";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e193::before 
+{
+	content: "\e193";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e194::before 
+{
+	content: "\e194";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e195::before 
+{
+	content: "\e195";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+
+ul li.e197::before 
+{
+	content: "\e197";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e198::before 
+{
+	content: "\e198";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e199::before 
+{
+	content: "\e199";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e200::before 
+{
+	content: "\e200";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e201::before 
+{
+	content: "\e201";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e202::before 
+{
+	content: "\e202";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e203::before 
+{
+	content: "\e203";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e204::before 
+{
+	content: "\e204";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e205::before 
+{
+	content: "\e205";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e206::before 
+{
+	content: "\e206";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e209::before 
+{
+	content: "\e209";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e210::before 
+{
+	content: "\e210";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e211::before 
+{
+	content: "\e211";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e212::before 
+{
+	content: "\e212";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e213::before 
+{
+	content: "\e213";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e214::before 
+{
+	content: "\e214";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e215::before 
+{
+	content: "\e215";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e216::before 
+{
+	content: "\e216";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g26fa::before 
+{
+	content: "\26fa";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e218::before 
+{
+	content: "\e218";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e219::before 
+{
+	content: "\e219";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.f8ff::before 
+{
+	content: "\f8ff";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e221::before 
+{
+	content: "\e221";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g231b::before 
+{
+	content: "\231b";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e223::before 
+{
+	content: "\e223";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e224::before 
+{
+	content: "\e224";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e225::before 
+{
+	content: "\e225";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e226::before 
+{
+	content: "\e226";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e227::before 
+{
+	content: "\e227";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g00a5::before 
+{
+	content: "\00a5";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.g20bd::before 
+{
+	content: "\20bd";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e230::before 
+{
+	content: "\e230";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e231::before 
+{
+	content: "\e231";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e232::before 
+{
+	content: "\e232";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e234::before 
+{
+	content: "\e234";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e235::before 
+{
+	content: "\e235";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e236::before 
+{
+	content: "\e236";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e237::before 
+{
+	content: "\e237";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e238::before 
+{
+	content: "\e238";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e239::before 
+{
+	content: "\e239";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e240::before 
+{
+	content: "\e240";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e241::before 
+{
+	content: "\e241";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e242::before 
+{
+	content: "\e242";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e243::before 
+{
+	content: "\e243";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e244::before 
+{
+	content: "\e244";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e245::before 
+{
+	content: "\e245";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e246::before 
+{
+	content: "\e246";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e247::before 
+{
+	content: "\e247";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e248::before 
+{
+	content: "\e248";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e249::before 
+{
+	content: "\e249";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e250::before 
+{
+	content: "\e250";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e251::before 
+{
+	content: "\e251";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e252::before 
+{
+	content: "\e252";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e253::before 
+{
+	content: "\e253";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e254::before 
+{
+	content: "\e254";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e255::before 
+{
+	content: "\e255";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e256::before 
+{
+	content: "\e256";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e257::before 
+{
+	content: "\e257";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e258::before 
+{
+	content: "\e258";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e259::before 
+{
+	content: "\e259";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+ul li.e260::before 
+{
+	content: "\e260";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+	position: relative;
+	left: -11px;
+}
+.labelDisplayText, .labelLinkAdress
+{
+	color: #000;
+	margin-top: 10px;
+}
+button.add-link-Adress 
+{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	font-size: 16px;
+}
+.dropdown-menu.borderDropStyleC
+{
+	background-color: #ececec;
+	height:220px !important;
+	width: 198px;
+	padding: 7px !important;
+}
+button.borderStyleC
+{
+	padding: 8px !important;
+	border-radius:0 !important;
+}
+.borderC1
+{
+	border-bottom: 1px solid #205081;
+	padding-bottom:7px;
+}
+.borderC2
+{
+	border-bottom: 1px solid #000;
+	padding-bottom:7px;
+}
+.borderC3
+{
+	border-bottom: 1px solid #333;
+	padding-bottom:7px;
+}
+.borderC4
+{
+	border-bottom: 1px solid #666;
+	padding-bottom:7px;
+}
+.borderC5
+{
+	border-bottom: 1px solid #999;
+	padding-bottom:7px;
+}
+.borderC6
+{
+	border-bottom: 1px solid #aaa;
+	padding-bottom:7px;
+}
+.borderC7
+{
+	border-bottom: 1px solid #ccc;
+	padding-bottom:7px;
+}
+.borderC8
+{
+	border-bottom: 1px solid #ddd;
+	padding-bottom:7px;
+}
+.borderC9
+{
+	border-bottom: 1px solid #eee;
+	padding-bottom:7px;
+}
+.borderC10
+{
+	border-bottom: 1px solid rgb(152, 0, 0);
+	padding-bottom:7px;
+}
+.borderC11
+{
+	border-bottom: 1px solid rgb(255, 0, 0);
+	padding-bottom:7px;
+}
+.borderC12
+{
+	border-bottom: 1px solid rgb(255, 153, 0);
+	padding-bottom:7px;
+}
+.borderC13
+{
+	border-bottom: 1px solid rgb(255, 255, 0);
+	padding-bottom:7px;
+}
+.borderC14
+{
+	border-bottom: 1px solid rgb(0, 255, 0);
+	padding-bottom:7px;
+}
+.borderC15
+{
+	border-bottom: 1px solid rgb(0, 255, 255);
+	padding-bottom:7px;
+}
+.borderC16
+{
+	border-bottom: 1px solid rgb(74, 134, 232);
+	padding-bottom:7px;
+}
+.borderC17
+{
+	border-bottom: 1px solid rgb(0, 0, 255);
+	padding-bottom:7px;
+}
+.borderC18
+{
+	border-bottom: 1px solid rgb(153, 0, 255);
+	padding-bottom:7px;
+}
+.borderC19
+{
+	border-bottom: 1px solid rgb(255, 0, 255);
+	padding-bottom:7px;
+}
+.borderC20
+{
+	border-bottom: 1px solid rgb(230, 184, 175);
+	padding-bottom:7px;
+}
+.borderC21
+{
+	border-bottom: 1px solid rgb(244, 204, 204);
+	padding-bottom:7px;
+}
+.borderC22
+{
+	border-bottom: 1px solid rgb(252, 229, 205);
+	padding-bottom:7px;
+}
+.borderC23
+{
+	border-bottom: 1px solid rgb(255, 242, 204);
+	padding-bottom:7px;
+}
+.borderC24
+{
+	border-bottom: 1px solid rgb(217, 234, 211);
+	padding-bottom:7px;
+}
+.borderC25
+{
+	border-bottom: 1px solid rgb(208, 224, 227);
+	padding-bottom:7px;
+}
+.borderC26
+{
+	border-bottom: 1px solid rgb(201, 218, 248);
+	padding-bottom:7px;
+}
+.borderC27
+{
+	border-bottom: 1px solid rgb(207, 226, 243);
+	padding-bottom:7px;
+}
+.borderC28
+{
+	border-bottom: 1px solid rgb(217, 210, 233);
+	padding-bottom:7px;
+}
+.borderC29
+{
+	border-bottom: 1px solid rgb(234, 209, 220);
+	padding-bottom:7px;
+}
+.borderC30
+{
+	border-bottom: 1px solid rgb(221, 126, 107);
+	padding-bottom:7px;
+}
+.borderC31
+{
+	border-bottom: 1px solid rgb(234, 153, 153);
+	padding-bottom:7px;
+}
+.borderC32
+{
+	border-bottom: 1px solid rgb(249, 203, 156);
+	padding-bottom:7px;
+}
+.borderC33
+{
+	border-bottom: 1px solid rgb(255, 229, 153);
+	padding-bottom:7px;
+}
+.borderC34
+{
+	border-bottom: 1px solid rgb(182, 215, 168);
+	padding-bottom:7px;
+}
+.borderC35
+{
+	border-bottom: 1px solid rgb(162, 196, 201);
+	padding-bottom:7px;
+}
+.borderC36
+{
+	border-bottom: 1px solid rgb(164, 194, 244);
+	padding-bottom:7px;
+}
+.borderC37
+{
+	border-bottom: 1px solid rgb(159, 197, 232);
+	padding-bottom:7px;
+}
+.borderC38
+{
+	border-bottom: 1px solid rgb(180, 167, 214);
+	padding-bottom:7px;
+}
+.borderC39
+{
+	border-bottom: 1px solid rgb(213, 166, 189);
+	padding-bottom:7px;
+}
+.borderC40
+{
+	border-bottom: 1px solid rgb(204, 65, 37);
+	padding-bottom:7px;
+}
+.borderC41
+{
+	border-bottom: 1px solid rgb(224, 102, 102);
+	padding-bottom:7px;
+}
+.borderC42
+{
+	border-bottom: 1px solid rgb(246, 178, 107);
+	padding-bottom:7px;
+}
+.borderC43
+{
+	border-bottom: 1px solid rgb(255, 217, 102);
+	padding-bottom:7px;
+}
+.borderC44
+{
+	border-bottom: 1px solid rgb(147, 196, 125);
+	padding-bottom:7px;
+}
+.borderC45
+{
+	border-bottom: 1px solid rgb(118, 165, 175);
+	padding-bottom:7px;
+}
+.borderC46
+{
+	border-bottom: 1px solid rgb(109, 158, 235);
+	padding-bottom:7px;
+}
+.borderC47
+{
+	border-bottom: 1px solid rgb(111, 168, 220);
+	padding-bottom:7px;
+}
+.borderC48
+{
+	border-bottom: 1px solid rgb(142, 124, 195);
+	padding-bottom:7px;
+}
+.borderC49
+{
+	border-bottom: 1px solid rgb(194, 123, 160);
+	padding-bottom:7px;
+}
+.borderC50
+{
+	border-bottom: 1px solid rgb(166, 28, 0);
+	padding-bottom:7px;
+}
+.borderC51
+{
+	border-bottom: 1px solid rgb(204, 0, 0);
+	padding-bottom:7px;
+}
+.borderC52
+{
+	border-bottom: 1px solid rgb(230, 145, 56);
+	padding-bottom:7px;
+}
+.borderC53
+{
+	border-bottom: 1px solid rgb(241, 194, 50);
+	padding-bottom:7px;
+}
+.borderC54
+{
+	border-bottom: 1px solid rgb(106, 168, 79);
+	padding-bottom:7px;
+}
+.borderC55
+{
+	border-bottom: 1px solid rgb(69, 129, 142);
+	padding-bottom:7px;
+}
+.borderC56
+{
+	border-bottom: 1px solid rgb(60, 120, 216);
+	padding-bottom:7px;
+}
+.borderC57
+{
+	border-bottom: 1px solid rgb(61, 133, 198);
+	padding-bottom:7px;
+}
+.borderC58
+{
+	border-bottom: 1px solid rgb(103, 78, 167);
+	padding-bottom:7px;
+}
+.borderC59
+{
+	border-bottom: 1px solid rgb(166, 77, 121);
+	padding-bottom:7px;
+}
+.borderC60
+{
+	border-bottom: 1px solid rgb(91, 15, 0);
+	padding-bottom:7px;
+}
+.borderC61
+{
+	border-bottom: 1px solid rgb(102, 0, 0);
+	padding-bottom:7px;
+}
+.borderC62
+{
+	border-bottom: 1px solid rgb(120, 63, 4);
+	padding-bottom:7px;
+}
+.borderC63
+{
+	border-bottom: 1px solid rgb(127, 96, 0);
+	padding-bottom:7px;
+}
+.borderC64
+{
+	border-bottom: 1px solid rgb(39, 78, 19);
+	padding-bottom:7px;
+}
+.borderC65
+{
+	border-bottom: 1px solid rgb(12, 52, 61);
+	padding-bottom:7px;
+}
+.borderC66
+{
+	border-bottom: 1px solid rgb(28, 69, 135);
+	padding-bottom:7px;
+}
+.borderC67
+{
+	border-bottom: 1px solid rgb(7, 55, 99);
+	padding-bottom:7px;
+}
+.borderC68
+{
+	border-bottom: 1px solid rgb(32, 18, 77);
+	padding-bottom:7px;
+}
+.borderC69
+{
+	border-bottom: 1px solid rgb(76, 17, 48);
+	padding-bottom:7px;
+}
+span.custom-border-inline button.dropdown-toggle
+{
+	padding: 10px 12px 9px 12px !important;
+}
+span.custom-border-inline
+{
+	padding: 0 !important;
+}
+
+

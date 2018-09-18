@@ -1,0 +1,642 @@
+<div class="users-management">
+    <div class="widgets"> 
+        <div class="container-users">
+            <div class="row-users">
+                <div class="col-xs-12">
+                    <h1 class="users-table">Course edition</h1>
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Course number {{editProduct.currentProduct}}</h3> 
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <div class="management-user">
+                                        <section id="edycja-etykiety">
+                                            <div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
+                                                <div class="course-container">
+                                                    <div class="thumbnail image_course">
+                                                       <img ng-if="!editProduct.newImage.length" class="start-new-course text-center" src="../../../../../uploads/svg/presentation.svg">
+                                                        <img ng-if="editProduct.newImage.length" ng-src="{{ editProduct.thumbnail.dataUrl?editProduct.thumbnail.dataUrl:'../../uploads/' + editProduct.newImage}}" alt="#"/> 
+                                                        <i class="{{ newLevel }}"></i>                 
+                                                    </div>
+                                                    <div class="caption">
+                                                        <section class="title-course">
+                                                            <p class="text-center">{{ editProduct.newTitle }}</p>
+                                                            <span class="text-center">{{ editProduct.newSubtitle }}</span>
+                                                        </section>        
+                                                        <div class="benefits_course">
+                                                            <p class="text-center">Look what you can <b>gain</b> with us!</p>
+                                                            <ol>
+                                                                <ul class="list-group list-group-flush text-left">
+                                                                    <li ng-repeat="item in editProduct.newDescription track by $index" class="list-group-item description-item">{{ item }}</li>
+                                                                    <li ng-if="editProduct.addNextDescription.length" name="addDescription" class="list-group-item description-item addDescription-items">{{editProduct.addNextDescription}}</li>
+                                                                </ul>        
+                                                            </ol>
+                                                        </div>
+                                                        <div class="course-footer">
+                                                            <div class="prices_course pull-right">
+                                                                <span class="actualPrice"><span class="glyphicon glyphicon-shopping-cart shopping-icon"></span> {{ editProduct.newNewPrice }}zł</span>
+                                                                <span class="oldPrice pull-right">{{ editProduct.newOldPrice }}zł</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" >
+                                                <div class="edit-container">
+                                                    <form class="update_form edit-title-course" name="editProduct.imageForm" ng-submit="editProduct.updateImage(editProduct.newImage, editProduct.imageForm.image.$valid)" novalidate>
+                                                        <div ng-class="{ 'has-success':(editProduct.imageForm.image.$valid && !editProduct.imageForm.image.$pristine), 'has-error':(!editProduct.imageForm.image.$valid && !editProduct.imageForm.image.$pristine) || (!imageForm.image.$valid && productForm.$submitted)}">
+                                                            <label class="add-title-label"><h3>Course photo:</h3></label>
+                                                            <div class="input-group"> 
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-picture-o"></i> 
+                                                                </div> 
+                                                                <input type="text" ng-pattern="/\.(png|jpeg|jpg)$/" name="image" class="form-control" ng-model="editProduct.newImage" readonly required>
+                                                                <span class="input-group-btn">        
+                                                                    <span class="btn btn-default btn-file add-img-upload"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Select 
+                                                                        <input id="selectImage" type="file" name="myfile" ng-disabled="editProduct.uploading" file-model="file.newCourse" onchange="angular.element(this).scope().editProduct.photoChanged(this.files)">
+                                                                    </span>
+                                                                    <span ng-click="editProduct.clearImage(file.newCourse)" ng-if="editProduct.imagePreview" class="btn btn-default btn-file add-img-upload clean-image"><span class="glyphicon glyphicon-trash"></span></span> 
+                                                                </span>
+                                                            </div> 
+                                                            <p class="help-block error-des" ng-show="editProduct.imgErrMsg">Photo of the course is required</p>
+                                                        </div>
+                                                        <br>
+                                                        <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                                        <button ng-click="editProduct.backChanges()" ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="button"><i class="glyphicon glyphicon-repeat" aria-hidden="true"></i>&nbsp Undo</button>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.editImageMsg">
+                                                            <div class="alert alert-success">{{ editProduct.editImageMsg }}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.editImageMsgErr">
+                                                            <div class="alert alert-danger">{{ editProduct.editImageMsgErr }}</div>
+                                                        </div>
+                                                    </form>                
+                                                    <form class="update_form edit-title-course" name="editProduct.titleForm" ng-submit="editProduct.updateTitle(newTitle, editProduct.titleForm.title.$valid)" novalidate>
+                                                        <div ng-class="{ 'has-success':(editProduct.titleForm.title.$valid && !editProduct.titleForm.title.$pristine), 'has-error':(!editProduct.titleForm.title.$valid && !editProduct.titleForm.title.$pristine) || (!titleForm.title.$valid && productForm.$submitted)}">
+                                                            <label class="add-title-label"><h3>Course title:</h3></label>
+                                                            <input ng-disabled="editProduct.disabled" class="form-control" type="text" name="title" placeholder="Please enter course title"  ng-model="editProduct.newTitle" required>
+                                                            <p class="help-block error-des" ng-show="(!editProduct.titleForm.title.$pristine && editProduct.titleForm.title.$error.required) || (editProduct.titleForm.$subbmited && editProduct.titleForm.title.$error.required)">Course title is required</p>
+                                                        </div>
+                                                        <br>
+                                                        <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.titleMsg">
+                                                            <div class="alert alert-success">{{ editProduct.titleMsg }}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.titleErrMsg">
+                                                            <div class="alert alert-danger">{{ editProduct.titleErrMsg }}</div>
+                                                        </div>
+                                                    </form>    
+                                                    <form class="update_form edit-subtitle-course" name="editProduct.subtitleForm" ng-submit="editProduct.updateSubtitle(newSubtitle, editProduct.subtitleForm.subTitle.$valid)" novalidate>
+                                                        <div ng-class="{ 'has-success':(editProduct.subtitleForm.subTitle.$valid && !editProduct.subtitleForm.subTitle.$pristine), 'has-error':(!editProduct.subtitleForm.subTitle.$valid && !editProduct.subtitleForm.subTitle.$pristine) || (!subtitleForm.subTitle.$valid && subtitleForm.$submitted) }">
+                                                            <label class="add-title-label"><h3>Course subtitle:</h3></label>
+                                                            <input ng-disabled="editProduct.disabled" class="form-control" type="text" name="subTitle" placeholder="Please enter course subtitle"  ng-model="editProduct.newSubtitle" required>
+                                                            <p class="help-block error-des" ng-show="(!editProduct.subtitleForm.subTitle.$pristine && editProduct.subtitleForm.subTitle.$error.required) || (editProduct.subtitleForm.$subbmited && editProduct.subtitleForm.subTitle.$error.required)">Course subtitle is required</p>
+                                                        </div>
+                                                        <br>
+                                                        <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.subtitleMsg">
+                                                            <div class="alert alert-success">{{ editProduct.subtitleMsg }}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.subTitleErrMsg">
+                                                            <div class="alert alert-danger">{{ editProduct.subTitleErrMsg }}</div>
+                                                        </div>
+                                                    </form>    
+                                                    <form class="update_form edit-description-course" name="editProduct.descriptionForm" ng-submit="editProduct.updateDescription(newDescription, editProduct.descriptionForm.$valid)" novalidate>
+                                                        <div ng-class="{ 'has-success':(editProduct.descriptionForm.$valid && !editProduct.descriptionForm.$pristine), 'has-error':(!editProduct.descriptionForm.$valid) }">
+                                                            <label class="add-title-label"><h3>Course description:</h3></label>
+                                                            <div class="entry" ng-repeat="item in editProduct.newDescription track by $index">
+                                                                <div class="input-group">
+                                                                    <input ng-disabled="editProduct.disabled" class="form-control" type="text" name="description{{$index}}" placeholder="Please enter course description" ng-model="editProduct.newDescription[$index]" required>
+                                                                    <span class="input-group-btn">
+                                                                        <a ng-disabled="editProduct.disabled" href="#" ng-click="editProduct.removeDescription(this.item, newDescription, $index)" title="Usuń opis" class="btn btn-remove remove-field">
+                                                                            <span class="glyphicon glyphicon-remove"></span> 
+                                                                        </a>
+                                                                    </span> 
+                                                                </div>
+                                                                <p class="help-block error-des-description" ng-show="(!editProduct.descriptionForm.description{{$index}}.$pristine && editProduct.descriptionForm.description{{$index}}.$error.required)">Course description is required</p>         
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.descriptionMsg">
+                                                            <div class="alert alert-success">{{ editProduct.descriptionMsg }}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.descriptionErrMsg">
+                                                            <div class="alert alert-danger">{{ editProduct.descriptionErrMsg }}</div>
+                                                        </div>
+                                                    </form>
+                                                    <form class="update_form edit-addDescription-course" name="editProduct.addForm" ng-submit="editProduct.addDescription(editProduct.addNextDescription, editProduct.addForm.$valid)" novalidate>
+                                                        <div ng-class="{ 'has-success':(editProduct.addForm.addDescription.$valid && !editProduct.addForm.addDescription.$pristine), 'has-error':(!editProduct.addForm.addDescription.$valid && editProduct.addForm.$submitted) }">
+                                                            <label class="add-title-label"><h3>Add course description:</h3></label>
+                                                            <input class="form-control" type="text" name="addDescription" ng-model="editProduct.addNextDescription" placeholder="Please enter course description" required>
+                                                            <p class="help-block error-des" ng-show="(editProduct.addForm.$submitted && editProduct.addForm.addDescription.$error.required)">Course description is required</p>
+                                                        </div>
+                                                        <br>
+                                                        <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp Add description</button>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.AddDesMsg">
+                                                            <div class="alert alert-success">{{ editProduct.AddDesMsg }}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.AddDesErrMsg">
+                                                            <div class="alert alert-danger">{{ editProduct.AddDesErrMsg }}</div>
+                                                        </div>
+                                                    </form>       
+                                                    <form class="update_form edit-oldPrice-course" name="editProduct.oldPriceForm" ng-submit="editProduct.updateOldPrice(newOldPrice, editProduct.oldPriceForm.newOldPrice.$valid)" novalidate>
+                                                        <div ng-class="{ 'has-success':(editProduct.oldPriceForm.newOldPrice.$valid && !editProduct.oldPriceForm.newOldPrice.$pristine), 'has-error':(!editProduct.oldPriceForm.newOldPrice.$pristine && editProduct.oldPriceForm.newOldPrice.$error.required) || (!editProduct.oldPriceForm.newOldPrice.$valid && editProduct.oldPriceForm.$submitted) }">
+                                                            <label class="add-title-label"><h3>Old price:</h3></label>
+                                                            <input ng-disabled="editProduct.disabled" class="form-control" type="text" name="newOldPrice" placeholder="Please enter old price"  ng-model="editProduct.newOldPrice" required>
+                                                            <p class="help-block error-des" ng-show="(!editProduct.oldPriceForm.newOldPrice.$pristine && editProduct.oldPriceForm.newOldPrice.$error.required) || (editProduct.oldPriceForm.$submitted && editProduct.oldPriceForm.newOldPrice.$error.required)">Old price is required</p>
+                                                        </div>
+                                                        <br>
+                                                        <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.oldPriceMsg">
+                                                            <div class="alert alert-success">{{ editProduct.oldPriceMsg}}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.OldPriceErrMsg">
+                                                            <div class="alert alert-danger">{{ editProduct.OldPriceErrMsg }}</div>
+                                                        </div>
+                                                    </form>    
+                                                    <form class="update_form edit-newPrice-course" name="editProduct.newPriceForm" ng-submit="editProduct.updateNewPrice(newNewPrice, editProduct.newPriceForm.newNewPrice.$valid)" novalidate>
+                                                        <div ng-class="{ 'has-success':(editProduct.newPriceForm.newNewPrice.$valid && !editProduct.newPriceForm.newNewPrice.$pristine), 'has-error':(!editProduct.newPriceForm.newNewPrice.$pristine && editProduct.newPriceForm.newNewPrice.$error.required) || (!editProduct.newPriceForm.newNewPrice.$valid && editProduct.newPriceForm.$submitted) }">
+                                                            <label class="add-title-label"><h3>New price:</h3></label>
+                                                            <input ng-disabled="editProduct.disabled" class="form-control" type="text" name="newNewPrice" placeholder="Please enter new price" ng-model="editProduct.newNewPrice" required>    
+                                                            <p class="help-block error-des" ng-show="(!editProduct.newPriceForm.newNewPrice.$pristine && editProduct.newPriceForm.newNewPrice.$error.required) || (editProduct.newPriceForm.$submitted && editProduct.newPriceForm.newNewPrice.$error.required)">New price is required</p>   
+                                                        </div>
+                                                        <br>
+                                                        <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.newPriceMsg">
+                                                            <div class="alert alert-success">{{ editProduct.newPriceMsg }}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.newPriceErMsg">
+                                                            <div class="alert alert-danger">{{ editProduct.newPriceErMsg }}</div>
+                                                        </div>
+                                                    </form>
+                                                    <div class="add-level-course">
+                                                        <label class="add-title-label"><h3>Current level:&nbsp&nbsp </h3></label><span>{{ currentLevel }}</span>
+                                                        <br>
+                                                        <button ng-disabled="editProduct.disableEasy" ng-click="editProduct.updateLevel('fa fa-3x fa-battery-quarter text-primary level-higher-easy');" type="button" class="btn btn-success level-button">Easy</button>&nbsp
+                                                        <button ng-disabled="editProduct.disableMedium" ng-click="editProduct.updateLevel('fa fa-3x fa-battery-half text-primary level-higher-medium');" type="button" class="btn btn-warning level-button">Medium</button>&nbsp
+                                                        <button ng-disabled="editProduct.disableHard" ng-click="editProduct.updateLevel('fa fa-3x fa-battery-full text-primary level-higher-hard');" type="button" class="btn btn-danger level-button">Hard</button>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.levelMsg ">
+                                                            <div class="alert alert-success">{{ editProduct.levelMsg }}</div>
+                                                        </div>
+                                                        <div class="row-fluid show-hide-message" ng-show="editProduct.levelErrMsg">
+                                                            <div class="alert alert-danger">{{ editProduct.levelErrMsg }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Introduction description</h3>  
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <div class="management-user">
+                                        <section id="editIntroText">
+                                            <form ng-submit="editProduct.updateIntro()" name="editIntroForm" class="update_form edit-details-inner-course" novalidate>
+                                                <div text-angular ta-toolbar="[['h1','h2','h3','p','quote','fontSize','fontColor'],['bold','italics','underline'],['undo','redo','clear','html'], ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],['wordcount', 'charcount']]" data-ng-model="editProduct.introText" class="cms-text" placeholder="Please enter introduction content..."></div>
+                                                <br>
+                                                <button ng-disabled="editProduct.disabled" class="save-changes btn btn-info" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                            </form>
+                                            <div class="course-message-cms">
+                                                <div class="row show-hide-message error-fluid" ng-show="editProduct.editIntroMsg">
+                                                    <div class="alert alert-success">{{ editProduct.editIntroMsg }}</div>
+                                                </div>
+                                                <div class="row show-hide-message error-fluid" ng-show="editProduct.editIntroMsgErr">
+                                                    <div class="alert alert-danger">{{ editProduct.editIntroMsgErr }}</div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">About author</h3>  
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <div class="management-user">
+                                        <section id="editAuthor">
+                                            <form class="update_form edit-subtitle-course" name="editProduct.authorNameForm" ng-submit="editProduct.updateAuthorName(editProduct.authorNameForm.$valid)" novalidate>
+                                                <div ng-class="{ 'has-success':(editProduct.authorNameForm.$valid && !editProduct.authorNameForm.$pristine), 'has-error':(!editProduct.authorNameForm.$valid && !editProduct.authorNameForm.$pristine) || (!editProduct.authorNameForm.$valid && editProduct.authorNameForm.$submitted) }">
+                                                    <label class="add-title-label"><h3>Author name:</h3></label>
+                                                    <input ng-disabled="editProduct.disabled" class="form-control" type="text" name="authorNameForm" placeholder="Please enter author name"  ng-model="editProduct.authorName" required>
+                                                    <p class="help-block error-des" ng-show="(!editProduct.authorNameForm.$pristine && editProduct.authorNameForm.$error.required) || (editProduct.authorNameForm.$subbmited && editProduct.authorNameForm.$error.required)">Author name is required</p>
+                                                </div>
+                                                <br>
+                                                <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                                <div class="row-fluid show-hide-message" ng-show="editProduct.editAuthorNameMsg">
+                                                    <div class="alert alert-success">{{ editProduct.editAuthorNameMsg }}</div>
+                                                </div>
+                                                <div class="row-fluid show-hide-message" ng-show="editProduct.editAuthorNameMsgErr">
+                                                    <div class="alert alert-danger">{{ editProduct.editAuthorNameMsgErr }}</div>
+                                                </div>
+                                            </form> 
+                                            <form class="update_form edit-subtitle-course" name="editProduct.authorEduForm" ng-submit="editProduct.updateAuthorEdu(editProduct.authorEduForm.$valid)" novalidate>
+                                                <div ng-class="{ 'has-success':(editProduct.authorEduForm.$valid && !editProduct.authorEduForm.$pristine), 'has-error':(!editProduct.authorEduForm.$valid && !editProduct.authorEduForm.$pristine) || (!editProduct.authorEduForm.$valid && editProduct.authorEduForm.$submitted) }">
+                                                    <label class="add-title-label"><h3>Education:</h3></label>
+                                                    <input ng-disabled="editProduct.disabled" class="form-control" type="text" name="authorEduForm" placeholder="Please enter author education"  ng-model="editProduct.authorEdu" required>
+                                                    <p class="help-block error-des" ng-show="(!editProduct.authorEduForm.$pristine && editProduct.authorEduForm.$error.required) || (editProduct.authorEduForm.$subbmited && editProduct.authorEduForm.$error.required)">Author education is required</p>
+                                                </div>
+                                                <br>
+                                                <button ng-disabled="editProduct.disabled" class="btn btn-info save-changes" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                                <div class="row-fluid show-hide-message" ng-show="editProduct.editAuthorEduMsg">
+                                                    <div class="alert alert-success">{{ editProduct.editAuthorEduMsg }}</div>
+                                                </div>
+                                                <div class="row-fluid show-hide-message" ng-show="editProduct.editAuthorEduMsgErr">
+                                                    <div class="alert alert-danger">{{ editProduct.editAuthorEduMsgErr }}</div>
+                                                </div>
+                                            </form>
+                                            <form ng-submit="editProduct.updateAuthorDes()" name="editDescriptionForm" class="update_form edit-details-inner-course" novalidate>
+                                                <label class="add-title-label"><h3>Brief description about author:</h3></label>
+                                                <div text-angular ta-toolbar="[['h1','h2','h3','p','quote','fontSize','fontColor'],['bold','italics','underline'],['undo','redo','clear','html'], ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],['wordcount', 'charcount']]" data-ng-model="editProduct.authorDescription " class="cms-text" placeholder="Please enter author description..."></div>
+                                                <br>
+                                                <button ng-disabled="editProduct.disabled" class="save-changes btn btn-info" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                            </form>
+                                            <div class="course-message-cms">
+                                                <div class="row show-hide-message error-fluid" ng-show="editProduct.editAuthorDesMsg">
+                                                    <div class="alert alert-success">{{ editProduct.editAuthorDesMsg }}</div>
+                                                </div>
+                                                <div class="row show-hide-message error-fluid" ng-show="editProduct.editAuthorDesMsgErr">
+                                                    <div class="alert alert-danger">{{ editProduct.editAuthorDesMsgErr }}</div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Edit course content</h3>  
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <div class="management-user">
+                                        <section id="edit-course-details-inner">
+                                            <form ng-submit="editProduct.updateBody()" name="editBodyForm" class="update_form edit-details-inner-course" novalidate>
+                                                <div text-angular data-ng-model="editProduct.editBody" class="cms-text" placeholder="Please enter course content..."></div>
+                                                <br>
+                                                <button ng-disabled="editProduct.disabled" class="save-changes btn btn-info" type="submit"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Save changes</button>
+                                            </form>
+                                            <div class="course-message-cms">
+                                                <div class="row show-hide-message error-fluid" ng-show="editProduct.editBodyMsg">
+                                                    <div class="alert alert-success">{{ editProduct.editBodyMsg }}</div>
+                                                </div>
+                                                <div class="row show-hide-message error-fluid" ng-show="editProduct.editBodyMsgErr">
+                                                    <div class="alert alert-danger">{{ editProduct.editBodyMsgErr }}</div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="panel-title pull-left">Comments to the course ({{editProduct.comments.length + newComment.length}})</h3>
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <div class="management-user">
+                                        <section id="users-comments-dash" class="video-course">
+                                            <div class="customSort">
+                                                <label>View</label>
+                                                <div class="sort-by">
+                                                    <select data-toggle="dropdown" ng-model="editProduct.selectNumber" ng-change="editProduct.setItemsPerPage(editProduct.selectNumber)" aria-expanded= "false">
+                                                        <option value="15" disabled="disabled">15</option>
+                                                        <option value="5">5</option>    
+                                                        <option value="15">15</option> 
+                                                        <option value="25">25</option> 
+                                                        <option value="50">50</option> 
+                                                        <option value="100">100</option> 
+                                                    </select>            
+                                                </div>
+                                            </div>
+                                            <div class="sort_comment_date pull-right">
+                                                <p class="sortTable" ng-class="{reverse: editProduct.propertyName === 'dateComment' && editProduct.reverse}" ng-click="editProduct.sortComment('dateComment')">Date&nbsp</p>  
+                                            </div>
+                                            <div class="comment-panel col-xs-12">
+                                                <div class="row-fluid show-hide-message" ng-show="editProduct.delCommentMsg">
+                                                    <div class="alert alert-success">{{ editProduct.delCommentMsg}}</div>
+                                                </div>
+                                                <div class="row-fluid show-hide-message" ng-show="editProduct.delCommentMsgErr">
+                                                    <div class="alert alert-danger">{{ editProduct.delCommentMsgErr }}</div>
+                                                </div>
+                                                <h3 ng-if="!editProduct.comments.length" class="text-center">No comments added</h3>
+                                                <div ng-repeat="comment in (editProduct.comments | orderBy: editProduct.propertyName:editProduct.reverse | orderBy:'id':true).slice(((editProduct.currentPage-1)*editProduct.itemsPerPage), ((editProduct.currentPage*editProduct.itemsPerPage))) track by $index" class="all-users-comment-course"> 
+                                                    <article class="one-comment-edit">
+                                                        <div class="col-xs-12 content-body-comment">
+                                                            <div class="user-property"> 
+                                                                <p class="user-name pull-left">{{ comment.author }}</p>
+                                                                <a ng-if="main.isLoggedIn && main.authorized" href="#" type="button" title="Remove comment" class="remove-comment-user pull-right" ng-click="editProduct.showDeletedComment(comment)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                            </div>  
+                                                            <div class="user-content-comment"> 
+                                                                <div class="comment-body-dash"> 
+                                                                    <p>{{comment.body}}</p> 
+                                                                </div>                                                
+                                                                <div class="comment-added-date">
+                                                                    <p class="comment-date date-time">{{ comment.date | amDateFormat: 'DD.MM.YYYY H:mm' }}</p>
+                                                                    <p class="comment-date"><time title="{{ comment.date | amDateFormat: 'DD.MM.YYYY H:mm' }}" am-time-ago="comment.date"></time></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="user-reply pull-right">
+                                                                <button ng-click="editProduct.showDetails[$index] = !editProduct.showDetails[$index]"><span class="glyphicon glyphicon-share-alt reply-comment"></span> &nbspReply <span class="reply-users-numbers" ng-show="comment.reply.length"></span><span ng-show="comment.reply.length">{{comment.reply.length}}</span></button>
+                                                            </div>
+                                                        </div>
+                                                    </article>     
+                                                    <div class="all-reply-users-comment" ng-if="editProduct.showDetails[$index]">          
+                                                        <div class="users-reply-comment" ng-repeat="reply in comment.reply | orderBy: 'id': true track by $index">
+                                                            <article class="reply-commit">
+                                                                <div class="col-xs-12 all-reply pull-right">
+                                                                    <div class="user-property"> 
+                                                                        <p class="user-name pull-left">{{ reply.author }}</p>
+                                                                        <a ng-if="main.isLoggedIn && main.authorized" href="#" type="button" title="Remove comment" class="pull-right" ng-click="editProduct.showDeletedReply(reply, comment)"><span class="glyphicon glyphicon-trash"></span></a>
+                                                                    </div>  
+                                                                    <div class="user-content-comment"> 
+                                                                        <div class="comment-body-dash"> 
+                                                                            <p>{{reply.body}}</p> 
+                                                                        </div>                                                
+                                                                        <div class="comment-added-date">
+                                                                            <p class="comment-date date-time">{{ reply.date | amDateFormat: 'DD.MM.YYYY H:mm' }}</p>
+                                                                            <p class="comment-date"><time title="{{ reply.date | amDateFormat: 'DD.MM.YYYY H:mm' }}" am-time-ago="reply.date"></time></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                        <div class="col-xs-12 reply-control-area">
+                                                            <form name="AdminReplyForm" ng-submit="editProduct.replyComment(comment._id, editProduct.commentReply[comment.number], AdminReplyForm, comment.number)" novalidate>
+                                                                <div ng-class="{'has-success':(AdminReplyForm.$valid && !AdminReplyForm.$pristine), 'has-error':(!AdminReplyForm.$valid && !AdminReplyForm.$pristine) || (!AdminReplyForm.$valid &&  AdminReplyForm.$submitted)}" class="reply-text-panel">  
+                                                                    <textarea name="commentReply{{$index}}" ng-model="editProduct.commentReply[comment.number]" placeholder="Enter the reply" class="form-control" ng-minLength="10" required></textarea>
+                                                                    <ul ng-show="(!AdminReplyForm.$pristine && AdminReplyForm.$error.minlength[0].$viewValue.length)" class="help-block comment-conditions">
+                                                                        <li>{{10 - AdminReplyForm.$error.minlength[0].$viewValue.length}} more to go...</li>   
+                                                                    </ul>  
+                                                                    <button ng-disabled="editProduct.disabled" class="pull-right"><span class="glyphicon glyphicon-share"></span>Add</button>
+                                                                </div>
+                                                            </form> 
+                                                        </div>
+                                                    </div> 
+                                                </div> 
+                                                <div ng-if="editProduct.comments.length" class="pagination-center">
+                                                    <pagination total-items="editProduct.totalItems" max-size="editProduct.maxSize" ng-model="editProduct.currentPage" class="pagination-sm text-center" items-per-page="editProduct.itemsPerPage" previous-text="Previous" next-text="Next"></pagination>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="panel-title pull-left">Add comment</h3>  
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <div class="management-user">
+                                        <section id="admin-add-comment">
+                                            <div class="col-xs-12 new-comment-dash">  
+                                                <form name="editProduct.AdminCommentForm" ng-submit="editProduct.AddDashboardComment(editProduct.comment, editProduct.AdminCommentForm.$valid)" novalidate>  
+                                                    <div class="cont-admin-comment">  
+                                                        <textarea ng-class="{'has-success':(editProduct.AdminCommentForm.comment.$valid && !editProduct.AdminCommentForm.comment.$pristine), 'has-error':(!editProduct.AdminCommentForm.comment.$valid && !editProduct.AdminCommentForm.comment.$pristine) || (!editProduct.AdminCommentForm.comment.$valid &&  editProduct.AdminCommentForm.$submitted)}" class="form-control" id="admin-dash-textarea" name="comment" ng-model="editProduct.comment" ng-minLength="10" placeholder="Enter the comment" required></textarea>   
+                                                        <ul ng-show="(!editProduct.AdminCommentForm.comment.$pristine && editProduct.AdminCommentForm.$error.minlength[0].$viewValue.length)" class="help-block comment-conditions">
+                                                            <li>{{10 - editProduct.AdminCommentForm.$error.minlength[0].$viewValue.length}} more to go...</li>   
+                                                        </ul>
+                                                        <button class="btn btn-warning button-comment-user pull-right">Add comment</button>  
+                                                    </div>
+                                                </form>
+                                                <br>
+                                                <div class="row-fluid show-hide-message" ng-show="editProduct.commentAdminMsg">
+                                                    <div class="alert alert-success">{{ editProduct.commentAdminMsg}}</div>
+                                                </div>
+                                                <div class="row-fluid show-hide-message" ng-show="editProduct.commentAdminErrMsg">
+                                                    <div class="alert alert-danger">{{ editProduct.commentAdminErrMsg }}</div> 
+                                                </div>  
+                                                <div class="jumbotron text-center" ng-show="editProduct.loading">
+                                                    <span class="glyphicon glyphicon-repeat spinner"></span>
+                                                    <p>Adding....</p>
+                                                </div>
+                                            </div>
+                                        </section>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="removeComment" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <span class="glyphicon glyphicon-trash"></span><span class="modal-title">&nbspDelete the comment?</span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Username: <strong>{{ editProduct.deletedComment.author }}</strong></p>  
+                    <p>Comment content: <strong>{{ editProduct.deletedComment.body  }}</strong></p>
+                    <p>Addition date: <strong>{{ editProduct.deletedComment.date | amDateFormat: 'DD.MM.YYYY H:mm'}}</strong></p>
+                </div>
+                <div class="modal-footer"> 
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No </button>
+                        <button class="btn btn-success" data-dismiss="modal" ng-click="editProduct.deleteComment(editProduct.deletedComment)"><span class="glyphicon glyphicon-check"></span> Yes </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="switchContentView" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="col-xs-12 modal-content-change-view">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-center">
+                    <span class="glyphicon glyphicon-fire"></span><span class="modal-title">&nbsp;&nbsp;Preview of the new course&nbsp;&nbsp;</span><span class="glyphicon glyphicon-fire"></span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <section id="detail_item">
+                    <div class="container">
+                        <div class="row-fluid show-hide-message" ng-show="main.logInCourse">
+                            <div class="alert alert-danger">{{ main.logInCourse }}</div> 
+                        </div>  
+                        <div class="row">
+                            <div class="hidden-lg hidden-md col-sm-12 col-xs-12 hidden-button-price">
+                                <a data-target="#" ng-click="main.addCart(price)" class="btn btn-success btn-block"><span class="hidden_new_price">{{ editProduct.newNewPrice }}zł &nbsp</span><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Add to cart</a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title-heading text-center">
+                                <p class="detail_title" ng-bind-html="editProduct.introText"><p>  
+                                <h1 class="detail_title">Course {{ editProduct.newTitle }}, {{ editProduct.newSubtitle }} - from theory to practice</h1>        
+                            </div>
+                            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs yourCourse"> 
+                                <div class="card list-group-item">
+                                    <div class="all_course_view">
+                                        <div class="thumbnail image_course">
+                                            <img ng-src="../../uploads/{{ editProduct.newImage }}"/>
+                                        </div>
+                                        <div class="caption">
+                                            <h2>{{ editProduct.newTitle }}</h2>
+                                            <h3>{{ editProduct.newSubtitle }}</h3>
+                                            <div class="text-right">
+                                                <span class="detail_price_new">{{ editProduct.newNewPrice }}<span class="small_price">zł</span></span>
+                                                <span class="detail_price_old">{{ editProduct.newOldPrice }}zł</span>
+                                            </div>
+                                            <div class="container-fluid button-price"> 
+                                                <a data-target="#" ng-click="main.addCart(price)" class="btn btn-success btn-block"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="course-author">
+                                    <h3 class="header_author">Course author</h3>
+                                    <div class="dummy-logo">
+                                        <div class="icon pull-left brand">
+                                            <img class="footer_about" src="../../../../uploads/svg/team.svg">
+                                        </div>
+                                        <h2 ng-bind-html="editProduct.authorName"></h2>
+                                        <p ng-bind-html="editProduct.authorEdu"></p>
+                                    </div>
+                                    <p class="author-description" ng-bind-html="editProduct.authorDescription"></p>
+                                </div>
+                                <div class="recommended-course hidden-sm hidden-xs">
+                                    <div ng-repeat="product in main.sortedProducts">
+                                        <h2 class="recommended-title text-left">Recommended course:</h2>
+                                        <div class="product">
+                                            <div class="button-directions">
+                                                <img src="../../uploads/{{ product.imagePath }}" alt="#">
+                                                <i class="level" ng-class="product.level" product-level-course></i> 
+                                            </div>
+                                            <h2>{{ product.title }}</h2>
+                                            <h3>{{ product.subTitle }}</h3>
+                                            <div class="description-list-group">
+                                                <ol>
+                                                    <ul class="text-center">
+                                                        <li ng-repeat="item in product.description">{{ item }}</li> 
+                                                    </ul>
+                                                </ol>
+                                            </div>
+                                            <div class="col-xs-12 text-right no-padding-price"> 
+                                                <span class="actualPrice"><span class="glyphicon glyphicon-shopping-cart shopping-icon"></span> {{ product.newPrice }}zł</span>
+                                                <span class="oldPrice">{{ product.oldPrice }}zł</span>
+                                            </div>
+                                            <div class="col-xs-12 read-more">
+                                                <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Check the details
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>            
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-page-content">
+                                <div class="row">
+                                    <div class="detail_video_header">
+                                        <img class="video_short" ng-src="../../uploads/{{ editProduct.newImage }}"/>
+                                    </div>
+                                </div>
+                                <section id="opis_kursu_szczegoly">
+                                    <div class="row content_inner">
+                                        <div class="col-xs-12 direction_icons">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 sekwencja_zdarzen text-center">
+                                                <img src="../../uploads/svg/code-work.svg"/>
+                                                <p>Watch video courses and learn about new issues</p>
+                                            </div>
+                                            <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs sekwencja_zdarzen arrow text-center">
+                                                <img src="../../uploads/svg/redo-arrow-grey.svg"/> 
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs repeat-knowledge sekwencja_zdarzen text-center">
+                                                <img src="../../uploads/svg/thought.svg"/> 
+                                                <p>Read articles, broaden your knowledge, day by day get better</p>
+                                            </div>   
+                                            <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs sekwencja_zdarzen arrow text-center">
+                                                <img src="../../uploads/svg/redo-arrow-grey.svg"/> 
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sekwencja_zdarzen text-center">
+                                                <img src="../../uploads/svg/first-prize-trophy-blue.svg"/>
+                                                <p>Do what you like and give you satisfaction, overcome new challenges and pursue your own dreams</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section id="opis_kursu_szczegoly">
+                                    <div class="row no_padding_description">
+                                        <div class="col-xs-12" ng-bind-html="editProduct.editBody"></div>
+                                    </div>
+                                </section>
+                                <div class="container-fluid"> 
+                                    <a data-taeget="#" ng-click="main.addCart(price)" class="btn btn-success btn-block buy-now-down"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp Buy now</a>
+                                </div>
+                                <section id="spis-tresci"> 
+                                    <h3>Table of contents</h3>
+                                    <ul class="lista-spis-tresci">
+                                        <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()" ng-repeat="product in main.products | filter: {title: title}"> 
+                                            <li>{{ product.title }} - {{ product.subTitle }}</li> 
+                                        </a> 
+                                    </ul>
+                                </section> 
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="removeReply" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <span class="glyphicon glyphicon-trash"></span><span class="modal-title">&nbspDelete the reply?</span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Username: <strong>{{ editProduct.deletedReply.author }}</strong></p>  
+                    <p>Comment content: <strong>{{ editProduct.deletedReply.body  }}</strong></p>
+                    <p>Addition date: <strong>{{ editProduct.deletedReply.date | amDateFormat: 'DD.MM.YYYY H:mm'}}</strong></p>
+                </div>
+                <div class="modal-footer"> 
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No </button>
+                        <button class="btn btn-success" data-dismiss="modal" ng-click="editProduct.deleteReply(editProduct.deletedReply, editProduct.deletedComment)"><span class="glyphicon glyphicon-check"></span> Yes </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

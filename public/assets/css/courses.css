@@ -1,0 +1,1293 @@
+/***************************WSZYSTKIE KURSY*******************************/
+.navbarScroll nav#mainNav.allCourses {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+}
+.navbarScroll nav#mainNav.allCourses .collapse.in, .navbarScroll nav#mainNav.allCourses .collapsing {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.sortSection
+{
+    padding-top: 100px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.sortSection .heading-intro
+{
+    margin-top: 30px;
+}
+.allCoursesPage .heading-intro h1
+{
+    margin-top: 0;
+    font-family: Roboto slab;
+    font-size: 20px !important;
+}
+.allCoursesPage .heading-intro p
+{
+    font-family: Roboto slab;
+    line-height: 22px;
+    color: #888;
+    font-weight: 300 !important;
+    max-width: 600px;
+}
+.sortSection nav.sort-courses .titleSort
+{
+    display: inline-block;
+}
+.sortSection nav.sort-courses .category
+{
+    display: inline-block;
+}
+.sortSection nav.sort-courses .level
+{
+    margin-right: 25px;
+    display: inline-block;
+}
+.sortSection nav.sort-courses .customSort
+{
+    display: inline-block;
+}
+.sortSection nav.sort-courses
+{
+    width: 100%;
+    display: inline-block;
+}
+.sortSection nav.sort-courses p
+{
+    font-family: Roboto slab;
+    font-weight: 700;
+    font-size: 14px;
+}
+.sortSection nav.sort-courses .level p
+{
+    margin-bottom: 5px;
+    padding-left: 5px;
+}
+.sortSection nav.sort-courses .customSort select {
+    padding: 5px 35px 5px 5px;
+    font-family: Roboto slab;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    cursor: pointer;
+    color: #666;
+  }
+  .sortSection nav.sort-courses .customSort select option {
+    color: #666;
+  }
+.sortSection nav.sort-courses .titleSort a
+{
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 0;
+    margin-right: 6px;
+    font-family: Roboto slab;
+    color: #666;
+    border-right: 1px solid #666;
+    padding-right: 3px;
+}
+.sortSection nav.sort-courses .titleSort a.sortedCourse
+{
+    font-weight: 700;
+}
+.sortSection nav.sort-courses .titleSort span.sortedLevel i
+{
+    background-color: #e7e7e7;
+}
+.sortSection nav.sort-courses .titleSort span i
+{
+    position: relative;
+    padding: 5px;
+    top: 5px;
+    left: auto;
+    right: auto;
+    margin-right: 5px;
+    font-size: 28px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.allCoursesPage {
+    padding-top: 0px;
+    padding-bottom: 100px;
+    background-color: #f4f4f4;
+}
+.allCoursesPage.courseRecommended
+{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.allCoursesPage .headerNewCourse h1 {
+    font-family: Roboto slab;
+    font-size: 30px;
+}
+.allCoursesPage .headerNewCourse {
+    overflow: hidden;
+    margin-bottom: 35px;
+    margin-top: 15px;
+}
+.allCoursesPage .headerNewCourse a {
+    float: right;
+    margin-top: 20px;
+    padding: 8px 23px 8px 23px;
+    border-radius: 2px;
+    font-family: Roboto slab;
+    font-weight: bold;
+    background-color: transparent;
+    border: 1px solid #333;
+    box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.3), 0 0 1.2em rgba(255, 255, 255, 0.5);
+    color: #333;
+    cursor: pointer;
+}
+.allCoursesPage .headerNewCourse a:hover 
+{
+    background-color: #666; 
+    border-color: #666;
+    font-weight: normal;
+    text-decoration: none;
+    color:#f6f6f6; 
+    background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+    -webkit-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    -ms-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+}
+.allCoursesPage .container-product
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.allCoursesPage .container-product .con-new-pro
+{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+.allCoursesPage .product
+{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 15px 20px 15px 20px;
+}
+.allCoursesPage i.level
+{
+    position: absolute;
+    top: auto;
+    right: -10px;
+    bottom: 5px;
+    font-size: 30px;
+}
+.allCoursesPage .product img
+{
+    position: relative;
+    top: -15px;
+    width: calc(100% + 40px);
+    max-height: 165px;
+    left: -20px;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    -webkit-clip-path: polygon(0 100%, 0 0, 100% 0, 100% 85%);
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 85%);
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.allCoursesPage .product .button-directions
+{
+    position: relative;
+}
+.allCoursesPage .product .button-directions .play-hover
+{
+    position: absolute;
+    top: -15px;
+    width: calc(100% + 40px);
+    left: -20px;
+    height: 100%;
+    -webkit-clip-path: polygon(0 100%, 0 0, 100% 0, 100% 85%);
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 85%);
+    background: rgba(0, 0, 0, 0.57);
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    margin: auto;
+    transition: opacity 0.35s ease-in-out;
+}
+.allCoursesPage .product:hover .button-directions .play-hover
+{
+    opacity: 1;
+ 
+}
+.allCoursesPage .product .button-directions .play-hover a span
+{
+    width: 100%;
+    font-size: 42px;
+    display: block;
+    margin-bottom: 10px;
+}
+.allCoursesPage .product .button-directions .play-hover a
+{
+    position: relative;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    color:#ddd;
+    font-size: 16px;
+    font-family: Roboto slab;
+    text-decoration: none;
+}
+.allCoursesPage .product h2
+{
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
+    font-family: Roboto slab;
+}
+.allCoursesPage .product h3
+{
+    margin-top: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+    font-family: Roboto slab;
+}
+.allCoursesPage .description-list-group
+{
+    margin-top: 15px;
+}
+.allCoursesPage .description-list-group ol ul li 
+{
+    display: block;  
+    font-family: Roboto slab;
+    text-align: left !important; 
+}
+.allCoursesPage .description-list-group ol ul 
+{
+    display: inline-block;
+    font-size: 14px;
+    margin-left: -60px;  
+}
+.allCoursesPage .description-list-group ol ul li:before
+{
+    content: "\e013";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+    color: #666;
+    position: relative;
+    left: -7px;
+}
+.allCoursesPage .no-padding-price {
+    margin-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.allCoursesPage .actualPrice {
+    color: #205081;
+    font-weight: bold;
+    display: block;
+    font-size: 22px;
+    display: inline-block;
+    margin-top: 4px;
+}
+.allCoursesPage .actualPrice .shopping-icon {
+    font-size: 22px;
+}
+.allCoursesPage .oldPrice {
+    font-size: 16px;
+    color: #999;
+    text-decoration: line-through;
+    display: inline-block;
+    margin-top: 3px;
+    padding-left: 3px;
+}
+.allCoursesPage .read-more
+{
+    position: relative;
+    right:-20px;
+    bottom:-15px;
+    min-height: 40px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.allCoursesPage .read-more a {
+    text-decoration: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #333;
+    font-family: Roboto slab;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: #fff;
+}
+.allCoursesPage .read-more a:before {
+    position: absolute;
+    right: 100%;
+    border-style: solid;
+    border-width: 0 0 40px 12px;
+    border-color: transparent transparent #333;
+    content: '';
+    top: 0;
+}
+.allCoursesPage .read-more a:hover {
+    text-decoration: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #ddd;
+    font-family: Roboto slab;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: #333;
+    -webkit-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    -ms-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+}
+.allCoursesPage .read-more a:before {
+    position: absolute;
+    right: 100%;
+    border-style: solid;
+    border-width: 0 0 40px 12px;
+    border-color: transparent transparent #333;
+    content: '';
+    top: 0;
+
+}
+.allCoursesPage .read-more a:hover::before {
+    position: absolute;
+    right: 100%;
+    border-style: solid;
+    border-width: 0 0 40px 12px;
+    border-color: transparent transparent #ddd;
+    content: '';
+    top: 0;
+    -webkit-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    -ms-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+}
+.allCoursesPage .recommended-course h2
+{
+    font-family: Roboto slab;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+.allCoursesPage .recommended-course h1
+{
+    color: #888;
+    font-size: 32px;
+    font-family: Roboto slab;
+    margin-bottom: 30px;
+}
+.allCoursesPage .recommended-course a.recommended-button
+{
+    text-decoration: none;
+    background-color: #333;
+    font-family: Roboto slab;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 40px;
+    padding: 10px 35px;
+    color: #fff;
+}
+.allCoursesPage .recommended-course a.recommended-button:hover
+{
+    text-decoration: none;
+    background-color: #666;
+    -webkit-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    -ms-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+}
+.allCoursesPage .recommended-course a.recommended-button span
+{
+    position: relative;
+    top:3px;
+    left: 1px;
+
+}
+.allCoursesPage .recommended-course a.recommended-button span.second-line
+{
+    position: relative;
+    right:7px;
+    left: auto;
+}
+.allCoursesPage .recommended-course img
+{
+    width: 100%;
+    max-height: 285px;
+}
+.allCoursesPage .recommended-course .button-directions
+{
+    position: relative;
+}
+.allCoursesPage .recommended-course .button-directions .play-hover {
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    max-height: 285px;
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    margin: auto;
+    transition: opacity 0.35s ease-in-out;
+}
+.allCoursesPage .recommended-course .button-directions .play-hover:hover {
+    opacity: 1;
+}
+.allCoursesPage .recommended-course .button-directions .play-hover a {
+    position: relative;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ddd;
+    font-size: 16px;
+    font-family: Roboto slab;
+    text-decoration: none;
+}
+.allCoursesPage .recommended-course i.level {
+    right: 15px !important;
+    top: 10px !important;
+}
+.allCoursesPage .recommended-course .button-directions .play-hover a {
+    position: relative;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ddd;
+    font-size: 20px;
+    font-family: Roboto slab;
+    text-decoration: none;
+}
+.allCoursesPage .recommended-course .button-directions .play-hover a span {
+    width: 100%;
+    font-size: 44px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.allCoursesPage .pagination>li>a, .allCoursesPage .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 8px 14px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #333;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid #ccc;
+}
+.allCoursesPage .pagination>.active>a, .allCoursesPage .pagination>.active>a:focus, .allCoursesPage .pagination>.active>a:hover, .allCoursesPage .pagination>.active>span, .allCoursesPage .pagination>.active>span:focus, .allCoursesPage .pagination>.active>span:hover {
+    background-color: #1485e0;
+    border-color: #ccc;
+    color:#fff;
+}
+ .allCoursesPage .pagination>li>a:hover, .allCoursesPage .pagination>li>span:hover {
+    z-index: 2;
+    color: #333;
+    background-color: #ddd;
+    border-color:#ccc
+}
+.allCoursesPage .pagination>li>a:focus, .allCoursesPage .pagination>li>span:focus
+{
+    background-color: transparent;
+    color: #333;
+    border-color:#ccc;
+    z-index: 2;
+}
+
+
+/*ZOBACZ WIĘCEJ*/
+.navbarScroll nav#mainNav.seeMore {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+}
+section#detail_item
+{
+    padding-top: 20px;
+    background-color: #fafafa;
+}
+section#detail_item .row
+{
+    display: block;
+}
+section#detail_item .card .caption
+{
+    height: 225px; 
+    padding: 0 30px;
+}
+section#detail_item .card 
+{
+    margin-top: 23px;
+    padding: 0;
+}
+section#detail_item .card .caption h2
+{
+    margin-top: 0;
+    font-size: 26px;
+    color: #333;
+    font-weight: 700;
+    font-family: Roboto slab;
+}
+section#detail_item .card .caption h3
+{
+    margin-top: 15px;
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
+    font-family: Roboto slab;
+}
+section#detail_item .yourCourse .card .thumbnail
+{
+    padding: 2px;
+}
+section#detail_item .yourCourse .card .thumbnail img {
+    width: 100%;
+    max-height: 320px;
+}
+section#detail_item .row h1.detail_title
+{
+    font-family: Roboto slab; 
+    color:#444;
+    font-weight: normal;
+    font-size: 30px;
+}
+section#detail_item .row p.detail_title
+{
+    font-family: Roboto slab; 
+    color:#777;
+    font-size: 14px; 
+    font-weight: 300;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+section#detail_item .row .detail_video_header
+{
+    margin-top: 25px;
+}
+section#detail_item .row .detail_video_header img
+{
+    width: 100%;
+    border-radius: 4px;
+    max-height: 380px;
+}
+section#detail_item .row span.detail_price_new
+{
+    color: #205081;
+    font-weight: bold;
+    font-family: Roboto slab;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 4px;
+}
+section#detail_item .row span.small_price
+{
+    font-size: 35px; 
+    padding-left: 3px; 
+
+}
+section#detail_item .row span.detail_price_old 
+{
+    font-size: 24px;
+    color:#888;
+    text-decoration: line-through;
+    margin-left: 12px;
+    font-family: Roboto slab;
+}
+section#detail_item .row .btn-success
+{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-top: 20px;
+    padding: 7px 12px;
+}
+section#detail_item .row .button-price
+{
+    padding: 0;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+}
+section#detail_item .row .btn-success:hover
+{
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+}
+section#detail_item .hidden-button-price
+{
+    margin-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+section#detail_item .hidden-button-price span.hidden_new_price
+{
+    font-size: 24px;
+    font-weight: 500; 
+    color:#205081;
+    font-weight: bold;
+}
+section#detail_item .course-author
+{
+    margin-top: 100px;
+    border-bottom: 1px solid #e5e5e5; 
+    padding: 0 10px;
+}
+section#detail_item .course-author h3.header_author
+{
+    font-size: 22px;
+    color:#333;
+    font-style: italic;
+    font-family: Roboto slab;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 30px;
+}
+section#detail_item .course-author .dummy-logo img
+{
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+}
+section#detail_item .course-author .dummy-logo h2
+{
+    font-size: 26px;
+    margin-bottom: 5px;
+    font-family: Roboto slab;
+}
+section#detail_item .course-author .dummy-logo p
+{
+    font-size: 13px;
+    font-style: italic;
+    font-family: Roboto slab;
+}
+section#detail_item .course-author p.author-description
+{
+    font-size: 14px; 
+    line-height: 24px;
+    padding-top: 15px;
+    font-family: Roboto slab;
+}
+section#detail_item .recommended-course
+{
+    margin-top: 100px;
+}
+section#detail_item .recommended-course .recommended-title
+{
+    font-size: 22px;
+    color: #333;
+    font-style: italic;
+    font-family: Roboto slab;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 30px;
+}
+section#detail_item .recommended-course .product
+{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 15px 20px 15px 20px;
+    border: 1px solid #ddd;
+}
+section#detail_item .recommended-course i.level
+{
+    position: absolute;
+    top: auto;
+    right: -10px;
+    bottom: 5px;
+    font-size: 30px;
+}
+section#detail_item .recommended-course .product img
+{
+    position: relative;
+    top: -15px;
+    width: calc(100% + 40px);
+    left: -20px;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    -webkit-clip-path: polygon(0 100%, 0 0, 100% 0, 100% 85%);
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 85%);
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+section#detail_item .recommended-course .product .button-directions
+{
+    position: relative;
+}
+section#detail_item .recommended-course .product h2
+{
+    margin-top: 0;
+    font-size: 22px;
+    color: #333;
+    font-weight: 700;
+    font-family: Roboto slab;
+}
+section#detail_item .recommended-course .product h3
+{
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
+    font-family: Roboto slab;
+}
+section#detail_item .recommended-course .description-list-group
+{
+    margin-top: 15px;
+}
+section#detail_item .recommended-course .description-list-group ol ul li 
+{
+    display: block;  
+    font-family: Roboto slab;
+    text-align: left !important; 
+}
+section#detail_item .recommended-course .description-list-group ol ul 
+{
+    display: inline-block;
+    font-size: 16px;
+    margin-left: -60px;  
+    line-height: 28px;
+}
+section#detail_item .recommended-course .description-list-group ol ul li:before
+{
+    content: "\e013";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+    color: #666;
+    position: relative;
+    left: -7px;
+}
+section#detail_item .recommended-course .no-padding-price {
+    margin-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+section#detail_item .recommended-course .actualPrice {
+    color: #205081;
+    font-weight: bold;
+    display: block;
+    font-size: 26px;
+    display: inline-block;
+    margin-top: 4px;
+}
+section#detail_item .recommended-course .actualPrice .shopping-icon {
+    font-size: 22px;
+}
+section#detail_item .recommended-course .oldPrice {
+    font-size: 18px;
+    color: #999;
+    text-decoration: line-through;
+    display: inline-block;
+    margin-top: 3px;
+    padding-left: 3px;
+}
+section#detail_item .recommended-course .read-more
+{
+    position: relative;
+    right:-20px;
+    bottom:-15px;
+    min-height: 40px;
+    padding-left: 0;
+    padding-right: 0;
+}
+section#detail_item .recommended-course .read-more a {
+    text-decoration: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #333;
+    font-family: Roboto slab;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: #fff;
+}
+section#detail_item .recommended-course .read-more a:before {
+    position: absolute;
+    right: 100%;
+    border-style: solid;
+    border-width: 0 0 40px 12px;
+    border-color: transparent transparent #333;
+    content: '';
+    top: 0;
+}
+section#detail_item .recommended-course .read-more a:hover {
+    text-decoration: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #ddd;
+    font-family: Roboto slab;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: #333;
+    -webkit-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    -ms-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+}
+section#detail_item .recommended-course .read-more a:before {
+    position: absolute;
+    right: 100%;
+    border-style: solid;
+    border-width: 0 0 40px 12px;
+    border-color: transparent transparent #333;
+    content: '';
+    top: 0;
+
+}
+section#detail_item .recommended-course .read-more a:hover::before {
+    position: absolute;
+    right: 100%;
+    border-style: solid;
+    border-width: 0 0 40px 12px;
+    border-color: transparent transparent #ddd;
+    content: '';
+    top: 0;
+    -webkit-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    -ms-transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+    transition: background-color 200ms linear, border-color 200ms linear, color 200ms linear;
+}
+section#detail_item .sekwencja_zdarzen img
+{
+    height:90px;
+    width: 90px;
+    margin-bottom: 10px;
+}
+section#detail_item .sekwencja_zdarzen.repeat-knowledge img
+{
+    height:80px;
+    width: 80px;
+    margin-bottom: 20px;
+}
+section#detail_item .sekwencja_zdarzen.arrow
+{
+    position:relative;
+    top: 20px;
+}
+section#detail_item .sekwencja_zdarzen.arrow img
+{
+    height:45px;
+    width: 45px;
+}
+section#detail_item .sekwencja_zdarzen 
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+section#detail_item .sekwencja_zdarzen p
+{
+    font-family: Roboto slab;
+    font-size: 14px;
+}
+section#detail_item .container .row .direction_icons
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+section#detail_item .container .row .content_inner
+{
+    padding: 40px 5px 20px 5px; 
+    margin: 0 5px 0 5px; 
+}
+section#detail_item section#opis_kursu_szczegoly
+{
+    padding: 0px 15px 0 15px; 
+    border-left: 1px solid #e5e5e5; 
+    border-right: 1px solid #e5e5e5; 
+    border-bottom: 1px solid #e5e5e5; 
+    margin-left: -15px;
+    margin-right: -15px;
+    font-family: Roboto slab;
+}
+section#detail_item section#opis_kursu_szczegoly:nth-child(7)
+{
+    border-bottom: 1px solid #e5e5e5; 
+}
+section#detail_item section#opis_kursu_szczegoly:nth-child(7) .start_pracy 
+{
+    padding-bottom: 15px;
+}
+section#detail_item section#opis_kursu_szczegoly .row h1
+{
+    font-size: 32px;
+}
+section#detail_item section#opis_kursu_szczegoly .row ul
+{
+    font-size: 17px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 0;
+    padding-bottom: 15px;
+}
+section#detail_item section#opis_kursu_szczegoly .row ul li
+{
+    margin: 5px 5px 10px 15px;
+    display: block;
+
+}
+section#detail_item section#opis_kursu_szczegoly .row ul.lista_opisu_kursu li:before
+{
+    content: "\e065";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+    float: left;
+    margin-top: 0;
+    margin-left: -27px;
+    color: #205081; 
+}
+section#detail_item section#opis_kursu_szczegoly .no_padding_description
+{
+    background-color: #f8f8f8;
+}
+section#detail_item section#opis_kursu_szczegoly .row ul.lista_opisu_gwarantowana li:before
+{
+    content: "\e066";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+    float: left;
+    margin-top: 0;
+    margin-left: -27px;
+    color: #205081; 
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu
+{
+    background-color: #f8f8f8;
+    padding-top: 25px;
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu h1
+{
+
+    color: #eb3812;  
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu ul.lista_opisu_kursu li:before
+{
+    color: #eb3812;
+    content: "\e013"
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu-grey
+{
+    padding-top: 20px;
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu-grey h1
+{
+    color: #eb3812;  
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu-grey ul.lista_opisu_kursu li:before
+{
+    color: #eb3812;
+    content: "\e233";
+    font-size: 17px;
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu h2
+{
+    font-size: 32px;
+    font-family: Arial;
+    font-weight: lighter;
+    margin-bottom: 25px;
+    color: #205081; 
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu .separator_left
+{
+    width:70%;
+    top:-15px;
+}
+section#detail_item section#opis_kursu_szczegoly .tematyka_kursu .separator_left span
+{
+    background-color: #f8f8f8;
+}
+section#detail_item section#spis-tresci
+{
+    padding: 10px;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-family: Roboto slab;
+}
+section#detail_item section#spis-tresci h3
+{
+    font-size: 22px;
+    font-weight: 400;
+    color: #444;
+    margin-top: 10px;
+}
+
+section#detail_item section#spis-tresci ul.lista-spis-tresci
+{
+    margin-top: 20px;
+    margin-left: -35px; 
+}
+section#detail_item section#spis-tresci ul.lista-spis-tresci li
+{
+    margin: 0 5px 0 30px;
+    padding: 8px 0 8px 5px;
+    display: block;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 15px;
+    color: #666;
+
+}
+section#detail_item section#spis-tresci ul.lista-spis-tresci li:before  
+{
+    content: "\f085"; 
+    font-family: 'FontAwesome';
+    font-size: 14px;
+    float: left;
+    margin-top: 0;
+    margin-left: -30px;  
+    color: #666; 
+}
+section#detail_item section#spis-tresci ul.lista-spis-tresci a:hover
+{
+    text-decoration: none;
+}
+section#detail_item section#spis-tresci ul.lista-spis-tresci a:focus
+{
+    text-decoration: none;
+}
+section#detail_item section#spis-tresci ul.lista-spis-tresci a li:hover
+{
+    background-color: #fafafa;
+    border-bottom: 1px solid #ddd;
+    color:#000;
+}
+section#detail_item section#spis-tresci ul.lista-spis-tresci a li:hover::before
+{
+    color: #000;
+}
+section#detail_item .container-fluid .buy-now-down
+{
+    margin-top: 35px;
+}
+section#detail_item section#comments-course #text-area-comment
+{
+    min-height: 90px;
+    
+}
+section#detail_item section#comments-course .add-comment-users
+{
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 10px;
+    border-top: 1px solid #e5e5e5;
+}
+section#detail_item section#comments-course
+{
+    padding-top: 5px;
+    margin-bottom: 100px;
+}
+section#detail_item section#comments-course ul.comment-conditions
+{
+    padding-left: 0;
+    color:#888;
+}
+section#detail_item section#comments-course ul.comment-conditions li
+{
+    list-style: none; 
+}
+section#detail_item section#comments-course .add-comment-users .button-comment-user
+{
+    margin-top: 15px;
+
+}
+section#detail_item section#comments-course .add-comment-users .ratings-comment
+{
+    margin-top: 0;
+    margin-bottom: 20px;
+
+}
+section#detail_item section#comments-course .add-comment-users .ratings-comment .social_opinions
+{
+    margin-top: 5px;
+}
+section#detail_item section#comment-users-type
+{
+    padding-top: 20px;
+    padding-bottom: 50px;
+    font-family: Roboto slab;
+}
+section#detail_item section#comment-users-type h2
+{
+    border-bottom: 1px solid #e5e5e5;  
+    padding-bottom: 15px;
+    font-size: 26px;
+    margin-bottom: 25px;
+}
+section#detail_item section#comment-users-type .reply-commit
+{
+    margin-bottom: 10px;
+    padding: 5px;
+    overflow: auto;
+}
+section#detail_item section#comment-users-type .reply-commit img.user_edit
+{
+    max-width: 40px;
+}
+section#detail_item section#comment-users-type .reply-commit .content-body-comment
+{
+    background-color: #f9f9f9;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    width: calc(100% - 50px);
+}
+section#detail_item section#comment-users-type .all-reply-users-comment
+{
+   padding-left: 55px;
+}
+section#detail_item section#comment-users-type .all-reply-users-comment .reply-control-area 
+{
+   padding-left: 90px;
+   padding-right: 0;
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+section#detail_item section#comment-users-type .all-reply-users-comment .reply-control-area ul.comment-conditions
+{
+   padding-left: 0;
+   color:#888;
+}
+section#detail_item section#comment-users-type .all-reply-users-comment .reply-control-area ul.comment-conditions li
+{
+    list-style: none;
+}
+section#detail_item section#comment-users-type .all-reply-users-comment .reply-control-area button
+{
+   border: none;
+   border-radius: 5px;
+   background-color: #777;
+   font: 14px/16px Roboto,sans-serif !important;
+   color: #fff;
+   padding: 5px 10px 5px 10px;
+   margin-top: 10px;
+
+}
+section#detail_item section#comment-users-type form
+{
+    overflow: auto;
+}
+section#detail_item section#comments-course form
+{
+    overflow: auto;
+}
+section#detail_item section#comment-users-type .jumbotron, section#detail_item section#comments-course .jumbotron
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+section#detail_item section#comment-users-type .jumbotron p, section#detail_item section#comments-course .jumbotron p
+{
+    margin-bottom: 0;
+    font-size: 16px;
+    font-family: Roboto slab;
+    color:#333;
+    font-weight: 500;
+}
+section#detail_item section#comment-users-type 
+section#detail_item section#comment-users-type .all-reply-users-comment .reply-control-area button:hover
+{
+   background-color: #444;
+}
+section#detail_item section#comment-users-type .all-reply-users-comment .reply-control-area textarea
+{
+   padding-left: 70px;
+   padding: 7px;
+   resize: none;
+}
+section#detail_item section#comment-users-type .one-comment
+{
+    margin-bottom: 10px;
+    overflow: auto;
+    padding: 5px 5px 10px 5px;
+
+}
+section#detail_item section#comment-users-type .one-comment img.user_edit
+{
+    max-width: 50px;
+ 
+}
+section#detail_item section#comment-users-type .one-comment .content-body-comment
+{
+    background-color: #fff;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    width: calc(100% - 70px)
+ 
+}
+section#detail_item section#comment-users-type .one-comment p
+{
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    font: 15px/16px Roboto,sans-serif !important;
+}
+section#detail_item section#comment-users-type .reply-commit p
+{
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    font: 15px/16px Roboto,sans-serif !important;
+}
+section#detail_item section#comment-users-type .one-comment .user-reply button
+{
+    background-color: #fff;
+    border: 1px solid #aaa;
+    padding: 5px 10px;
+    font: 11px/16px Roboto,sans-serif !important;
+    line-height: 1.5;
+    border-radius: 3px;
+    color: #666;
+}
+section#detail_item section#comment-users-type .one-comment .user-reply button:hover
+{
+    background-color: rgba(0,0,0,0.08)
+}
+section#detail_item section#comment-users-type .one-comment .user-reply button .reply-comment
+{
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    font-size: 12px
+}
+span.reply-users-numbers
+{
+    width: 5px;
+    height: 5px;
+    position: relative;
+    bottom: 1px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #aaa;
+    margin-left: 3px;
+    margin-right: 3px
+}
+section#detail_item section#comment-users-type .user-property
+{
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+    padding-right: 5px;
+}
+section#detail_item section#comment-users-type .user-property .user-name
+{
+    color:#999;
+    margin-right: 10px;
+}

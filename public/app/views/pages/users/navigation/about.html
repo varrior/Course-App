@@ -1,0 +1,14 @@
+<section id="opis_my">  
+    <div class="container">
+        <h2 ng-if="!about.author && !about.blog" class="text-center" style="margin-bottom: 130px">Author and blog have no description</h2>
+        <div ng-if="about.author" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 about-me">
+            <div ng-bind-html="about.author"></div>
+        </div>
+        <div ng-if="about.blog" class="col-lg-8 col-md-8 col-sm-6 col-xs-12 about-blog">
+            <div ng-bind-html="about.blog"></div>
+        </div>
+    </div>
+</section> 
+<div ng-show="about.loadingPage" class="loading">
+    <span class="glyphicon loading"></span>
+</div>

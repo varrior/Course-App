@@ -1,0 +1,82 @@
+<div class="users-management">
+    <div class="widgets">
+        <div class="container-users"> 
+            <div class="row-users">
+                <div class="col-lg-6 col-lg-offset-0 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                    <h1 class="users-table">Author part edition</h1>
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Author description</h3> 
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <section id="detailArticleBlog">
+                                        <form name="aboutAdminDescription" ng-submit="aboutAdmin.editAboutUs({description: aboutAdmin.body}, aboutAdminDescription.$valid)" novalidate>      
+                                            <label class="add-title-label" for="authorContent"><h3>Enter author description</h3></label>
+                                            <div class="form-group">
+                                                <div class="edit-container">                
+                                                    <div text-angular data-ng-model="aboutAdmin.body" class="cms-text" placeholder="Please enter the author description" name="authorContent" required></div>
+                                                </div>  
+                                            </div>
+                                            <p class="help-block error-des-article" ng-show="(!aboutAdminDescription.authorContent.$pristine && aboutAdminDescription.authorContent.$error.required) || (aboutAdminDescription.$submitted && aboutAdminDescription.authorContent.$error.required)">Author description is required</p>    
+                                            <button class="btn btn-info addArticleBlogButton" type="submit"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp Save changes</button>       
+                                        </form>
+                                        <br>
+                                        <div class="course-message-cms">
+                                            <div class="row show-hide-message error-fluid" ng-show="aboutAdmin.aboutMsg">
+                                                <div class="alert alert-success">{{ aboutAdmin.aboutMsg }}</div>
+                                            </div>
+                                            <div class="row show-hide-message error-fluid" ng-show="aboutAdmin.aboutErrMsg">
+                                                <div class="alert alert-danger">{{ aboutAdmin.aboutErrMsg }}</div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-lg-offset-0 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                    <h1 class="users-table">Blog part edition</h1>
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Blog description</h3> 
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <section id="detailArticleBlog">
+                                        <form name="aboutBlogDescription" ng-submit="aboutAdmin.editAboutUs({blog:aboutAdmin.blog}, aboutBlogDescription.$valid)" novalidate>
+                                            <label class="add-title-label" for="blogContent"><h3>Enter blog description</h3></label>
+                                            <div class="form-group">
+                                                <div class="edit-container">                
+                                                    <div text-angular data-ng-model="aboutAdmin.blog" class="cms-text" placeholder="Please enter the blog description" name="blogContent" required></div>
+                                                </div>  
+                                            </div>
+                                            <p class="help-block error-des-article" ng-show="(!aboutBlogDescription.blogContent.$pristine && aboutBlogDescription.blogContent.$error.required) || (aboutBlogDescription.$submitted && aboutBlogDescription.blogContent.$error.required)">Blog description is required</p>    
+                                            <button class="btn btn-info addArticleBlogButton" type="submit"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp Save changes</button>       
+                                        </form>
+                                        <br>
+                                        <div class="course-message-cms">
+                                            <div class="row show-hide-message error-fluid" ng-show="aboutAdmin.blogMsg">
+                                                <div class="alert alert-success">{{ aboutAdmin.blogMsg }}</div>
+                                            </div>
+                                            <div class="row show-hide-message error-fluid" ng-show="aboutAdmin.blogErrMsg">
+                                                <div class="alert alert-danger">{{ aboutAdmin.blogErrMsg }}</div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-show="aboutAdmin.loadingPage" class="loading">
+    <span class="glyphicon loading"></span>
+</div>
+    

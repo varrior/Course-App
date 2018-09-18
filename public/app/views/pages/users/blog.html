@@ -1,0 +1,109 @@
+<section id="blog">
+    <div class="container">
+        <section ng-if="main.blog.length" class="head_blog_section">
+            <div id="BlogCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#BlogCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#BlogCarousel" data-slide-to="1"></li>
+                    <li data-target="#BlogCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div ng-repeat="header in blog.headerArticles track by $index" class="item">
+                        <a ui-sref="parent.article({id: header._id})" ng-click="main.scroll()">
+                            <div class="backdrop col-lg-5 col-md-6 col-sm-7 hidden-xs">
+                                <div class="carousel-caption description">
+                                    <h3>What in article?</h3> 
+                                    <ol>
+                                        <ul class="text-center">
+                                            <li ng-repeat="description in header.description">{{description}}</li> 
+                                        </ul>
+                                    </ol>
+                                </div>
+                                <div class="details_article text-left">
+                                    <p class="pull-left"><i class="fa fa-calendar" aria-hidden="true"></i> Published: {{header.date | date: 'dd-MM-yyyy'}}</p>
+                                    <p class="pull-right"><i class="fa fa-comments" aria-hidden="true"></i> {{header.comments.length}} comments</p>
+                                </div>
+                            </div>
+                            <div class="backdrop-title col-lg-7 col-md-6 col-sm-5 col-xs-12">
+                                <div class="carousel-caption title">
+                                    <h3 class="text-center">{{header.title}}</h3>
+                                </div>
+                            </div>
+                        </a>
+                        <img src="../../uploads/{{header.imagePath}}"> 
+                    </div>
+                </div>
+                <a class="left carousel-control" data-target="#BlogCarousel" role="button" ng-non-bindable data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" data-target="#BlogCarousel" role="button" ng-non-bindable data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+        <section class="sort_blog_news">
+            <div class="col-xs-12 blog-sort-details">
+                <h2 class="hidden-sm pull-left">Recent articles</h2>
+                <ul class="nav nav-tabs navbar-right hidden-xs">
+                    <li class="nav-item">
+                        <a class="nav-link active" ng-click="blog.allArticles()" active-class>All</a>
+                    </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link" ng-click="blog.sortByDate($event)" active-class>Date<span class="glyphicon glyphicon-arrow-up up"></span></a>
+                    </li>
+                    <li class="search-list">
+                        <input type="text" name="input" ng-change="blog.getFilter(blog.filterBlog)" ng-model="blog.filterBlog" class="input">
+                        <button ng-click="blog.search()" type="reset" class="search"><span class="
+                            glyphicon glyphicon-search"></span></button>
+                    </li>
+                </ul>
+            </div>
+            <div style="clear:both"></div>
+        </section>
+        <section class="blog_section_news" infinityscroll="blog.nextPage()">
+            <h2 ng-if="!main.blog.length" class="text-center">No articles have been added recently</h2>
+            <div ng-if="main.blog.length" ng-repeat="article in blog.infiniteScroll" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="single_article">
+                    <div class="article_tag">
+                        <p ng-repeat="tag in article.tags" ng-click="blog.getFilter(tag)" class="spain-tag">{{tag}}</p>
+                    </div>
+                    <a ui-sref="parent.article({id: article._id})" ng-click="main.scroll()">
+                        <img src="../../uploads/{{article.imagePath}}">
+                        <div class="backdrop-title col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="carousel-caption title">
+                                <h3 class="text-center">{{article.title}}</h3>
+                            </div>
+                        </div>
+                        <div class="backdrop col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                            <div class="description">
+                                <h3>What in article?</h3>
+                                <ol>
+                                    <ul class="text-center">
+                                        <li ng-repeat="description in article.description">{{description}}</li> 
+                                    </ul>
+                                </ol>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="details_article text-left">
+                    <p class="pull-left"><i class="fa fa-calendar" aria-hidden="true"></i> Published: {{article.date | date: 'dd-MM-yyyy'}}</p>
+                    <p class="pull-right"><i class="fa fa-comments" aria-hidden="true"></i> {{article.comments.length}} comments</p>
+                </div>
+            </div>
+        </section>
+        <div ng-show="blog.isLoading" class='loading-blog'>
+            <div class='bullet'></div>
+            <div class='bullet'></div>
+            <div class='bullet'></div>
+            <div class='bullet'></div>
+        </div>
+        <div ng-show="blog.isFinish" class='all-articles text-center alert-danger'><span>For now, that's all :)</span></div>
+    </div>
+</section>
+<div ng-show="blog.loadingPage" class="loading">
+    <span class="glyphicon loading"></span>
+</div>

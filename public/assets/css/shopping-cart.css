@@ -1,0 +1,536 @@
+section.shopping-cart-user .container h2.product-title
+{
+    margin-top: 0;
+    font-size: 18px;
+}
+section.shopping-cart-user .container h3.product-subTitle
+{
+    margin-top: 0;
+    font-style: italic;
+    font-size: 14px;
+    color:#999;
+    letter-spacing: 0.7px;
+}
+section.shopping-cart-user .container .shopping-header
+{
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding-left: 0;
+}
+section.shopping-cart-user .container .shopping-header .shopping-header-title
+{
+    padding-left: 0;
+}
+section.shopping-cart-user .container .shopping-header p
+{
+    margin-bottom: 0;
+    padding-bottom: 3px;
+    color:#999;
+    font-size: 18px;
+}
+section.shopping-cart-user .container .shopping-item
+{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+section.shopping-cart-user .container .shopping-item .shopping-image-item
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+section.shopping-cart-user .container .shopping-item .shopping-image-item img 
+{
+    max-height: 90px;
+    width: 100%;
+}
+section.shopping-cart-user .container .order-summary
+{
+    background-color: #333;
+    padding-bottom: 20px;
+}
+section.shopping-cart-user .container .order-summary .summary-header
+{
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+section.shopping-cart-user .container .order-summary .summary-item p
+{
+    color: #fff;
+
+}
+section.shopping-cart-user .container .order-summary .summary-item .item-orders
+{
+    border-bottom: 1px solid #555;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 0;
+}
+section.shopping-cart-user .container .order-summary .summary-item .item-orders .no-space
+{
+    padding-left: 0;
+}
+section.shopping-cart-user .container .order-summary .summary-item p.order-summary-subtitle
+{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+section.shopping-cart-user .container .order-summary .summary-item p.order-summary-title
+{
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+section.shopping-cart-user .container .order-summary .total-orders p
+{
+    color: #fff;
+    font-size: 18px;
+    padding-bottom: 0;
+}
+section.shopping-cart-user .container .order-summary .total-orders 
+{
+    border-bottom: 1px solid #555;
+}
+section.shopping-cart-user .container .order-summary .total-orders .total-summary-header
+{
+    padding-top: 20px;
+    font-weight: bold;
+}
+section.shopping-cart-user .container .order-summary .total-orders .total-summary-header
+{
+    padding-top: 20px;
+    font-weight: bold;
+}
+section.shopping-cart-user .container .order-summary .checkout
+{
+    margin-top: 20px;
+}
+section.shopping-cart-user .container .order-summary .checkout button
+{
+    border-radius: 0;
+    font-size: 18px;
+    background-color: #fe7a15;
+}
+section.shopping-cart-user
+{
+    padding-bottom: 200px;
+    padding-top: 80px;
+}
+section.shopping-cart-user img.empty-cart
+{
+    width:40%;
+    margin-top: -60px;
+}
+section#checkout
+{
+    padding-top: 10px;
+    padding-bottom: 150px;
+    background-color: #f6f6f6;
+}
+section#checkout .checkout-container
+{
+    border: 1px solid #c0c0c0;
+    padding: 15px 30px 30px 30px;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 2px;
+    background-color: #fff;
+}
+section#checkout .checkout-container h2.checkout-desc
+{
+    color:#666; 
+}
+section#checkout .checkout-container p.checkout-reason-pay
+{
+    color:#888; 
+    font-size: 14px;
+    line-height: 22px;
+}
+section#checkout .container .wizard  .head-checkout-list
+{
+    background-color: #03a3dd;
+    color: #fff;
+    padding: 17px 30px 17px 30px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 2px;
+}
+section#checkout .container .wizard .head-checkout-list h3
+{
+    font-size: 17px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+section#checkout .container .wizard .checkout-blue-header
+{
+    padding: 0;
+}
+section#checkout .container .wizard 
+{
+    margin: 0px auto;
+}
+section#checkout .container .wizard .nav-tabs 
+{   
+    margin-bottom: 0;
+    border-bottom-color: #e0e0e0;
+}
+section#checkout .container .wizard > div.wizard-inner 
+{
+    position: relative;
+    margin-bottom: 40px;
+}
+section#checkout .container .wizard .connecting-line 
+{
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 60%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+section#checkout .container .wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+section#checkout .container .wizard span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+section#checkout .container .wizard span.round-tab i
+{
+    color:#555555;
+}
+section#checkout .container .wizard li.active span.round-tab 
+{
+    background: #fff;
+    border: 2px solid #5bc0de;  
+}
+section#checkout .container .wizard li.complete span.round-tab 
+{
+    background: #fff;
+    border: 2px solid #09B317;  
+}
+section#checkout .container .wizard li.complete span.round-tab i
+{
+    color: #09B317;
+}
+section#checkout .container .wizard li.danger span.round-tab 
+{
+    background: #fff;
+    border: 2px solid #C90C0C;  
+}
+section#checkout .container .wizard li.danger span.round-tab i
+{
+    color: #C90C0C; 
+}
+section#checkout .container .wizard li.active span.round-tab i
+{
+    color: #5bc0de;
+}
+section#checkout .container span.round-tab:hover 
+{
+    color: #333;
+    border: 2px solid #333;
+}
+section#checkout .container .wizard .nav-tabs > li 
+{
+    width: 33.333%;
+}
+section#checkout .container .wizard li:after 
+{
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;
+}
+section#checkout .container .wizard li.active:after 
+{
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #5bc0de;
+}
+section#checkout .container .wizard .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+section#checkout .container .wizard .nav-tabs > li a:hover 
+{
+    background: transparent;
+}
+section#checkout .container .wizard h3 
+{
+    margin-top: 0;
+}
+section#checkout .container .checkbox label 
+{
+    display: inline-block;
+    position: relative;
+    padding-left: 5px; 
+    font-size: 16px;
+    color:#666;
+}
+section#checkout .container .checkbox label::before 
+{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 0;
+    margin-left: -20px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+    transition: border 0.15s ease-in-out, color 0.15s ease-in-out; 
+}
+section#checkout .container .checkbox label::after 
+{
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 0;
+    top: 0;
+    margin-left: -23px;
+    padding-left: 3px;
+    padding-top: 1px;
+    font-size: 11px;
+    color: #555555; 
+}
+section#checkout .container .checkbox input[type="radio"] 
+{
+    opacity: 0; 
+}
+section#checkout .container .checkbox input[type="radio"]:checked + label::after 
+{
+    font-family: 'FontAwesome';
+    content: "\f00c"; 
+}
+section#checkout .container .checkbox.checkbox-circle label::before 
+{
+    border-radius: 50%; 
+}
+section#checkout .container .checkbox.checkbox-inline {
+    margin-top: 0; 
+}
+section#checkout .container .checkbox-info input[type="radio"]:checked + label::before {
+    background-color: #5bc0de;
+    border-color: #5bc0de; 
+}
+section#checkout .container .checkbox-info input[type="radio"]:checked + label::after {
+  color: #fff; 
+}
+section#checkout .container .chceckout-box-form
+{
+    padding: 15px 0 0 0;
+}
+section#checkout .container .wizard .module-checkout-button
+{
+    padding: 25px 15px 0 15px;
+}
+section#checkout .container .wizard .module-checkout-button.pay-last-step
+{
+    padding: 25px 15px 0 15px;
+}
+section#checkout .container .wizard .module-checkout-button a.back-to-bill
+{
+    padding-top: 10px;
+    cursor: pointer;
+}
+section#checkout .container .wizard .go-forward-checkout
+{
+    font-size: 18px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 2px;
+}
+section#checkout .container .wizard .checkout-preview-color
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+section#checkout .container .wizard .checkout-preview-color .head-preview-list
+{
+    border: 1px solid #ddd;
+    padding: 7px 26px 7px 26px;
+    border-radius:0;
+    background-color: #fff;
+}
+section#checkout .container .wizard .checkout-preview-color .head-preview-list h3
+{
+    font-size: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+section#checkout .container .podglad-koszyka
+{
+    border: 1px solid #ddd;
+    border-top:none;
+    padding: 15px 30px 15px 30px;
+    border-radius: 0;
+    background-color: #fff;
+}
+section#checkout .container .podglad-koszyka .summary-item .no-space
+{
+    padding: 0;
+}
+section#checkout .container .podglad-koszyka .summary-item .no-space p
+{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+section#checkout .container .podglad-koszyka .summary-item .no-space p.qty-price
+{
+    font-size: 14px;
+    font-weight: normal;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding-bottom: 7px;
+}
+section#checkout .container .podglad-koszyka .total-orders
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+section#checkout .container .podglad-koszyka .total-orders p
+{
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+section#checkout .container .summary-price-pay p
+{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 0;
+}
+section#checkout .container .payment-car-svg
+{
+    width: 90px;
+    height: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+section#checkout .container .row-pay
+{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+section#checkout .container .all-container-preview
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+section#checkout .container .paypal_form_con
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+section#checkout .container .pay_with_paypal
+{
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    margin-top:30px;
+}
+section#checkout .container .paypal_button
+{
+    padding: 6px 60px 6px 60px;
+    font-size: 18px;
+}
+section#checkout .container .success_thumb_confirmed
+{
+    font-size: 150px;
+    color:#09B317;
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+section#checkout .container .fail_thumb_confirmed
+{
+    font-size: 150px;
+    color:#E40D0D;
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+section#checkout .container h3.bac_success_info
+{
+    margin-top:5px !important;
+    margin-bottom: 5px;
+}
+section#checkout .container #complete_payment
+{
+    margin-bottom: 70px;
+}
+section#checkout .container .nav-button-success
+{
+    margin-top: 35px;
+}
+section#checkout .container .in_new_course
+{
+    margin-left: 3px;
+}
+section#checkout .container .in_new_course:hover
+{
+    text-decoration: none;
+}
+section#checkout .container .in_new_course button
+{
+    margin-top: 5px;
+}
+section#checkout .container .in_home_page
+{
+    margin-right: 3px;
+}
+section#checkout .container .in_home_page:hover
+{
+    text-decoration: none;
+}
+section#checkout .container .in_home_page button
+{
+    margin-top: 5px;
+}
+.paypal_redirecting_load
+{
+    margin-top: 25px;
+}
+.paypal_redirecting_load .spinner
+{
+    font-size: 32px;
+}

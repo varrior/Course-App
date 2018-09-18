@@ -1,0 +1,213 @@
+<div class="header-content-view">
+    <header class="home_header">
+        <div id="homeCarousel" class="header-content carousel slide" data-interval="5000" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#homeCarousel" data-slide-to="1"></li>
+                <li data-target="#homeCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="header-content-inner">
+                        <h1 id="headingSentence">Effective and pleasant learning programming</h1>
+                        <hr>
+                        <p>Nowadays, programming is gaining more and more popularity because knowledge of new technologies allows us to change and improve our world!</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="header-content-inner">
+                        <h1 id="headingSentence">Read articles and expand your programming knowledge</h1>
+                        <hr>
+                        <p>Knowing what's new is essential in this profession, you always have to update your knowledge.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="header-content-inner">
+                        <h1 id="headingSentence">Experience the adventure with this amazing profession and have an impact on the future</h1>
+                        <hr>
+                        <p>Facebook, Twiter or Uber everyone used to start with "Hello Word"!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="headNavButt">
+                <a data-target="#one" class="page-scroll zobacz-kurs">See free courses</a> 
+                <a data-target="#one" class="page-scroll zobacz-kurs sprawdz-wiecej">Check what you get</a> 
+            </div>
+            <a class="left carousel-control" data-target="#homeCarousel" ng-non-bindable role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" data-target="#homeCarousel" ng-non-bindable role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+        <div class="notForEver">
+                <h2>You must know one thing - our site <span class="uppUndNot">is not for everyone</span>. We expect you to be a person:</h2>
+                <div class="service-box">
+                    <img class="peopleChar" src="../../../../uploads/svg/notebook.svg">
+                    <p>Hard-working</p>
+                </div>
+                <div class="service-box">
+                    <img class="peopleChar" src="../../../../uploads/svg/first-prize-trophy.svg">
+                    <p>Like challenges</p>
+                </div>
+                <div class="service-box">
+                    <img class="peopleChar" src="../../../../uploads/svg/goal.svg">
+                    <p>Wanting to advance</p>
+                </div>
+                <div class="service-box">
+                    <img class="peopleChar" src="../../../../uploads/svg/balloon-smiling-toy.svg">
+                    <p>Smiling</p>
+                </div>
+            </div>
+    </header>
+</div>
+<section class="newDateBlog">
+    <div class="container">
+        <div class="headerNewCourse">
+            <h1>Recent articles</h1>
+            <a ui-sref="parent.blog" ng-if="main.blog.length" role="button">View all articles</a>
+        </div>
+        <h2 ng-if="!main.blog.length" class="slideanim text-center">No articles have been added recently</h2>
+        <div class="container-product slideanim">
+            <div ng-if="main.blog.length" ng-repeat="article in main.blog | limitTo: main.blog_limit | orderBy: '-date'" class="con-new-pro col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="product">
+                    <div class="button-directions">
+                        <img src="../../uploads/{{ article.imagePath }}" alt="#">
+                        <div class="play-hover">
+                            <a ui-sref="parent.article({id: article._id})" ng-click="main.scroll()"><span class="glyphicon glyphicon-check"></span>See the whole article</a>
+                        </div>
+                        <i class="level" ng-class="product.level" product-level-course></i> 
+                    </div>
+                    <h2>{{article.title}}</h2>
+                    <p>What in article?</p>
+                    <div class="description-list-group">
+                        <ol>
+                            <ul class="text-center">
+                                <li ng-repeat="item in article.description">{{ item }}</li> 
+                            </ul>
+                        </ol> 
+                    </div>
+                    <div class="col-xs-12 read-more text-left">
+                        <p>{{article.author}}</p>
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"><p>{{ article.date | amDateFormat: 'DD.MM.YYYY' }}</p></span>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+</section>
+<section class="benefit-section">
+    <div class="container">
+        <div class="headerNewCourse">
+            <h1>What will you gain with us?</h1>
+        </div>
+    </div>
+    <div class="benefit-container container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                <div class="service-box slideanim">
+                    <img class="opis_sukcesu slideanim" src="../../../../uploads/svg/wallet.svg">
+                    <h3>Save money</h3>
+                    <p class="text-muted">Honestly, you will not get any certificates making you a programmer "on paper", for this you can choose one of many (expensive) specialist courses. My goal is different, as an engineer I want to give you the most necessary knowledge at the least cost.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                <div class="service-box slideanim">
+                    <img class="opis_sukcesu slideanim" src="../../../../uploads/svg/idea.svg">
+                    <h3>The broaden horizons</h3>
+                    <p class="text-muted">A man enlarging his knowledge simultaneously expands his horizons of thought and becomes more creative. Or maybe one of the increasingly new ideas for business will turn out to be a hit and will allow you to fulfill your professional dreams? I wish this to each of you! </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                <div class="service-box slideanim">
+                    <img class="opis_sukcesu slideanim" src="../../../../uploads/svg/coding.svg">
+                    <h3>Learn the basics</h3>
+                    <p class="text-muted">And again this pernicious sincerity. Do not believe anyone who tells you or writes that you will become professional programmers through his courses. Did Messi or Ronaldo achieve so much just watching others playing? That's why I only offer you or the basics of web programming and I encourage you to continue working hard!
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                <div class="service-box slideanim">
+                    <img class="opis_sukcesu slideanim" src="../../../../uploads/svg/clock.svg">
+                    <h3>Save time</h3>
+                    <p class="text-muted">You can learn when you want and how much you want, I personally at the beginning encourage you to a short and systematic learning. Because firstly you can easily be discouraged from learning too much new information and secondly you must not neglect your own personal life, because it has a huge impact on the rapid acquisition of knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="newDateCourse">
+    <div class="container">
+        <div class="headerNewCourse">
+            <h1>Recent courses</h1>
+            <a role="button" ui-sref='parent.courses' ng-if="main.products.length" ng-click="main.scroll()">View all courses</a>
+        </div>
+        <h2 ng-if="!main.products.length" class="slideanim text-center">No courses have been added recently</h2>
+        <div class="container-product slideanim">
+            <div ng-if="main.products.length" ng-repeat="product in main.products | limitTo: main.video_limit | orderBy: date" class="con-new-pro col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="product">
+                    <div class="button-directions">
+                        <img src="../../uploads/{{ product.imagePath }}" alt="#">
+                        <div class="play-hover">
+                            <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()"><span class="glyphicon glyphicon-play-circle"></span>See free lessons</a>
+                        </div>
+                        <i class="level" ng-class="product.level" product-level-course></i> 
+                    </div>
+                    <h2>{{product.title}}</h2>
+                    <h3>{{product.subTitle}}</h3>
+                    <div class="description-list-group">
+                        <ol>
+                            <ul class="text-center">
+                                <li ng-repeat="item in product.description">{{ item }}</li> 
+                            </ul>
+                        </ol>
+                    </div>
+                    <div class="col-xs-12 text-right no-padding-price"> 
+                        <span class="actualPrice"><span class="glyphicon glyphicon-shopping-cart shopping-icon"></span> {{ product.newPrice }}zł</span>
+                        <span class="oldPrice">{{ product.oldPrice }}zł</span>
+                    </div>
+                    <div class="col-xs-12 read-more">
+                        <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Read more
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="users-comment-home">    				
+	<div class="container">
+        <div class="headerNewCourse">
+            <h1> What others think about courses?</h1>
+            <a class="text-center" ng-if="main.sortedComment.length" role="button">See ALL opinions<br> (better and worse)</a>
+        </div>
+		<div class="comment-users slideanim">
+            <h2 ng-if="!main.sortedComment.length" class="text-center">Users have not added any comments</h2>
+			<div ng-if="main.sortedComment.length" class="col-md-6 col-md-offset-3 background-quote">
+                <div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>
+				<div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+				  <!-- Carousel indicators -->
+                  <ol class="carousel-indicators">
+				    <li data-target="#fade-quote-carousel" data-slide-to="0" class="active"></li>
+				    <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
+				    <li data-target="#fade-quote-carousel" data-slide-to="2"></li>
+                    <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
+                    <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
+                    <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
+				  </ol>
+				  <!-- Carousel items -->
+				  <div class="carousel-inner" > 
+				    <div ng-repeat="comment in main.sortedComment track by $index" class="item" ng-class="{active: $first}">  
+                        <blockquote>
+                            <p class="comment-body">{{comment.body}}</p>
+                            <p class="comment-author">{{comment.author}}</p> 
+                        </blockquote>                    
+				    </div> 
+				  </div>
+				</div>
+			</div>							
+		</div>
+	</div>
+</section>
+

@@ -1,0 +1,156 @@
+<div class="users-management">
+    <div class="widgets">
+        <div class="container-users">
+            <div class="row-users">
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                    <h1 class="users-table">Add new article</h1>
+                    <div class="panel panel-blur with scroll animated zoomIn">
+                        <div class="panel-heading clearfix">
+                            <h3 class="hidden-xs panel-title pull-left">Add article to the blog</h3> 
+                        </div> 
+                        <div class="panel-body">
+                            <div class="horizontal-scroll">
+                                <div class="management-user">
+                                    <section id="newArticleBlog">
+                                        <form name="blogForm" ng-submit="newBlog.addNewArticle(newBlog.blog, blogForm.$valid)" novalidate>
+                                            <div ng-class="{'has-success':(blogForm.title.$valid && !blogForm.title.$pristine), 'has-error':(!blogForm.title.$valid && !blogForm.title.$pristine) || (!blogForm.title.$valid && blogForm.$submitted)}">
+                                                <label class="add-title-label" for="title"><h3>Article title</h3></label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-paint-brush"></i>
+                                                        </div>
+                                                        <input ng-disabled="newBlog.disabled" type="text" name="title" class="inputs form-control" ng-model="newBlog.blog.blogTitle" placeholder="Please enter article title" required>
+                                                    </div>
+                                                </div>
+                                                <p class="help-block error-des" ng-show="(!blogForm.title.$pristine && blogForm.title.$error.required) || (blogForm.$submitted && blogForm.title.$error.required)">Article title is required</p>
+                                            </div>          
+                                            <div ng-class="{'has-success':(blogForm.articleImg.$valid && !blogForm.articleImg.$pristine), 'has-error':(!blogForm.articleImg.$valid && !blogForm.articleImg.$pristine) || (!blogForm.articleImg.$valid && blogForm.$submitted) || blogForm.articleImg.$error.pattern}">
+                                                <label class="add-title-label" for="articleImg"><h3>Photo of the article</h3></label>
+                                                <div class="form-group">
+                                                    <div class="input-group"> 
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-picture-o"></i> 
+                                                        </div> 
+                                                        <input type="text" ng-pattern="/\.(png|jpeg|jpg)$/" name="articleImg" class="inputs form-control" ng-model="newBlog.blog.articleBlogImg" readonly required>
+                                                        <span class="input-group-btn">        
+                                                            <span class="btn btn-default btn-file add-img-upload"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Select 
+                                                                <input id="selectBlogImage" type="file" name="myfile" ng-disabled="newBlog.uploading" file-model="file.newBlog" id="imgInp" onchange="angular.element(this).scope().articleIntroImg(this.files)">
+                                                            </span>
+                                                            <span ng-click="newBlog.clearImg()" ng-if="newBlog.imagePreview" class="btn btn-default btn-file add-img-upload clean-image"><span class="glyphicon glyphicon-trash"></span></span> 
+                                                        </span>
+                                                    </div> 
+                                                </div>
+                                                <p class="help-block error-des" ng-if="(!blogForm.articleImg.$pristine && blogForm.articleImg.$error.required) || (blogForm.$submitted && blogForm.articleImg.$error.required)">Article photo is required</p>
+                                            </div>  
+                                            <div ng-class="{'has-success':(blogForm.contentEditDiv.$valid && !blogForm.contentEditDiv.$pristine), 'has-error':(!blogForm.contentEditDiv.$valid && !blogForm.contentEditDiv.$pristine) || (!blogForm.contentEditDiv.$valid && blogForm.$submitted)}">
+                                                <label class="add-title-label" for="articleContent"><h3>Article content</h3></label>
+                                                <div class="form-group">
+                                                    <div class="edit-container">                
+                                                        <div text-angular data-ng-model="newBlog.blog.blogContent" class="cms-text" placeholder="Please enter the article content..." name="articleContent" required></div>
+                                                    </div>  
+                                                </div>
+                                                <p class="help-block error-des-article" ng-show="(!blogForm.articleContent.$pristine && !blogForm.contentEditDiv.$pristine && blogForm.articleContent.$error.required) || (blogForm.$submitted && blogForm.articleContent.$error.required)">Article content is required</p>
+                                            </div>        
+                                            <div ng-class="{'has-success':(blogForm.description.$valid && !blogForm.description.$pristine), 'has-error':(!blogForm.description.$valid && !blogForm.description.$pristine) || (!blogForm.description.$valid && blogForm.$submitted)}">
+                                                <label class="add-title-label" for="description"><h3>Course description</h3></label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <input ng-disabled="newBlog.disabled" type="text" ng-model="newBlog.blog.description[0]" name="description" class="inputs form-control" placeholder="Please enter the course description" required>
+                                                        <div class="input-group-addon add-field">
+                                                            <a ng-click="newBlog.addfield()" title="Add next description">
+                                                                <i class="fa fa-plus"></i>
+                                                            </a>                           
+                                                        </div>
+                                                    </div>
+                                                    <div ng-repeat="item in newBlog.inputs track by $index">
+                                                        <div class="input-group mb-2 mr-sm-2 mb-sm-0 repeat-input">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </div>
+                                                            <input ng-disabled="newCourse.disabled" type="text" name="description" ng-model="newBlog.blog.description[$index+1]" class="inputs form-control" placeholder="Please enter the course description">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p class="help-block error-des" ng-if="(!blogForm.description.$pristine && blogForm.description.$error.required) || (blogForm.$submitted && blogForm.description.$error.required)">Article description is required</p>
+                                            </div>
+                                            <br> 
+                                            <br> 
+                                            <div ng-class="{'has-success':(newBlog.articleTags.length), 'has-error': (blogForm.$submitted && !newBlog.articleTags.length)}">
+                                                <label class="add-title-label" for="tags"><h3>Add tags to the article</h3></label>
+                                                <div class="form-group">
+                                                    <div id="tags">
+                                                        <input id="tag-typer" ng-disabled="newBlog.disabled" type="text" name="tags" class="inputs form-control" placeholder="Please enter the tags">
+                                                    </div> 
+                                                </div>
+                                                <p class="help-block error-des-article" ng-show="(blogForm.$submitted && !newBlog.articleTags.length)">Tags are required</p>
+                                            </div>    
+                                            <div ng-class="{'has-success':(blogForm.author.$valid && !blogForm.author.$pristine), 'has-error':(!blogForm.author.$valid && !blogForm.author.$pristine) || (!blogForm.author.$valid && blogForm.$submitted)}">
+                                                <label class="add-title-label" for="tags"><h3>Article author</h3></label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user-plus"></i>
+                                                        </div>
+                                                        <input ng-model="newBlog.blog.author" ng-disabled="newBlog.disabled" type="text" name="author" class="inputs form-control" placeholder="Please enter the article author..." required>
+                                                    </div>
+                                                </div>
+                                                <p class="help-block error-des" ng-show="(!blogForm.author.$pristine && blogForm.author.$error.required) || (blogForm.$submitted && blogForm.author.$error.required)">Article author is required</p>
+                                            </div>
+                                            <button class="btn btn-info addArticleBlogButton" type="submit"><i class="fa fa-bomb" aria-hidden="true"></i>&nbsp Add article</button>       
+                                        </form>
+                                        <br>
+                                        <div class="course-message-cms">
+                                            <div class="row show-hide-message error-fluid" ng-show="newBlog.message">
+                                                <div class="alert alert-success">{{ newBlog.message }}</div>
+                                            </div>
+                                            <div class="row show-hide-message error-fluid" ng-show="newBlog.errMessage">
+                                                <div class="alert alert-danger">{{ newBlog.errMessage }}</div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade newBlogArticle" id="switchContentView" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="col-xs-12 modal-content-change-view">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-center">
+                    <span class="glyphicon glyphicon-fire"></span><span class="modal-title">&nbsp;&nbsp;Preview of the new article&nbsp;&nbsp;</span><span class="glyphicon glyphicon-fire"></span>
+                    <a type="button" data-target="#" class="pull-right dismiss-modal" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <section class="single-article">
+                    <div class="container">
+                        <article class="post">
+                            <header class="post-header">
+                                <img ng-if="newBlog.thumbnail.dataUrl" class="post-header_img" ng-src="{{newBlog.thumbnail.dataUrl}}" cut-image>
+                                <h1>{{newBlog.blog.blogTitle}}</h1>
+                                <div class="article-details">
+                                    <div class="main-detail pull-left">
+                                        <p class="author">{{newBlog.blog.author}}</p>
+                                        <p ng-if="newBlog.blog.author" class="date" date-now="dd-MM-yyyy"></p>
+                                    </div>
+                                    <div ng-if="newBlog.articleTags.length" class="tag-detail pull-right hidden-xs">
+                                        <span class="glyphicon glyphicon-bookmark bookmark"></span>
+                                        <span ng-repeat="tag in newBlog.articleTags track by $index" class="tag">{{tag}}</span>
+                                    </div>            
+                                </div>
+                            </header>
+                            <div class="post-content">
+                                <div code-content="newBlog.blog.blogContent"></div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<footer id="footer"> 
+    <section  class="nb-footer">
+        <div class="nav-circle-top">
+            <a class="scroll-to-top" ><i class="fa fa-angle-up fa-4x arrow" aria-hidden="true"></i></a>  
+        </div>
+        <div class="container footer-container">
+            <div class="row">
+                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 col-about-team">
+                    <div class="footer-single">
+                        <div class="dummy-logo">
+                            <div class="icon pull-left">
+                                <img class="footer_about" src="../../../../uploads/svg/code-white.svg">
+                            </div>
+                            <h2>Hey! My name is XYZ welcome to my blog and educational platform.</h2>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div>
+                        <a ui-sref="parent.aboutMe" ng-click="main.scroll()" class="btn btn-footer">Read more</a> 
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-7 col-sm-6 col-xs-12 footer-navigation">
+                    <div class="col-sm-12 left-clear right-clear footer-single footer-project">
+                        <div class="footer-title"><h2>Recent articles</h2></div>
+                        <h4 ng-if="!main.blog.length" class="text-center" style="color:#ddd">No articles have been added recently</h4>
+                        <div ng-if="main.blog.length" ng-repeat="article in main.blog | limitTo: main.blog_limit | orderBy: '-date'" class="col-xs-3 single-news">
+                            <a ui-sref="parent.article({id: article._id})" ng-click="main.scroll()">
+                                <img src="../../uploads/{{ article.imagePath }}" class="img-responsive center-block" title="{{ article.title }}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 left-clear right-clear footer-single footer-project">
+                        <div class="footer-title"><h2>Recent courses</h2></div>
+                        <h4 ng-if="!main.products.length" class="text-center" style="color:#ddd">No courses have been added recently</h4>
+                        <div ng-if="main.products.length" ng-repeat="product in main.products | limitTo: main.video_limit" class="col-xs-3 single-news">
+                            <a ui-sref="parent.seeMore({id:product._id})" ng-click="main.scroll()">
+                                <img src="../../uploads/{{ product.imagePath }}" class="img-responsive center-block" title="{{ product.title }}, {{ product.subTitle }}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 footer-navigation">
+                    <div class="footer-single useful-links">
+                        <div class="footer-title"><h2>Navbar</h2></div>
+                        <ul class="list-unstyled">
+                            <li><a ui-sref="parent.blog">Blog <i class="fa fa-angle-right pull-right"></i></a></li>
+                            <li><a ui-sref="parent.courses" ng-click="main.scroll()">Courses <i class="fa fa-angle-right pull-right"></i></a></li>
+                            <li><a ui-sref="parent.aboutMe" ng-click="main.scroll()">About me <i class="fa fa-angle-right pull-right"></i></a></li> 
+                            <li><a ui-sref="parent.contact" ng-click="main.scroll()">Contact <i class="fa fa-angle-right pull-right"></i></a></li>
+                            <li ng-if="!main.isLoggedIn"><a ui-sref="parent.register" ng-click="main.scroll()">Sign up<i class="fa fa-angle-right pull-right"></i></a></li>
+                            <li ng-if="!main.isLoggedIn"><a href="#" data-toggle="modal" data-target="#LoginModal">Sign in <i class="fa fa-angle-right pull-right"></i></a></li>
+                            <li><a ng-if="main.isLoggedIn" href="#" ng-click="main.logout()">Log out <i class="fa fa-angle-right pull-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div> 
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 footer-navigation">
+                    <div class="footer-single">
+                        <div class="footer-title"><h2>Contact details</h2></div>
+                        <address>
+                            Name<br>Contact address<br>
+                            <i class="fa fa-phone"></i> Phone number<br>
+                            <i class="fa fa-envelope"></i> Email address<br>
+                        </address>					
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>	
+    <section class="nb-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 copyrt xs-center">2018 © All Rights Reserved. | <a href="#">Privacy policy</a> | <a href="#">Cookie policy</a>
+                </div>
+                <div class="col-sm-6 text-right xs-center">
+                    <ul class="list-inline footer-social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>

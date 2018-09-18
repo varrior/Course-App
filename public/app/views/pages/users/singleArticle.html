@@ -1,0 +1,145 @@
+<section class="single-article" infinityscroll="singleArt.nextPage()">
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <img class="post-header_img" src="../../uploads/{{singleArt.articleImage}}" cut-image>
+                <h1>{{singleArt.title}}</h1>
+                <div class="article-details">
+                    <div class="main-detail pull-left"> 
+                        <p class="author">{{singleArt.author}}</p>
+                        <p class="date">{{singleArt.date | date: 'dd-MM-yyyy'}}</p>
+                    </div>
+                    <div class="tag-detail pull-right hidden-xs">
+                        <span class="glyphicon glyphicon-bookmark bookmark"></span>
+                        <span ng-repeat="tag in singleArt.tags track by $index" class="tag">{{tag}}</span>
+                    </div>            
+                </div>
+            </header>
+            <div class="post-content">
+                <div code-content="singleArt.articleContent"></div>
+            </div>
+        </article>
+        <section id="comment-users-type"> 
+            <h2>Comments({{singleArt.comments.length}})</h2> 
+            <section ng-if="main.isLoggedIn" id="comments-course"> 
+                <div class="col-xs-12 add-comment-users pull-right">  
+                    <form name="singleArt.AddCommentForm" ng-submit="singleArt.sendComment(singleArt.userComment, singleArt.AddCommentForm.$valid)" novalidate>  
+                        <div ng-class="{'has-success':(singleArt.AddCommentForm.comment.$valid && !singleArt.AddCommentForm.comment.$pristine), 'has-error':(!singleArt.AddCommentForm.comment.$valid && !singleArt.AddCommentForm.comment.$pristine) || (!singleArt.AddCommentForm.comment.$valid &&  singleArt.AddCommentForm.$submitted)}" class="comment-form">  
+                            <textarea data-autoresize ng-click="singleArt.textarea($event)" class="form-control" id="text-area-comment" name="comment" ng-model="singleArt.userComment" ng-minLength="10" placeholder="Please enter the comment..." required></textarea>   
+                            <ul ng-show="(!singleArt.AddCommentForm.comment.$pristine && singleArt.AddCommentForm.$error.minlength[0].$viewValue.length)" class="help-block comment-conditions">
+                                <li>{{10 - singleArt.AddCommentForm.$error.minlength[0].$viewValue.length}} more to go...</li>
+                            </ul>  
+                            <div class="rating-star ratings-comment">
+                                <button class="btn button-comment-user pull-right">Add comment</button>  
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row-fluid show-hide-message" ng-show="singleArt.commentMsg">
+                        <div class="alert alert-success">{{ singleArt.commentMsg }}</div>
+                    </div>
+                    <div class="row-fluid show-hide-message" ng-show="singleArt.errCommentMsg">
+                        <div class="alert alert-danger">{{ singleArt.errCommentMsg }}</div> 
+                    </div>  
+                    <div class="jumbotron text-center" ng-show="singleArt.loadingComment">
+                        <span class="glyphicon glyphicon-repeat spinner"></span>
+                        <p>Adding....</p>
+                    </div>
+                </div>
+            </section> 
+            <div ng-repeat="comment in singleArt.comments | orderBy:'id':true" class="all-users-comment-course"> 
+                <article class="one-comment"> 
+                    <img class="user_edit pull-left" src="../../../../uploads/svg/user.svg">
+                    <div class="col-xs-12 content-body-comment pull-right">
+                        <div class="user-property">  
+                            <p class="user-name text-left">{{ comment.author }} | <time title="{{ comment.date | amDateFormat: 'DD.MM.YYYY H:mm' }}" am-time-ago="comment.date"></time></p>
+                        </div>  
+                        <div class="user-content-comment"> 
+                            <div class="comment-body-dash"> 
+                                <p>{{comment.body}}</p> 
+                            </div>                                                
+                        </div>
+                        <div ng-if="main.isLoggedIn || comment.reply.length" class="user-reply pull-right">
+                            <button ng-click="singleArt.showDetails[$index] = !singleArt.showDetails[$index]"><span class="glyphicon glyphicon-share-alt reply-comment"></span>&nbspReply <span class="reply-users-numbers" ng-show="comment.reply.length"></span><span ng-show="comment.reply.length">{{comment.reply.length}}</span></button>
+                        </div>
+                    </div>
+                </article>
+                <div class="all-reply-users-comment" ng-if="singleArt.showDetails[$index]">                               
+                    <div class="users-reply-comment" ng-repeat="reply in comment.reply | orderBy: 'id': true track by $index">
+                        <article class="reply-commit">
+                            <img class="user_edit" src="../../../../uploads/svg/user.svg">
+                            <div class="content-body-comment pull-right">
+                                <div class="user-property"> 
+                                    <p class="user-name text-left">{{ reply.author }} | <time title="{{ reply.date | amDateFormat: 'DD.MM.YYYY H:mm' }}" am-time-ago="reply.date"></time></p>
+                                </div>  
+                                <div class="user-content-comment"> 
+                                    <div class="comment-body-dash"> 
+                                        <p>{{reply.body}}</p> 
+                                    </div>                                                
+                                </div>
+                            </div>
+                        </article>
+                    </div> 
+                    <div ng-if="main.isLoggedIn" class="col-xs-12 reply-control-area">
+                        <form name="blogReply" ng-submit="singleArt.sendReply(comment, singleArt.commentReply[comment.number], blogReply)" novalidate>
+                            <div ng-class="{'has-success':(blogReply['commentReply' + comment.number].$valid && !blogReply['commentReply' + comment.number].$pristine), 'has-error':(!blogReply['commentReply' + comment.number].$valid && !blogReply['commentReply' + comment.number].$pristine) || (!blogReply['commentReply' + comment.number].$valid &&  blogReply.$submitted)}" class="text-right">  
+                                <textarea data-autoresize name="commentReply{{comment.number}}" ng-model="singleArt.commentReply[comment.number]" placeholder="Please enter the reply" class="form-control" id="reply-user-comment-to" ng-minLength="10" required></textarea>
+                                <ul ng-show="(!blogReply['commentReply' + comment.number].$pristine && blogReply.$error.minlength[0].$viewValue.length)" class="help-block comment-conditions">
+                                    <li>{{10 - blogReply.$error.minlength[0].$viewValue.length}} more to go...</li>   
+                                </ul>  
+                                <button ng-disabled="singleArt.disableReply" class="pull-right button-reply">Add reply</button>
+                            </div>
+                        </form> 
+                        <div class="row-fluid show-hide-message" ng-show="singleArt.replyMsg && singleArt.addedReply === comment._id">
+                            <div class="alert alert-success">{{ singleArt.replyMsg}}</div>
+                        </div>
+                        <div class="row-fluid show-hide-message" ng-show="singleArt.errReply && singleArt.addedReply === comment._id">
+                            <div class="alert alert-danger">{{ singleArt.errReply }}</div> 
+                        </div>  
+                        <div class="jumbotron text-center" ng-show="singleArt.loadingReply">
+                            <span class="glyphicon glyphicon-repeat spinner"></span>
+                            <p>Adding....</p>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+        </section>
+        <section id="similarArticles">
+            <h2 class="text-center other-articles">Other articles on similar topics</h2>
+            <article ng-repeat="article in singleArt.rest" class="post">
+                <header class="post-header">
+                    <div class="main-detail text-left">
+                        <div class="article-details">
+                            <div class="main-detail pull-left">
+                                <h1 class="title">{{article.title}}</h1>
+                            </div>
+                            <div class="tag-detail pull-right hidden-xs">
+                                <p class="author">{{article.author}}</p>
+                                <p class="date">{{article.date | date: 'dd-MM-yyyy'}}</p>
+                            </div>            
+                        </div>
+                    </div>
+                    <img class="post-header_img" src="../../uploads/{{article.imagePath}}" cut-image>
+                    <div class="article-details">
+                        <div class="tag-detail tags pull-left hidden-xs">
+                            <span class="glyphicon glyphicon-bookmark bookmark"></span>
+                            <span ng-repeat="tag in article.tags" class="tag">{{tag}}</span>
+                        </div>   
+                        <div class="button-detail pull-right">
+                            <button class="read-more" ng-click="main.scroll()"><a ui-sref="parent.article({id: article._id})">Read more...</a></button>
+                        </div>         
+                    </div>
+                </header>
+            </article>
+        </section>
+        <div ng-show="singleArt.isLoading" class='loading-blog'>
+            <div class='bullet'></div>
+            <div class='bullet'></div>
+            <div class='bullet'></div>
+            <div class='bullet'></div>
+        </div>
+        <div ng-show="singleArt.isFinish" class='all-articles text-center alert-danger'><span>{{singleArt.finishMsg}}</span></div>
+    </div>
+</section>
+<div ng-show="singleArt.loadingPage" class="loading">
+    <span class="glyphicon loading"></span>
+</div>

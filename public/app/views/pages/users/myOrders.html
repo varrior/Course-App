@@ -1,0 +1,34 @@
+<section class="myOrders">
+    <div class="headerOrders">
+        <div class="container">
+            <h1 ng-if="orders.orders.length" >Your orders</h1>
+            <h1 ng-if="!orders.orders.length">You have not bought any course yet</h1>
+        </div>
+    </div>
+    <div ng-if="orders.orders.length" class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">L.p.</th>
+                    <th scope="col">Order number</th>
+                    <th scope="col">Orde date</th>
+                    <th scope="col">Paid</th>
+                    <th scope="col">Summary</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Invoice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="order in orders.orders track by $index">
+                    <th scope="row">{{$index + 1}}</th>
+                    <th>{{order.orderId}}</th>
+                    <th>{{order.date | date: 'MM.dd.yyyy'}}</th>
+                    <th>{{order.realized}}</th>
+                    <th>{{order.totalAmount}} zł</th>
+                    <th>{{order.status}}</th>
+                    <th></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

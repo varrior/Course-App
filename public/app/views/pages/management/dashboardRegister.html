@@ -1,0 +1,48 @@
+<div class="container" id="AdminRegister" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body modal-body-register">
+                <h3 class="text-muted text-center">Admin Dashboard</h3>
+                <h4 class="text-muted text-center register_header">Sign up</h4>
+                <div class="log-reg-admin text-center">
+                    <a role="button" ui-sref="adminLogin" class="forgot-password reg-new-admin">Sign in</a>
+                    <a role="button" ui-sref="parent.home" class="forgot-password">Back to home page</a>
+                </div>
+                <p id="profile-name" class="profile-name-card"></p>
+                <form name="adminAccountReg" class="form-signup" ng-submit="dashboard.addPassword(dashboard.adminData, adminAccountReg.$valid)" novalidate>
+                    <div ng-class="{'has-success': (adminAccountReg.secretAdmin.$valid && !adminAccountReg.secretAdmin.$pristine), 'has-error':(!adminAccountReg.secretAdmin.$valid && adminAccountReg.$submitted) || (!adminAccountReg.secretAdmin.$valid && !adminAccountReg.secretAdmin.$pristine)}" class="signup_pass"> 
+                        <label for="secretAdmin">Admin password</label>
+                        <input type="password" name="secretAdmin" id="secretAdmin" class="form-control password-form" placeholder="Enter the admin password" ng-model="dashboard.adminData.secretAdmin" ng-minLength="10" ng-maxLength="35" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[A-Z])[0-9a-zA-Z].{9,34}$/" ng-disabled="dashboard.disabled" required/>
+                        <p class="help-block checking-data" ng-show="(!adminAccountReg.secretAdmin.$pristine && adminAccountReg.secretAdmin.$error.required) || (adminAccountReg.$submitted && adminAccountReg.secretAdmin.$error.required)">Admin password is required</p>
+                        <span ng-if="dashboard.saveAdminPassword" class="glyphicon loading"></span>
+                        <span ng-if="dashboard.correctAdmin && !adminAccountReg.secretAdmin.$error.required && adminAccountReg.secretAdmin.$valid && adminAccountReg.secretAdmin.$dirty" class="glyphicon glyphicon-ok correct"></span>
+                        <ul ng-show="(!adminAccountReg.secretAdmin.$pristine && adminAccountReg.secretAdmin.$error.pattern) || (!adminAccountReg.secretAdmin.$pristine && adminAccountReg.secretAdmin.$error.minlength) || (!adminAccountReg.secretAdmin.$pristine && adminAccountReg.secretAdmin.$error.maxlength)" class="help-block">
+                            <li>Must contain at least one uppercase letter</li>
+                            <li>Must contain at least one small letter</li>
+                            <li>MMust contain at least one number</li>
+                            <li>Must contain at least 10 but no more than 35 characters</li>                  
+                        </ul>
+                    </div>
+                    <br>
+                    <div ng-class="{'has-success': (adminAccountReg.confirmSecretAdmin.$valid && !adminAccountReg.confirmSecretAdmin.$pristine), 'has-error':(!adminAccountReg.confirmSecretAdmin.$valid && adminAccountReg.$submitted) || (!adminAccountReg.confirmSecretAdmin.$valid && !adminAccountReg.confirmSecretAdmin.$pristine)}" class="signup_pass"> 
+                        <label for="confirmSecretAdmin">Confirm password</label>
+                        <input type="password" name="confirmSecretAdmin" id="confirmSecretAdmin" class="form-control password-form" placeholder="Repeat password" ng-model="dashboard.adminData.confirmSecretAdmin" ng-pattern="dashboard.adminData.secretAdmin" ng-disabled="dashboard.disabled" required/>
+                        <p class="help-block checking-data" ng-show="adminAccountReg.confirmSecretAdmin.$error.pattern && !adminAccountReg.confirmSecretAdmin.$pristine">Passwords do not match</p>
+                        <p class="help-block checking-data" ng-show="(!adminAccountReg.confirmSecretAdmin.$pristine && adminAccountReg.confirmSecretAdmin.$error.required) || (adminAccountReg.$submitted && adminAccountReg.confirmSecretAdmin.$error.required)">Confirm password is required</p>
+                        <span ng-if="dashboard.saveAdminPassword" class="glyphicon loading"></span>
+                        <span ng-if="dashboard.correctAdmin && adminAccountReg.secretAdmin.$valid && adminAccountReg.confirmSecretAdmin.$valid && !adminAccountReg.confirmSecretAdmin.$pristine" class="glyphicon glyphicon-ok correct"></span>
+                    </div>
+                    <br>
+                    <br>
+                    <button class="btn btn-lg btn-danger btn-block btn-signin" type="submit">Sign up</button>
+                    <div class="row-fluid show-hide-message" ng-show="dashboard.errorMsg">
+                        <div class="alert alert-danger">{{ dashboard.errorMsg }}</div>
+                    </div>
+                    <div class="row-fluid show-hide-message" ng-show="dashboard.successMsg">
+                        <div class="alert alert-success">{{ dashboard.successMsg }}</div>
+                    </div>
+                </form>                                                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<section class="account_panel">
+    <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="user_name_profile text-center">
+                <img class="user_edit" src="../../../../uploads/svg/user.svg">
+                <h4>Hello {{main.username}}</h4>
+            </div>  
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h3 class="title_changing_data">User details</h3>
+                <form name="editAccountUser" ng-submit="profile.saveChanges(change, editAccountUser.$valid)" novalidate>
+                    <div class="edit-user-box">
+                        <div ng-class="{'has-success': (editAccountUser.changeUsername.$valid && !editAccountUser.changeUsername.$pristine && !profile.usernameInvalid && editAccountUser.changeUsername.$dirty), 'has-error': (!editAccountUser.changeUsername.$valid && !editAccountUser.changeUsername.$pristine) || (!editAccountUser.changeUsername.$valid && editAccountUser.$submitted) || profile.usernameInvalid }" class="col-xs-12 hor_row_data">
+                            <label for="changeUsername">Username</label>
+                            <input ng-model="profile.change.changeUsername" ng-blur="profile.checkChangedUsername(change)" name="changeUsername" ng-minLength="3" ng-maxLength="20" ng-disabled="profile.disabledProfile" type="text" ng-pattern="/^([0-9]|[a-z])+([0-9a-z]+){2,19}$/i" id="changeUsername" class="form-control" placeholder="Please enter the username" required>
+                            <p class="help-block checking-data" ng-show="(!editAccountUser.changeUsername.$pristine && editAccountUser.changeUsername.$error.required) || (editAccountUser.$submitted && editAccountUser.changeUsername.$error.required)">Username is required</p>
+                            <span ng-if="(profile.checkingUsername || profile.saveChangesLoading) && editAccountUser.changeUsername.$dirty" class="glyphicon loading"></span>
+                            <span ng-if="profile.usernameMsg && !editAccountUser.changeUsername.$error.required && editAccountUser.changeUsername.$valid && editAccountUser.changeUsername.$dirty" class="glyphicon glyphicon-ok correct"></span>
+                            <p class="help-block checking-data" ng-show="profile.usernameErrMsg && !editAccountUser.changeUsername.$error.required && !editAccountUser.changeUsername.$valid && editAccountUser.changeUsername.$dirty">{{ profile.usernameErrMsg }}</p>
+                            <ul ng-show="(!editAccountUser.changeUsername.$pristine && editAccountUser.changeUsername.$error.pattern) || (!editAccountUser.changeUsername.$pristine && editAccountUser.changeUsername.$error.minlength) || (!editAccountUser.changeUsername.$pristine && editAccountUser.changeUsername.$error.maxlength)" class="help-block edit_own_profile">
+                                <strong>
+                                    <li>Must not contain any special characters and spaces</li>
+                                    <li>Must contain at least 3 but no more than 20 characters</li>
+                                </strong>
+                            </ul>
+                        </div>
+                        <div ng-class="{'has-success': (editAccountUser.changeEmail.$valid && !editAccountUser.changeEmail.$pristine && !profile.emailInvalid && editAccountUser.changeEmail.$dirty), 'has-error': (!editAccountUser.changeEmail.$valid && !editAccountUser.changeEmail.$pristine) || (!editAccountUser.changeEmail.$valid && editAccountUser.$submitted) || profile.emailInvalid }" class="col-xs-12 hor_row_data">
+                            <label for="changeEmail">Email address</label>
+                            <input ng-model="profile.change.changeEmail" ng-blur="profile.checkChangedEmail(change)" name="changeEmail" ng-minLength="3" ng-maxLength="30" ng-disabled="profile.disabledProfile" ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" type="text" id="changeEmail" class="form-control" placeholder="Please enter the email address" required>
+                            <p class="help-block checking-data" ng-show="(!editAccountUser.changeEmail.$pristine && editAccountUser.changeEmail.$error.required) || (editAccountUser.$submitted && editAccountUser.changeEmail.$error.required)">Email address is required</p>
+                            <span ng-if="(profile.checkingEmail || profile.saveChangesLoading) && editAccountUser.changeEmail.$dirty" class="glyphicon loading"></span>
+                            <span ng-if="profile.emailMsg && !editAccountUser.changeEmail.$error.required && editAccountUser.changeEmail.$valid && editAccountUser.changeEmail.$dirty" class="glyphicon glyphicon-ok correct"></span>
+                            <p class="help-block checking-data" ng-show="profile.emailErrMsg && !editAccountUser.changeEmail.$error.required && !editAccountUser.changeEmail.$valid && editAccountUser.changeEmail.$dirty">{{ profile.emailErrMsg }}</p>
+                            <ul ng-show="(!editAccountUser.changeEmail.$pristine && editAccountUser.changeEmail.$error.pattern) || (!editAccountUser.changeEmail.$pristine && editAccountUser.changeEmail.$error.minlength) || (!editAccountUser.changeEmail.$pristine && editAccountUser.changeEmail.$error.maxlength)" class="help-block edit_own_profile">
+                                <strong>
+                                    <li>Must contain "@"</li>
+                                    <li>Must contain at least 3 but no more tham 30 characters</li>
+                                    <li>After dot must contain 2 but no more than 4 characters</li>
+                                </strong>
+                            </ul>
+                        </div>                  
+                        <div ng-class="{'has-success': (editAccountUser.changeName.$valid && !editAccountUser.changeName.$pristine && editAccountUser.changeName.$dirty), 'has-error': (!editAccountUser.changeName.$valid && !editAccountUser.changeName.$pristine) ||(!editAccountUser.changeName.$valid && editAccountUser.$submitted)}" class="col-xs-12 hor_row_data">
+                            <label for="changeName">Name</label>
+                            <input ng-model="profile.change.changeName" name="changeName" ng-minLength="3" ng-maxLength="30" ng-disabled="profile.disabledProfile" ng-pattern="/^(([a-zA-Z]{3,30})+[ ]+([a-zA-Z]{3,30})+)+$/" type="text" id="changeName" class="form-control" placeholder="Please enter your name" required>
+                            <p class="help-block checking-data" ng-show="(!editAccountUser.changeName.$pristine && editAccountUser.changeName.$error.required) || (editAccountUser.$submitted && editAccountUser.changeName.$error.required)">Name is required</p>
+                            <span ng-if="profile.saveChangesLoading" class="glyphicon loading"></span>
+                            <span ng-if="profile.correctInput && !editAccountUser.changeName.$error.required && editAccountUser.changeName.$valid && editAccountUser.changeName.$dirty" class="glyphicon glyphicon-ok correct"></span>
+                            <p class="help-block checking-data" ng-show="profile.nameErrMsg && !editAccountUser.changeName.$error.required && !editAccountUser.changeName.$valid && editAccountUser.changeName.$dirty">{{ profile.nameErrMsg }}</p>
+                            <ul ng-show="(!editAccountUser.changeName.$pristine && editAccountUser.changeName.$error.pattern) || (!editAccountUser.changeName.$pristine && editAccountUser.changeName.$error.minlength) || (!editAccountUser.changeName.$pristine && editAccountUser.changeName.$error.maxlength)" class="help-block edit_own_profile">
+                                <strong>
+                                    <li>Must be space between name and surname</li>
+                                    <li>Must contain at least 3 but no more tham 30 characters</li>
+                                    <li>Must not contain any special characters and numbers</li>
+                                </strong>
+                            </ul>
+                        </div>
+                        <div ng-class="{'has-success': (editAccountUser.changeBirthday.$valid && !editAccountUser.changeBirthday.$pristine && editAccountUser.changeBirthday.$dirty), 'has-error': (!editAccountUser.changeBirthday.$valid && !editAccountUser.changeBirthday.$pristine) ||(!editAccountUser.changeBirthday.$valid && editAccountUser.$submitted)}" class="col-xs-12 hor_row_data">
+                            <label for="changeBirthday">Birthdate</label>
+                            <input ng-model="profile.change.changeBirthday" ng-pattern="/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/" name="changeBirthday" ng-disabled="profile.disabledProfile" type="text" id="changeBirthday" class="form-control" placeholder="Please enter the birthdate">
+                            <span ng-if="profile.saveChangesLoading" class="glyphicon loading"></span>
+                            <span ng-if="profile.correctInput && !editAccountUser.changeBirthday.$error.required && editAccountUser.changeBirthday.$valid && editAccountUser.changeBirthday.$dirty" class="glyphicon glyphicon-ok correct"></span>
+                            <ul ng-show="(!editAccountUser.changeBirthday.$pristine && editAccountUser.changeBirthday.$error.pattern)" class="help-block edit_own_profile">
+                                <strong>
+                                    <li>Valid birthdate: DD.MM.RRRR</li>
+                                </strong>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 hor_row_data">
+                            <a class="btn btn-primary" ng-click="profile.editProfile()">Edit</a>
+                            <button ng-disabled="profile.disabledProfile" class="btn btn-success pull-right" type="submit">Save changes</button>
+                            <div class="row-fluid show-hide-message" ng-show="profile.successChanged">
+                                <div class="alert alert-success changed-alert">{{ profile.successChanged}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h3 class="title_changing_data">Change password</h3>
+                <form name="changePasswordForm" ng-submit="profile.saveChangePassword(pass, changePasswordForm.$valid)" novalidate>
+                    <div class="edit-user-box">
+                        <div ng-class="{'has-success': (changePasswordForm.currentPass.$valid && !changePasswordForm.currentPass.$pristine && !profile.passwordInvalid && changePasswordForm.currentPass.$dirty), 'has-error':(!changePasswordForm.currentPass.$valid && changePasswordForm.$submitted) || (!changePasswordForm.currentPass.$valid && !changePasswordForm.currentPass.$pristine && changePasswordForm.currentPass.$error.required) || profile.passwordInvalid}" class="col-xs-12 hor_row_data">     
+                            <label for="currentPass">Current password</label>
+                            <input ng-model="profile.pass.currentPass" ng-blur="profile.checkCurrPass(pass)" name="currentPass" ng-minLength="8" ng-maxLength="35" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[A-Z])[0-9a-zA-Z].{7,34}$/" ng-disabled="profile.disabled" type="password" id="currentPass" class="form-control" placeholder="Please enter the current password" required>
+                            <p class="help-block checking-data" ng-show="(!changePasswordForm.currentPass.$pristine && changePasswordForm.currentPass.$error.required) || (changePasswordForm.$submitted && changePasswordForm.currentPass.$error.required)">Current password is required</p>
+                            <span ng-if="profile.saveNewPassword || (profile.checkingPass && changePasswordForm.currentPass.$dirty)" class="glyphicon loading"></span>
+                            <span ng-if="profile.passMsg && !changePasswordForm.currentPass.$error.required && changePasswordForm.currentPass.$valid && changePasswordForm.currentPass.$dirty" class="glyphicon glyphicon-ok correct"></span>
+                            <p class="help-block checking-data" ng-show="(profile.passErrMsg && !changePasswordForm.currentPass.$error.required &&    !changePasswordForm.currentPass.$valid && changePasswordForm.currentPass.$dirty) || (profile.passErrMsg && !changePasswordForm.currentPass.$error.required && changePasswordForm.currentPass.$dirty)">{{ profile.passErrMsg }}</p>
+                        </div>
+                        <div ng-class="{'has-success': (changePasswordForm.newPass.$valid && !changePasswordForm.newPass.$pristine && !profile.compareInvalid), 'has-error':(!changePasswordForm.newPass.$valid && changePasswordForm.$submitted) || (!changePasswordForm.newPass.$valid && !changePasswordForm.newPass.$pristine) || profile.compareInvalid}" class="col-xs-12 hor_row_data">
+                            <label for="newPass">New password</label>
+                            <input ng-model="profile.pass.newPass" ng-blur="profile.comparePasswords(pass)" ng-minLength="8" ng-maxLength="35" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[A-Z])[0-9a-zA-Z].{7,34}$/" name="newPass" ng-disabled="profile.disabled" type="password" id="newPass" class="form-control" placeholder="Please enter the new password" required>
+                            <span ng-if="profile.saveNewPassword || (profile.checkingCom && changePasswordForm.newPass.$dirty)" class="glyphicon loading"></span>
+                            <span ng-if="profile.comMsg && profile.passMsg && changePasswordForm.newPass.$valid && !changePasswordForm.newPass.$pristine" class="glyphicon glyphicon-ok correct"></span>
+                            <p class="help-block checking-data" ng-show="(profile.comErrPass && !changePasswordForm.newPass.$error.required &&   !changePasswordForm.newPass.$valid && changePasswordForm.newPass.$dirty) || (profile.comErrPass && !changePasswordForm.newPass.$error.required && changePasswordForm.newPass.$dirty)">{{ profile.comErrPass }}</p>
+                            <p class="help-block checking-data" ng-show="(!changePasswordForm.newPass.$pristine && changePasswordForm.newPass.$error.required) || (changePasswordForm.$submitted && changePasswordForm.newPass.$error.required)">New password is required</p>
+                            <ul ng-show="(!changePasswordForm.newPass.$pristine && changePasswordForm.newPass.$error.pattern) || (!changePasswordForm.newPass.$pristine && changePasswordForm.newPass.$error.minlength) || (!changePasswordForm.newPass.$pristine && changePasswordForm.newPass.$error.maxlength)" class="help-block edit_own_profile">
+                                <strong>
+                                    <li>Must contain at least one uppercase and one small letter</li>
+                                    <li>Must contain at least one number</li>
+                                    <li>Must contain at least 8 but no more than 35 characters</li>
+                                </strong>                    
+                            </ul>    
+                        </div>       
+                        <div ng-class="{'has-success': (changePasswordForm.newPass.$valid && changePasswordForm.confirmPass.$valid && !changePasswordForm.confirmPass.$pristine), 'has-error':(!changePasswordForm.confirmPass.$valid && changePasswordForm.$submitted) || (!changePasswordForm.confirmPass.$valid && !changePasswordForm.confirmPass.$pristine ) || (!changePasswordForm.newPass.$valid && !changePasswordForm.confirmPass.$pristine) || (!changePasswordForm.newPass.$valid && changePasswordForm.$submitted)}" class="col-xs-12 hor_row_data">
+                            <label for="confirmPass">Confirm passord</label>
+                            <input ng-model="profile.pass.confirmPass" ng-pattern="profile.pass.newPass" name="confirmPass" ng-disabled="profile.disabled" type="password" id="confirmPass" class="form-control" placeholder="Please eneter the new password again" required>
+                            <p class="help-block checking-data" ng-show="changePasswordForm.confirmPass.$error.pattern && !changePasswordForm.confirmPass.$pristine">Passwords do not match</p>
+                            <p class="help-block checking-data" ng-show="(!changePasswordForm.confirmPass.$pristine && changePasswordForm.confirmPass.$error.required) || (changePasswordForm.$submitted && changePasswordForm.confirmPass.$error.required)">Confirm password is required</p>
+                            <span ng-if="profile.saveNewPassword" class="glyphicon loading"></span>
+                            <span ng-if="profile.passMsg && changePasswordForm.newPass.$valid && changePasswordForm.confirmPass.$valid && !changePasswordForm.confirmPass.$pristine" class="glyphicon glyphicon-ok correct"></span>
+                        </div>
+                        <div class="col-xs-12 hor_row_data">
+                            <button class="btn btn-warning" type="submit">Save new password</button>
+                            <div class="row-fluid show-hide-message" ng-show="profile.showPassMsg">
+                                <div class="alert alert-success changed-alert">{{ profile.showPassMsg }}</div>
+                            </div>
+                            <div class="row-fluid show-hide-message" ng-show="profile.showPassErr">
+                                <div class="alert alert-danger changed-alert">{{ profile.showPassErr }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
